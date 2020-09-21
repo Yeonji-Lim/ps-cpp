@@ -12,14 +12,14 @@ void quickSort(vector<pair<int, int>> &locations) {
 
     for(int i = 0; i < locations.size(); i++) {
         if(i == pivotInx) continue;
-        if(locations[i].first < locations[pivotInx].first) {
+        if(locations[i].second < locations[pivotInx].second) {
             left.push_back(locations[i]);
         }
-        else if (locations[i].first > locations[pivotInx].first) {
+        else if (locations[i].second > locations[pivotInx].second) {
             right.push_back(locations[i]);
         }
         else {
-            if(locations[i].second <= locations[pivotInx].second) {
+            if(locations[i].first <= locations[pivotInx].first) {
                 left.push_back(locations[i]);
             } else {
                 right.push_back(locations[i]);
