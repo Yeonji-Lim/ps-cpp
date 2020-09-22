@@ -44,16 +44,16 @@ RM = "/Users/im-yeonji/Library/Application Support/JetBrains/Toolbox/apps/CLion/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_4673
+CMAKE_SOURCE_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_2753
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_4673/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_2753/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/BP_4673.dir/all
+all: CMakeFiles/BP_2753.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/BP_4673.dir/clean
+clean: CMakeFiles/BP_2753.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/BP_4673.dir
+# Target rules for target CMakeFiles/BP_2753.dir
 
 # All Build rule for target.
-CMakeFiles/BP_4673.dir/all:
-	$(MAKE) -f CMakeFiles/BP_4673.dir/build.make CMakeFiles/BP_4673.dir/depend
-	$(MAKE) -f CMakeFiles/BP_4673.dir/build.make CMakeFiles/BP_4673.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_4673/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target BP_4673"
-.PHONY : CMakeFiles/BP_4673.dir/all
+CMakeFiles/BP_2753.dir/all:
+	$(MAKE) -f CMakeFiles/BP_2753.dir/build.make CMakeFiles/BP_2753.dir/depend
+	$(MAKE) -f CMakeFiles/BP_2753.dir/build.make CMakeFiles/BP_2753.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_2753/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target BP_2753"
+.PHONY : CMakeFiles/BP_2753.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/BP_4673.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_4673/cmake-build-debug/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BP_4673.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_4673/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/BP_4673.dir/rule
+CMakeFiles/BP_2753.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_2753/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BP_2753.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_2753/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/BP_2753.dir/rule
 
 # Convenience name for target.
-BP_4673: CMakeFiles/BP_4673.dir/rule
+BP_2753: CMakeFiles/BP_2753.dir/rule
 
-.PHONY : BP_4673
+.PHONY : BP_2753
 
 # clean rule for target.
-CMakeFiles/BP_4673.dir/clean:
-	$(MAKE) -f CMakeFiles/BP_4673.dir/build.make CMakeFiles/BP_4673.dir/clean
-.PHONY : CMakeFiles/BP_4673.dir/clean
+CMakeFiles/BP_2753.dir/clean:
+	$(MAKE) -f CMakeFiles/BP_2753.dir/build.make CMakeFiles/BP_2753.dir/clean
+.PHONY : CMakeFiles/BP_2753.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
