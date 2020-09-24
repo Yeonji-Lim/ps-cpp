@@ -32,23 +32,31 @@ void wordsSort(vector<string> &words) {
     }
 }
 
+void stringSort(vector<string> &words) {
+    if(words.size() <= 1) return;
+    vector<string> left;
+    vector<string> right;
+    int pivotIdx = words.size()/2;
+    for(int i = 0; i<words.size(); i++) {
+
+    }
+}
+
 int main() {
     int N;
     cin >> N;
-    if(N<1 || N>20000) return 0;
     vector<string> words;
     string word;
 
     for(int i = 0; i < N; i++) {
         cin >> word;
-        if(word.length() > 50) return 0;
         words.push_back(word);
     }
 
     wordsSort(words);
 
     for(int i = 0; i < words.size(); i++) {
-        cout << words[i] << endl;
+        printf("%s\n", words[i].c_str());
     }
     return 0;
 }
