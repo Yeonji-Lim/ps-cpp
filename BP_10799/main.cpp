@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stack>
 using namespace std;
 
 int main() {
@@ -8,24 +7,19 @@ int main() {
 
     int ans = 0;
     int cnt = 0;
-    stack<char> S;
     string str;
+    bool prevOpen;
+
     cin >> str;
     for(int i=0; i<str.length(); i++) {
-        if(S.empty() || str[i] == '(') {
-            S.push(str[i]);
+        if(str[i] == '(') {
+            prevOpen = true;
             cnt++;
         }
         else {
             cnt--;
-            if(S.top() == '(') {
-                S.pop();
-                S.push('*');
-                ans += cnt;
-            } else {
-                S.push(')');
-                ans++;
-            }
+            prevOpen? ans += cnt : ans++;
+            prevOpen = false;
         }
     }
     printf("%d\n", ans);
