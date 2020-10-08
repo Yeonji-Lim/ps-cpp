@@ -1,46 +1,112 @@
 #include <iostream>
-#include <vector>
+#include <queue>
 using namespace std;
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int test_case;
-    int N, M;
-    vector<int> V;
+    int T, N, M;
     int im;
-    int cnt = 1;
-    int lastBigIdx = -1;
+    queue<pair<int, int>> Q;
+    priority_queue<int> PQ;
 
-    cin >> test_case;
-    for(int i=0; i<test_case; i++) {
+    cin >> T;
+    for(int j=0; j<N; j++) {
         cin >> N >> M;
-//        lastBigIdx = M;
-        for(int j=0; j<N; j++) {
+        for(int i=0; i<N; i++) {
             cin >> im;
-            V.push_back(im);
+            Q.push(make_pair(im, i));
+            PQ.push(im);
         }
-        for(int j=0; j<N; j++) {
-            if(V[j] > V[M]) {
-                cnt++;
-                lastBigIdx = j;
-            }
-        }
-        if(lastBigIdx <= 0 || lastBigIdx == N-1) {  // 해당 원소가 제일 큰 경우!
-            for(int j = 0; j<M; j++) {
-                if(V[j] == V[M]) cnt++;
-            }
-        } else if(lastBigIdx < M) { // 여기서 부터는 사이값
-            for(int j = lastBigIdx; j<M; j++) {
-                if(V[j] == V[M]) cnt++;
-            }
-        } else if(M < lastBigIdx) {
-            for(int j = 0; j<N; j++) {
-                if(M <= j && j <= lastBigIdx) continue;
-                if(V[j] == V[M]) cnt++;
+        im = 0;
+        while(true) {
+            if(Q.front().first == PQ.top()) {
+                im++;
+                if(Q.front().second == M) {
+                    printf("%d\n", im);
+                    break;
+                }
+                Q.pop();
+                PQ.pop();
+            } else {
+                Q.push(Q.front());
+                Q.pop();
             }
         }
+        while(!PQ.empty()) {
+            PQ.pop();
+            Q.pop();
+        }
+    }
+    return 0;
+}
+
+//4차 시도
+//bool compare (const pair<int, int> &a, const pair<int, int> &b) {
+//    if(a.first == b.first)
+//        return a.second < b.second;
+//    return a.first > b.first;
+//}
+//
+//int main() {
+//    ios_base::sync_with_stdio(false);
+//    cin.tie(NULL);
+//
+//    int test_case;
+//    int N, M;
+//    int im;
+//    pair<int, int> p;
+//    pair<int, int> mp;
+//    vector<pair<int, int>> V;
+//    vector<pair<int, int>>::iterator it;
+//
+//    cin >> test_case;
+//    for(int i=0; i<test_case; i++) {
+//        cin >> N >> M;
+//        for (int j = 0; j < N; j++) {
+//            cin >> im;
+//            p = make_pair(im, j);
+//            V.push_back(p);
+//            if(j == M) mp = p;
+//        }
+//        sort(V.begin(), V.end(), compare);
+//        for(int j = 0; j < V.size(); j++) {
+//            if(V[j].first > mp.first) {
+//                N = V[j].second; // lastBigIdx
+//                continue;
+//            } else if(V[j].first == mp.first) {
+//                M = V[j].second; //
+//            }
+//        }
+//        V.clear();
+//    }
+        //3차 시도
+//        lastBigIdx = M;
+//        for(int j=0; j<N; j++) {
+//            cin >> im;
+//            V.push_back(im);
+//        }
+//        for(int j=0; j<N; j++) {
+//            if(V[j] > V[M]) {
+//                cnt++;
+//                lastBigIdx = j;
+//            }
+//        }
+//        if(lastBigIdx <= 0 || lastBigIdx == N-1) {  // 해당 원소가 제일 큰 경우!
+//            for(int j = 0; j<M; j++) {
+//                if(V[j] == V[M]) cnt++;
+//            }
+//        } else if(lastBigIdx < M) { // 여기서 부터는 사이값
+//            for(int j = lastBigIdx; j<M; j++) {
+//                if(V[j] == V[M]) cnt++;
+//            }
+//        } else if(M < lastBigIdx) {
+//            for(int j = 0; j<N; j++) {
+//                if(M <= j && j <= lastBigIdx) continue;
+//                if(V[j] == V[M]) cnt++;
+//            }
+//        }
 
         //2차 시도
 //        if(lastBigIdx > M && lastBigIdx < N) {
@@ -73,9 +139,10 @@ int main() {
 //        if(lastBigIdx != M) for(int j = lastBigIdx; j<N; j++)
 //            if(V[j] == V[M]) cnt++;
 
-        printf("%d\n", cnt);
-        cnt = 1;
-        V.clear();
-    }
-    return 0;
-}
+// 3차 시도
+//        printf("%d\n", cnt);
+//        cnt = 1;
+//        V.clear();
+//    }
+//    return 0;
+//}
