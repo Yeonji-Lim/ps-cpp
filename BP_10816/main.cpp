@@ -6,20 +6,21 @@ using namespace std;
 vector<pair<int, int>> V;
 
 int SearchIdx(int x) {
-    pair<int, int> p = make_pair(x,-1);
+    bool find = false;
     int L=0, R=V.size();
     int mid;
     while(L<=R) {
         mid=(L+R)/2;
         if(x == V[mid].first) {
-            p = V[mid];
+            find = true;
+            break;
         } else if(x >= V[mid].first) {
             L = mid+1;
         } else {
             R = mid-1;
         }
     }
-    return p.second == -1? -1: mid;
+    return find? mid: -1;
 }
 
 int main() {
@@ -28,28 +29,28 @@ int main() {
 
     int N, M;
     int data;
+    pair<int, int> p;
 
     cin >> N;
+    V.reserve(N);
     for(int i=0; i<N; i++) {
         cin >> data;
-        sort(V.begin(), V.end());
-        if(V.empty()) {
-            V.push_back(make_pair(data, 1));
-            continue;
-        }
-        M = SearchIdx(data);
-        if(M == -1) { // V가 비어있거나 처음 들어가는 원소인 경우
-            V.push_back(make_pair(data, 1));
-        } else {
-            V[M].second++;
+        p = make_pair(data, 1);
+        V.push_back(p);
+    }
+    sort(V.begin(), V.end());
+    for(int i=1; i<V.size(); i++) {
+        if(V[i].first == V[i-1].first) {
+            V[i].second += V[i-1].second;
+            V.erase(V.begin()+i-1); // V[i-1] 삭제
+            i--;
         }
     }
-
     cin >> M;
     for(int i=0; i<M; i++) {
+        cin >> data;
         N = SearchIdx(data);
         N == -1? printf("0 "): printf("%d ",V[N].second);
     }
-
     return 0;
 }
