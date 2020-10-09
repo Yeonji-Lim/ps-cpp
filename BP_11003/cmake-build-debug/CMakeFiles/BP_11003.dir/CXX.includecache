@@ -9,6 +9,8 @@
 /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_11003/main.cpp
 iostream
 -
-deque
+vector
+-
+algorithm
 -
 

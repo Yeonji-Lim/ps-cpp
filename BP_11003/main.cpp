@@ -1,27 +1,30 @@
 #include <iostream>
-#include <deque>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     int N;
     int L;
     int data;
-    deque<int> sortDQ;
-    deque<int> originDQ;
-    deque<int>::iterator it;
+    vector<int> V;
+    vector<int>::iterator it;
+
     cin >> N >> L;
     for(int i=0; i<N; i++) {
         cin >> data;
-        sortDQ.push_back(data);
-        originDQ.push_back(data);
-        if(originDQ.size() > L) {
-            it = find(sortDQ.begin(), sortDQ.end(), originDQ.front());
-            sortDQ.erase(it);
-            originDQ.pop_front();
+        V.push_back(data);
+        it = V.begin()+i;
+        while(it != V.begin()-1 && it != V.begin()+i-L) {
+            if(*it < data) {
+                data = *it;
+            }
+            it--;
         }
-        sort(sortDQ.begin(), sortDQ.end());
-        printf("%d ", sortDQ.front());
+        printf("%d ", data);
     }
     return 0;
 }
