@@ -12,29 +12,29 @@ int main() {
     priority_queue<int> PQ;
 
     cin >> T;
-    for(int j=0; j<N; j++) {
+    for(int j=0; j<T; j++) {
         cin >> N >> M;
         for(int i=0; i<N; i++) {
             cin >> im;
             Q.push(make_pair(im, i));
             PQ.push(im);
         }
-        im = 0;
+        im = 0; // 출력 횟수
         while(true) {
-            if(Q.front().first == PQ.top()) {
+            if(Q.front().first == PQ.top()) { // 출력하는 경우
                 im++;
-                if(Q.front().second == M) {
+                if(Q.front().second == M) { // 우리가 찾고자하는 원소인 경우
                     printf("%d\n", im);
                     break;
                 }
                 Q.pop();
                 PQ.pop();
-            } else {
+            } else { // 출력하지 않는 경우 : 뒤로 보내기
                 Q.push(Q.front());
                 Q.pop();
             }
         }
-        while(!PQ.empty()) {
+        while(!PQ.empty()) { //다음 테스트 케이스를 위해 비워주기
             PQ.pop();
             Q.pop();
         }

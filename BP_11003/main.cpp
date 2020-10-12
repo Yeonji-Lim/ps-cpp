@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <deque>
 #include <algorithm>
 using namespace std;
 
@@ -10,21 +10,15 @@ int main() {
     int N;
     int L;
     int data;
-    vector<int> V;
-    vector<int>::iterator it;
+    deque<pair<int, int>> DQ;
 
     cin >> N >> L;
     for(int i=0; i<N; i++) {
         cin >> data;
-        V.push_back(data);
-        it = V.begin()+i;
-        while(it != V.begin()-1 && it != V.begin()+i-L) {
-            if(*it < data) {
-                data = *it;
-            }
-            it--;
-        }
-        printf("%d ", data);
+        while(!DQ.empty() && DQ.back().first > data) DQ.pop_back(); // 지금 들어오는 거보다 큰 거 뒤에서 부터 지워버림
+        DQ.push_back(make_pair(data, i));
+        while(!DQ.empty() && DQ.front().second < i - L + 1) DQ.pop_front(); // 범위에 안맞는거 앞에서 부터 지워버림
+        printf("%d ", DQ.front().first);
     }
     return 0;
 }
