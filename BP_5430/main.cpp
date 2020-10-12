@@ -1,7 +1,7 @@
 #include <iostream>
-//#include <deque>
+#include <deque>
 #include <string>
-#include <algorithm>
+#include <sstream>
 using namespace std;
 
 int main() {
@@ -11,78 +11,45 @@ int main() {
     int T;
     string p;
     int n;
-    string listStr;
-    int rev;
-//    deque<int> DQ;
+    string temp;
+    deque<int> DQ;
+    bool rev;
 
     cin >> T;
-    while(T--) {
-        cin >> p >> n >> listStr;
-        listStr = listStr.substr(1,listStr.length()-2); // []빼기
-        rev = 0;
-        while(p.length() != 0) {
-            if(p[0] == 'R') {
-                rev == 0? rev = 1: rev = 0;
-            } else {
-                if(listStr.length() == 0) break;
-                if(listStr.length() == 1) listStr.clear(); // 원소가 한개인 경우 ','가 없음
-                else if(rev == 0) {
-                    listStr = listStr.substr(2,listStr.length()-2);
-                } else {
-                    listStr.pop_back();
-                    listStr.pop_back();
-                }
+    while(T--){
+        rev = false;
+        cin >> p >> n >> temp;
+        temp = temp.substr(1, temp.length()-2);
+        istringstream listStr(temp); //getline을 하기 위한 큰그림
+        for(int i=0; i < n; i++) {
+            getline(listStr, temp, ','); // temp 재활용
+            DQ.push_back(stoi(temp));
+        }
+        for(int i=0; i < p.length(); i++) {
+            if(p[i] == 'R') rev ? rev = false : rev = true;
+            else if(DQ.empty()) {
+                n = -1; //n 재활용, error detection
+                break;
             }
-            p = p.substr(1);
+            else rev? DQ.pop_back() : DQ.pop_front(); // D인 경우, 역방향 : 순방향
         }
-        if(listStr.empty()) printf("error\n");
-        else {
-            if(rev == 1) reverse(listStr.begin(), listStr.end());
-            listStr = "[" +listStr+ "]";
-            printf("%s\n", listStr.c_str());
+        if(n == -1) {
+            printf("error\n");
+            continue;
         }
-
-        // 1차 시도 : string으로 안하고 받아서 따로 저장하려 함
-//        // DQ에 원소 삽입
-//        listStr = listStr.substr(1, listStr.length() - 2) + ","; // []빼고 일관성을 위해 마지막에 , 추가
-//        while(listStr.length() > 1) { //1인 경우는 ',' 하나 밖에 없다는 거니까 empty라는 거
-//            data = stoi(listStr.substr(0, listStr.find(',')));
-//            DQ.push_back(data);
-//            listStr = listStr.substr(listStr.find(',') + 1);
-//        }
-//        // 명령 수행
-//        data = 0;
-//        for(int i=0; i<p.length(); i++) {
-//            if(p[i] == 'R') {   //data 변수 재활용, 0이면 front가 front, 1이면 back이 front
-//                data == 0? data = 1 : data = 0;
-//            } else {    // 버리기 명령
-//                if(DQ.empty()) {
-//                    n = -1;
-//                    break;
-//                }
-//                data == 0? DQ.pop_front() : DQ.pop_back();
-//            }
-//        }
-//        //프린트
-//        if(n == -1) {
-//            cout << "error\n";
-//            continue;
-//        }
-//        cout << "[";
-//        while(data == 0 && !DQ.empty()) {
-//            cout << DQ.front();
-//            DQ.pop_front();
-//            if(DQ.empty()) break;
-//            cout << ",";
-//        }
-//        while(data == 1 && !DQ.empty()) {
-//            cout << DQ.back();
-//            DQ.pop_back();
-//            if(DQ.empty()) break;
-//            cout << ",";
-//        }
-//        cout << "]\n";
-//        DQ.clear();
+        printf("[");
+        while(rev && !DQ.empty()) {
+            printf("%d", DQ.back());
+            DQ.pop_back();
+            if(!DQ.empty()) printf(",");
+        }
+        while(!rev && !DQ.empty()) {
+            printf("%d", DQ.front());
+            DQ.pop_front();
+            if(!DQ.empty()) printf(",");
+        }
+        printf("]\n");
     }
+
     return 0;
 }
