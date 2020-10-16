@@ -1,0 +1,3 @@
+/Users/im-yeonji/CLionProjects/BP_1065/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/im-yeonji/CLionProjects/BP_1065/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/im-yeonji/CLionProjects/BP_1065/cmake-build-debug/CMakeFiles/BP_1065.dir

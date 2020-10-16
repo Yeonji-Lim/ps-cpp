@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_10816/main.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+
