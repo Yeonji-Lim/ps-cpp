@@ -3,7 +3,7 @@
 #include <cmath>
 using namespace std;
 
-#define MV (long long)(pow(10,9)+7)
+#define MOD (long long)(pow(10,9)+7)
 long long A, X;
 
 int main() {
@@ -11,21 +11,18 @@ int main() {
     cin.tie(NULL);
 
     cin >> A >> X;
-    long long k = A % MV;
-    long long j = 1;
-    vector<int> V;
-    while(j<=X){
-        V.push_back((int)k);
-        if(j*2 > X) break;
-        k = (k * k) % MV;
-        j *= 2;
+    A = A % MOD;
+    long long tempX = X;
+    long long i = 1;
+    long long ans = 1;
+    while(i <= X){
+        if(tempX % 2 == 1) ans = (ans * A) % MOD;
+        if(i * 2 > X) break;
+        A = (A * A) % MOD;
+        i *= 2;
+        tempX /= 2;
     }
+    printf("%d", (int)ans);
 
-    k = 1;
-    for(int i=0; X; i++) {
-        if( X % 2 == 1) k = (k * V[i]) % MV;
-        X = X/2;
-    }
-    printf("%d", (int)k);
     return 0;
 }
