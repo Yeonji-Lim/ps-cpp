@@ -22,7 +22,7 @@ int main() {
         i *= 2;
         tempX /= 2;
     }
-    printf("%d", (int)ans);
+    printf("%d", ans);
 
     return 0;
 }
