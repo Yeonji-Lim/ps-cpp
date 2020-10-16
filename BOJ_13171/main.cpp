@@ -3,31 +3,29 @@
 #include <cmath>
 using namespace std;
 
-#define MV (int)(pow(10,9)+7)
-int A,X;
-vector<int> V;
-
-int calculate (int x) { // 매개변수는 지수씨 이때 지수씨는 무조건 2의 제곱수
-    if(x == 1) return A % MV;
-    else {
-        int temp = calculate(x/2);
-        return (temp * temp) % MV;
-    }
-}
+#define MV (long long)(pow(10,9)+7)
+long long A, X;
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
     cin >> A >> X;
-    while(X) {
-        V.push_back(X % 2);
+    long long k = A % MV;
+    long long j = 1;
+    vector<int> V;
+    while(j<=X){
+        V.push_back((int)k);
+        if(j*2 > X) break;
+        k = (k * k) % MV;
+        j *= 2;
+    }
+
+    k = 1;
+    for(int i=0; X; i++) {
+        if( X % 2 == 1) k = (k * V[i]) % MV;
         X = X/2;
     }
-    X = 1;
-    for(int i=0; i<V.size(); i++) {
-        if(V[i]) X *= calculate((int)pow(2,i));
-    }
-    printf("%d", X % MV);
+    printf("%d", (int)k);
     return 0;
 }
