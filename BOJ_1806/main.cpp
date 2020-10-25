@@ -13,7 +13,7 @@ int main() {
     int sum = 0, ans = N+1;
     while(l <= h && h < N) {
         sum += V[h];
-        while(sum-V[l] > S) sum -= V[l++];
+        while(sum-V[l] >= S) sum -= V[l++];
         if(sum >= S && ans > h-l+1) ans = h-l+1;
         h++;
     }
