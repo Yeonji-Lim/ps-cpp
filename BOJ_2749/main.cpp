@@ -1,27 +1,22 @@
-#include <iostream>
+#include <cstdio>
 #include <vector>
-using namespace std;
 #define P 1500000
 #define M 1000000
+using namespace std;
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
     long long n;
-    vector<int> V;
-    long long ans;
-    cin >> n;
-    if(n == 1) {
-        printf("0");
-        return 0;
-    } else if(n == 2) {
-        printf("1");
-        return 0;
+    scanf("%lld", &n);
+    if(n <= 1){
+        n == 0? printf("0") : printf("1");
     } else {
-        for(int i=2; i<P; i++) {
-            V.push_back((V[i-1]+V[i-2]) % M);
+        n %= P;
+        vector<int> V(n+1,0);
+        V[1] = 1;
+        for(int i=2; i<n+1; i++) {
+            V[i] = (V[i-1]+V[i-2]) % M;
         }
+        printf("%d", V[n]);
     }
-    printf("%d", V[n%P]);
     return 0;
 }

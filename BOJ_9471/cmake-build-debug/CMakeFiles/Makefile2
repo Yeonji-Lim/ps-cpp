@@ -44,16 +44,16 @@ RM = "/Users/im-yeonji/Library/Application Support/JetBrains/Toolbox/apps/CLion/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300
+CMAKE_SOURCE_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/BP_1300.dir/all
+all: CMakeFiles/BOJ_9471.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/BP_1300.dir/clean
+clean: CMakeFiles/BOJ_9471.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/BP_1300.dir
+# Target rules for target CMakeFiles/BOJ_9471.dir
 
 # All Build rule for target.
-CMakeFiles/BP_1300.dir/all:
-	$(MAKE) -f CMakeFiles/BP_1300.dir/build.make CMakeFiles/BP_1300.dir/depend
-	$(MAKE) -f CMakeFiles/BP_1300.dir/build.make CMakeFiles/BP_1300.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target BP_1300"
-.PHONY : CMakeFiles/BP_1300.dir/all
+CMakeFiles/BOJ_9471.dir/all:
+	$(MAKE) -f CMakeFiles/BOJ_9471.dir/build.make CMakeFiles/BOJ_9471.dir/depend
+	$(MAKE) -f CMakeFiles/BOJ_9471.dir/build.make CMakeFiles/BOJ_9471.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target BOJ_9471"
+.PHONY : CMakeFiles/BOJ_9471.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/BP_1300.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BP_1300.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/BP_1300.dir/rule
+CMakeFiles/BOJ_9471.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BOJ_9471.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/BOJ_9471.dir/rule
 
 # Convenience name for target.
-BP_1300: CMakeFiles/BP_1300.dir/rule
+BOJ_9471: CMakeFiles/BOJ_9471.dir/rule
 
-.PHONY : BP_1300
+.PHONY : BOJ_9471
 
 # clean rule for target.
-CMakeFiles/BP_1300.dir/clean:
-	$(MAKE) -f CMakeFiles/BP_1300.dir/build.make CMakeFiles/BP_1300.dir/clean
-.PHONY : CMakeFiles/BP_1300.dir/clean
+CMakeFiles/BOJ_9471.dir/clean:
+	$(MAKE) -f CMakeFiles/BOJ_9471.dir/build.make CMakeFiles/BOJ_9471.dir/clean
+.PHONY : CMakeFiles/BOJ_9471.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -48,10 +48,10 @@ RM = "/Users/im-yeonji/Library/Application Support/JetBrains/Toolbox/apps/CLion/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300
+CMAKE_SOURCE_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug/CMakeFiles /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug/CMakeFiles /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_1300/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_9471/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named BP_1300
+# Target rules for targets named BOJ_9471
 
 # Build rule for target.
-BP_1300: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 BP_1300
-.PHONY : BP_1300
+BOJ_9471: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BOJ_9471
+.PHONY : BOJ_9471
 
 # fast build rule for target.
-BP_1300/fast:
-	$(MAKE) -f CMakeFiles/BP_1300.dir/build.make CMakeFiles/BP_1300.dir/build
-.PHONY : BP_1300/fast
+BOJ_9471/fast:
+	$(MAKE) -f CMakeFiles/BOJ_9471.dir/build.make CMakeFiles/BOJ_9471.dir/build
+.PHONY : BOJ_9471/fast
 
 main.o: main.cpp.o
 
@@ -129,7 +129,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/BP_1300.dir/build.make CMakeFiles/BP_1300.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/BOJ_9471.dir/build.make CMakeFiles/BOJ_9471.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -138,7 +138,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/BP_1300.dir/build.make CMakeFiles/BP_1300.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/BOJ_9471.dir/build.make CMakeFiles/BOJ_9471.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -147,7 +147,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/BP_1300.dir/build.make CMakeFiles/BP_1300.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/BOJ_9471.dir/build.make CMakeFiles/BOJ_9471.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -158,7 +158,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... BP_1300"
+	@echo "... BOJ_9471"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
