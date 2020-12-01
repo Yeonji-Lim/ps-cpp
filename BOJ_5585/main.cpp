@@ -1,33 +1,13 @@
 #include <cstdio>
-int N;
-int ans = 0;
 int main() {
-    scanf("%d", &N);
-    N = 1000 - N;
-    if(N >= 500) {
-        N -= 500;
-        ans++;
-    }
-    while (N >= 100) {
-        N -= 100;
-        ans++;
-    }
-    while (N >= 50) {
-        N -= 50;
-        ans++;
-    }
-    while (N >= 10) {
-        N -= 10;
-        ans++;
-    }
-    while (N >= 5) {
-        N -= 5;
-        ans++;
-    }
-    while (N >= 1) {
-        N -= 1;
-        ans++;
-    }
-    printf("%d", ans);
+    int n, a = 0; scanf("%d", &n);
+    n = 1000 - n;
+    a += n / 500; n %= 500;
+    a += n / 100; n %= 100;
+    a += n / 50; n %= 50;
+    a += n / 10; n %= 10;
+    a += n / 5; n %= 5;
+    a += n;
+    printf("%d", a);
     return 0;
 }
