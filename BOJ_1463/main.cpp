@@ -47,24 +47,24 @@ int makeOne (int N) {
 
     if(N%3 == 0) {
         if(cache[N/3] != -1) {
-            ret = min(ret, cache[N/3]) + 1;
+            ret = min(ret, cache[N/3] + 1);
         } else {
-            ret = min(ret, makeOne(N/3)) + 1;
+            ret = min(ret, makeOne(N/3) + 1);
         }
     }
 
     if(N%2 == 0) {
         if(cache[N/2] != -1) {
-            ret = min(ret, cache[N/2]) + 1;
+            ret = min(ret, cache[N/2] + 1);
         } else {
-            ret = min(ret, makeOne(N/2)) + 1;
+            ret = min(ret, makeOne(N/2) + 1);
         }
     }
 
     if(cache[N-1] != -1) {
-        ret = min(ret, cache[N-1]) + 1;
+        ret = min(ret, cache[N-1] + 1);
     } else {
-        ret = min(ret, makeOne(N-1)) + 1;
+        ret = min(ret, makeOne(N-1) + 1);
     }
 
     cache[N] = ret;
