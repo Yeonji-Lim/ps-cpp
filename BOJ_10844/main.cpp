@@ -22,14 +22,16 @@ void stairsNumber(int n) {
 }
 
 int main() {
-    memset(cache, 0, sizeof(cache));
-    for(int i = 1; i < 10; i++) {
+    int  i, N, rst = 0;
+    for(i = 0; i < 101; i++) {
+        memset(cache[i], 0, sizeof(cache[0]));
+    }
+    for(i = 1; i < 10; i++) {
         cache[1][i] = 1;
     }
-    int N, rst = 0;
     scanf("%d", &N);
     stairsNumber(N);
-    for(int i = 0; i < 10; i++) {
+    for(i = 0; i < 10; i++) {
         rst += cache[N][i];
     }
     printf("%d", rst % MOD);
