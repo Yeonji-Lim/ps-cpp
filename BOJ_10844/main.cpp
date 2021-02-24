@@ -6,7 +6,7 @@ int cache[101][10];
 void stairsNumber(int n) {
     if(cache[n][1] != 0) {
         return;
-    } else if(cache[n-1][0] == 0) {
+    } else if(cache[n-1][1] == 0) {
         stairsNumber(n-1);
     }
     for(int i = 0; i < 10; i++) {
@@ -32,8 +32,8 @@ int main() {
     scanf("%d", &N);
     stairsNumber(N);
     for(i = 0; i < 10; i++) {
-        rst += cache[N][i];
+        rst = (rst + cache[N][i]) % MOD;
     }
-    printf("%d", rst % MOD);
+    printf("%d", rst);
     return 0;
 }
