@@ -6,7 +6,7 @@ int cache[101];
 int numOfStairsNumber(int n) {
     int & ret = cache[n];
     if(ret != 0) return ret;
-    ret = ( 2 * numOfStairsNumber(n-1) - 3 + numOfStairsNumber(n-2) ) % MOD;
+    ret = ( 2 * numOfStairsNumber(n-1) - 1) % MOD;
     return ret;
 }
 
