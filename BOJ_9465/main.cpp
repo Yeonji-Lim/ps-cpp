@@ -40,14 +40,6 @@ int main() {
         DP[1][1] = sti[1][1];
         DP[1][2] = 0;
 
-        for(int k = 0; k < 2; k++) {
-            printf("\n");
-            for(j = 1; j <= n; j++) {
-                printf("%d ", sti[k][j]);
-            }
-        }
-        printf("\n");
-
         sticker(n);
 
         tmp = DP[n][0] > DP[n][1] ? DP[n][0] : DP[n][1];
