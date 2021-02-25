@@ -18,9 +18,7 @@ long long int cache[91][2];
 
 void pinaryNumber(int n) {
     if(cache[n][0] != -1) return;
-    if(cache[n-1][0] == -1) {
-        pinaryNumber(n-1);
-    }
+    if(cache[n-1][0] == -1) { pinaryNumber(n-1); }
     cache[n][0] = cache[n-1][0] + cache[n-1][1];
     cache[n][1] = cache[n-1][0];
     return;
@@ -28,9 +26,7 @@ void pinaryNumber(int n) {
 
 int main() {
     int n;
-    for(int i = 2; i < 91; i++) {
-        memset(cache[i], -1, sizeof(cache[i]));
-    }
+    for(int i = 2; i < 91; i++) { memset(cache[i], -1, sizeof(cache[i])); }
     cache[1][0] = 0;
     cache[1][1] = 1;
     scanf("%d", &n);
