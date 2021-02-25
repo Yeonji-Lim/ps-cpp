@@ -19,13 +19,14 @@ void ascentNumber(int n) {
 }
 
 int main() {
-    int n, i, rst;
-    for(i = 1; i < 1001; i++) {
-        if(i == 1) memset(cache[1], 1, sizeof(cache[1]));
-        else memset(cache[i], -1, sizeof(cache[i]));
+    int n, i, rst = 0;
+    for(i = 2; i < 1001; i++) {
+        memset(cache[i], -1, sizeof(cache[i]));
+    }
+    for(i = 0; i < 10; i++) {
+        cache[1][i] = 1;
     }
     scanf("%d", &n);
-    printf("%d %d\n", cache[1][1], cache[2][1]);
     ascentNumber(n);
     for(i = 0; i <10; i++) {
         rst = (rst + cache[n][i]) % MOD;
