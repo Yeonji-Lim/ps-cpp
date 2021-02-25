@@ -14,12 +14,12 @@
 // 2021.2.25
 #include <cstdio>
 #include <cstring>
-int cache[91][2];
+long long int cache[91][2];
 
-void bimaryNumber(int n) {
+void pinaryNumber(int n) {
     if(cache[n][0] != -1) return;
     if(cache[n-1][0] == -1) {
-        bimaryNumber(n-1);
+        pinaryNumber(n-1);
     }
     cache[n][0] = cache[n-1][0] + cache[n-1][1];
     cache[n][1] = cache[n-1][0];
@@ -28,14 +28,14 @@ void bimaryNumber(int n) {
 
 int main() {
     int n;
-    for(int i = 0; i < 91; i++) {
+    for(int i = 2; i < 91; i++) {
         memset(cache[i], -1, sizeof(cache[i]));
     }
     cache[1][0] = 0;
     cache[1][1] = 1;
     scanf("%d", &n);
-    bimaryNumber(n);
-    printf("%d", cache[n][0] + cache[n][1]);
+    pinaryNumber(n);
+    printf("%lld\n", cache[n][0] + cache[n][1]);
     return 0;
 }
 
