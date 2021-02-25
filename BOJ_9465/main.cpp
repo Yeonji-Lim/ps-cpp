@@ -7,12 +7,19 @@ int DP[ARR_SIZE][3];
 int sti[2][ARR_SIZE];
 char str[STR_SIZE];
 
+int max(int a, int b, int c) {
+    int ret = a;
+    if(ret < b) ret = b;
+    if(ret < c) ret = c;
+    return ret;
+}
+
 void sticker(int n) {
     if(DP[n][0] != -1) return;
     if(DP[n-1][0] == -1) sticker(n-1);
     DP[n][0] = DP[n-1][1] + DP[n-1][2] + sti[0][n];
     DP[n][1] = DP[n-1][0] + DP[n-1][2] + sti[1][n];
-    DP[n][2] = DP[n-1][0] + DP[n-1][1] + DP[n-1][2];
+    DP[n][2] = max(DP[n-1][0], DP[n-1][1], DP[n-1][2]);
     return;
 }
 
@@ -42,9 +49,7 @@ int main() {
 
         sticker(n);
 
-        tmp = DP[n][0] > DP[n][1] ? DP[n][0] : DP[n][1];
-        tmp = tmp > DP[n][2] ? tmp : DP[n][2];
-        printf("%d\n", tmp);
+        printf("%d\n", max(DP[n][0], DP[n][1], DP[n][2]));
     }
     return 0;
 }
