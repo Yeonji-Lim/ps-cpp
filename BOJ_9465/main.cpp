@@ -1,8 +1,11 @@
 #include <cstdio>
 #include <cstring>
+#include <cstdlib>
 #define ARR_SIZE 100001
+#define STR_SIZE 500000
 int DP[ARR_SIZE][3];
 int sti[2][ARR_SIZE];
+char str[STR_SIZE];
 
 void sticker(int n) {
     if(DP[n][0] != -1) return;
@@ -14,15 +17,18 @@ void sticker(int n) {
 }
 
 int main() {
-    int n[10];
-    for(int i = 0; i < 10; i++) {
-        scanf("%d", n[i]);
+    int n;
+    int a[10];
+    for(int i = 0; i<10; i++) {
+        scanf("%d", &n);
+        a[i] = n;
     }
-    for(int i = 0; i < 10; i++) {
-        scanf("%d\n", n[i]);
+    for(int i = 0; i<10; i++) {
+        printf("%d\n", a[i]);
     }
 
 //    int t, n, i, j, rst;
+//    char* score_ch;
 //    scanf("%d", &t);
 //    for(i = 0; i < t; i++) {
 //        scanf("%d", &n);
@@ -33,18 +39,29 @@ int main() {
 //        memset(sti[0], -1, sizeof(sti[0]));
 //        memset(sti[1], -1, sizeof(sti[1]));
 //
-//        for(j = 1; j <= n; j++) {
-//            scanf("%d", sti[0][j]);
-//        }
-//        for(j = 1; j <= n; j++) {
-//            scanf("%d", sti[1][j]);
+//        for(int k = 0; k < 2; k++) {
+//            j = 1;
+//            scanf("%s", str);
+//            score_ch = strtok(str, " ");
+//            while(score_ch != nullptr) {
+//                sti[k][j] = atoi(score_ch);
+//                score_ch = strtok(nullptr, " ");
+//                j++;
+//            }
 //        }
 //
 //        DP[1][0] = sti[0][1];
 //        DP[1][1] = sti[1][1];
 //        DP[1][2] = 0;
 //
-//        printf("%d %d %d", DP[2][0], sti[0][1], sti[1][1]);
+//        for(int k = 0; k < 2; k++) {
+//            printf("\n");
+//            for(j = 1; j <= n; j++ ) {
+//                printf("%d ", sti[k][j]);
+//            }
+//        }
+//        printf("\n");
+//
 //        sticker(n);
 //
 //        rst = DP[n][0] > DP[n][1]? DP[n][0] : DP[n][1];
