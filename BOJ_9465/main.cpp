@@ -14,10 +14,12 @@ void sticker(int n) {
 }
 
 int main() {
-    int n;
+    int n[10];
     for(int i = 0; i < 10; i++) {
-        scanf("%d", &n);
-        printf("%d\n", n);
+        scanf("%d", n[i]);
+    }
+    for(int i = 0; i < 10; i++) {
+        scanf("%d\n", n[i]);
     }
 
 //    int t, n, i, j, rst;
