@@ -12,7 +12,7 @@ void ascentNumber(int n) {
         if(i == 0) {
             cache[n][i] = cache[n-1][i];
         } else {
-            cache[n][i] = cache[n][i-1] + cache[n-1][i];
+            cache[n][i] = (cache[n][i-1] + cache[n-1][i]) % MOD;
         }
     }
     return;
@@ -31,6 +31,6 @@ int main() {
     for(i = 0; i <10; i++) {
         rst = (rst + cache[n][i]) % MOD;
     }
-    printf("%d", rst);
+    printf("%d\n", rst);
     return 0;
 }
