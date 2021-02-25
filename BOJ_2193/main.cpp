@@ -29,7 +29,7 @@ void bimaryNumber(int n) {
 int main() {
     int n;
     for(int i = 0; i < 91; i++) {
-        memset(cache, -1, sizeof(cache));
+        memset(cache[i], -1, sizeof(cache[i]));
     }
     cache[1][0] = 0;
     cache[1][1] = 1;
