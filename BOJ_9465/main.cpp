@@ -17,56 +17,46 @@ void sticker(int n) {
 }
 
 int main() {
-    int n;
-    int a[10];
-    for(int i = 0; i<10; i++) {
+    int t, n, i, j, rst;
+    char* score_ch;
+    scanf("%d", &t);
+    for(i = 0; i < t; i++) {
         scanf("%d", &n);
-        a[i] = n;
-    }
-    for(int i = 0; i<10; i++) {
-        printf("%d\n", a[i]);
-    }
 
-//    int t, n, i, j, rst;
-//    char* score_ch;
-//    scanf("%d", &t);
-//    for(i = 0; i < t; i++) {
-//        scanf("%d", &n);
-//
-//        for(j = 2; j < ARR_SIZE; j++) {
-//            memset(DP[j], -1, sizeof(DP[0]));
-//        }
-//        memset(sti[0], -1, sizeof(sti[0]));
-//        memset(sti[1], -1, sizeof(sti[1]));
-//
-//        for(int k = 0; k < 2; k++) {
-//            j = 1;
-//            scanf("%s", str);
-//            score_ch = strtok(str, " ");
-//            while(score_ch != nullptr) {
-//                sti[k][j] = atoi(score_ch);
-//                score_ch = strtok(nullptr, " ");
-//                j++;
-//            }
-//        }
-//
-//        DP[1][0] = sti[0][1];
-//        DP[1][1] = sti[1][1];
-//        DP[1][2] = 0;
-//
-//        for(int k = 0; k < 2; k++) {
-//            printf("\n");
-//            for(j = 1; j <= n; j++ ) {
-//                printf("%d ", sti[k][j]);
-//            }
-//        }
-//        printf("\n");
-//
-//        sticker(n);
-//
-//        rst = DP[n][0] > DP[n][1]? DP[n][0] : DP[n][1];
-//        rst = rst > DP[n][2]? rst : DP[n][2];
-//        printf("%d\n", rst);
-//    }
+        for(j = 2; j < ARR_SIZE; j++) {
+            memset(DP[j], -1, sizeof(DP[0]));
+        }
+        memset(sti[0], -1, sizeof(sti[0]));
+        memset(sti[1], -1, sizeof(sti[1]));
+
+        for(int k = 0; k < 2; k++) {
+            j = 1;
+            scanf("%s", str);
+            score_ch = strtok(str, " ");
+            while(score_ch != nullptr) {
+                sti[k][j] = atoi(score_ch);
+                score_ch = strtok(nullptr, " ");
+                j++;
+            }
+        }
+
+        DP[1][0] = sti[0][1];
+        DP[1][1] = sti[1][1];
+        DP[1][2] = 0;
+
+        for(int k = 0; k < 2; k++) {
+            printf("\n");
+            for(j = 1; j <= n; j++ ) {
+                printf("%d ", sti[k][j]);
+            }
+        }
+        printf("\n");
+
+        sticker(n);
+
+        rst = DP[n][0] > DP[n][1]? DP[n][0] : DP[n][1];
+        rst = rst > DP[n][2]? rst : DP[n][2];
+        printf("%d\n", rst);
+    }
     return 0;
 }
