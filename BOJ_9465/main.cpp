@@ -1,7 +1,6 @@
 #include <cstdio>
 #include <cstring>
 #define ARR_SIZE 100001
-#define STR_SIZE 500000
 int DP[ARR_SIZE][3];
 int sti[2][ARR_SIZE];
 
