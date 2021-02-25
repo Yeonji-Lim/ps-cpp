@@ -17,7 +17,7 @@ void sticker(int n) {
 }
 
 int main() {
-    int t, n, i, j, rst;
+    int t, n, i, j, tmp;
     char* score_ch;
     scanf("%d", &t);
     for(i = 0; i < t; i++) {
@@ -30,13 +30,9 @@ int main() {
         memset(sti[1], -1, sizeof(sti[1]));
 
         for(int k = 0; k < 2; k++) {
-            j = 1;
-            scanf("%s", str);
-            score_ch = strtok(str, " ");
-            while(score_ch != nullptr) {
-                sti[k][j] = atoi(score_ch);
-                score_ch = strtok(nullptr, " ");
-                j++;
+            for(j = 1; j <= n; j++) {
+                scanf("%d", &tmp);
+                sti[k][j] = tmp;
             }
         }
 
@@ -46,7 +42,7 @@ int main() {
 
         for(int k = 0; k < 2; k++) {
             printf("\n");
-            for(j = 1; j <= n; j++ ) {
+            for(j = 1; j <= n; j++) {
                 printf("%d ", sti[k][j]);
             }
         }
@@ -54,9 +50,9 @@ int main() {
 
         sticker(n);
 
-        rst = DP[n][0] > DP[n][1]? DP[n][0] : DP[n][1];
-        rst = rst > DP[n][2]? rst : DP[n][2];
-        printf("%d\n", rst);
+        tmp = DP[n][0] > DP[n][1] ? DP[n][0] : DP[n][1];
+        tmp = tmp > DP[n][2] ? tmp : DP[n][2];
+        printf("%d\n", tmp);
     }
     return 0;
 }
