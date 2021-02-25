@@ -1,11 +1,9 @@
 #include <cstdio>
 #include <cstring>
-#include <cstdlib>
 #define ARR_SIZE 100001
 #define STR_SIZE 500000
 int DP[ARR_SIZE][3];
 int sti[2][ARR_SIZE];
-char str[STR_SIZE];
 
 int max(int a, int b, int c) {
     int ret = a;
@@ -17,15 +15,14 @@ int max(int a, int b, int c) {
 void sticker(int n) {
     if(DP[n][0] != -1) return;
     if(DP[n-1][0] == -1) sticker(n-1);
-    DP[n][0] = DP[n-1][1] + DP[n-1][2] + sti[0][n];
-    DP[n][1] = DP[n-1][0] + DP[n-1][2] + sti[1][n];
+    DP[n][0] = max(DP[n-1][1], DP[n-1][2], 0) + sti[0][n];
+    DP[n][1] = max(DP[n-1][0], DP[n-1][2], 0) + sti[1][n];
     DP[n][2] = max(DP[n-1][0], DP[n-1][1], DP[n-1][2]);
     return;
 }
 
 int main() {
     int t, n, i, j, tmp;
-    char* score_ch;
     scanf("%d", &t);
     for(i = 0; i < t; i++) {
         scanf("%d", &n);
