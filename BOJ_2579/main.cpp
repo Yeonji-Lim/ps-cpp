@@ -27,3 +27,32 @@
 //    printf("%d", findMax(n-1, 0));
 //    return 0;
 //}
+
+#include <cstdio>
+#include <cstring>
+#define MAX 301
+int dp[MAX];
+int score[MAX];
+
+int max(int a, int b) { return a > b? a: b;}
+
+int stairs(int n) {
+    int & ret = dp[n];
+    if(ret != -1) return ret;
+    ret = max(stairs(n-1), stairs(n-2)) + score[n];
+    return ret;
+}
+
+int main() {
+    int n, i, tmp;
+    memset(dp, -1, sizeof(dp));
+    scanf("%d", &n);
+    for(i = 1; i <= n; i++) {
+        scanf("%d", &tmp);
+        score[i] = tmp;
+    }
+    dp[1] = score[1];
+    dp[2] = score[1] + score[2];
+    printf("%d\n", stairs(n));
+    return 0;
+}
