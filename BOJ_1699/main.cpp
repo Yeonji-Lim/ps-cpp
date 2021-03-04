@@ -1,3 +1,4 @@
+/* 2021.3.4 Solved - 6064KB 64ms */
 #include <cstdio>
 #define MAX 100001
 int dp[MAX];
