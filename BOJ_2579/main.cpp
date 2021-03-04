@@ -28,31 +28,69 @@
 //    return 0;
 //}
 
+/* 2021.3.1 Failed : 연속 3개 고려안함 */
+//#include <cstdio>
+//#include <cstring>
+//#define MAX 301
+//int dp[MAX];
+//int score[MAX];
+//
+//int max(int a, int b) { return a > b? a: b;}
+//
+//int stairs(int n) {
+//    int & ret = dp[n];
+//    if(ret != -1) return ret;
+//    ret = max(stairs(n-1), stairs(n-2)) + score[n];
+//    return ret;
+//}
+//
+//int main() {
+//    int n, i, tmp;
+//    memset(dp, -1, sizeof(dp));
+//    scanf("%d", &n);
+//    for(i = 1; i <= n; i++) {
+//        scanf("%d", &tmp);
+//        score[i] = tmp;
+//    }
+//    dp[1] = score[1];
+//    dp[2] = score[1] + score[2];
+//    printf("%d\n", stairs(n));
+//    return 0;
+//}
+
 #include <cstdio>
 #include <cstring>
 #define MAX 301
-int dp[MAX];
+int dp[MAX][3];
 int score[MAX];
 
-int max(int a, int b) { return a > b? a: b;}
+int max(int a, int b) { return a > b? a: b; }
 
-int stairs(int n) {
-    int & ret = dp[n];
-    if(ret != -1) return ret;
-    ret = max(stairs(n-1), stairs(n-2)) + score[n];
-    return ret;
+void stairs(int n) {
+    if(dp[n][0] != -1) return;
+    if(dp[n-1][0] == -1) stairs(n-1);
+    dp[n][0] = dp[n-1][2] + score[n];
+    dp[n][1] = max(dp[n-1][0], dp[n-1][2]);
+    dp[n][2] = dp[n-1][1] + score[n];
+    return;
 }
 
 int main() {
     int n, i, tmp;
-    memset(dp, -1, sizeof(dp));
+    for(i = 0; i < MAX; i++) {
+        memset(dp[i], -1, sizeof(dp[0]));
+    }
+    memset(score, -1, sizeof(score));
     scanf("%d", &n);
     for(i = 1; i <= n; i++) {
         scanf("%d", &tmp);
         score[i] = tmp;
     }
-    dp[1] = score[1];
-    dp[2] = score[1] + score[2];
-    printf("%d\n", stairs(n));
+    dp[2][0] = score[1] + score[2];
+    dp[2][1] = score[1];
+    dp[2][2] = score[2];
+    stairs(n);
+    tmp = max(dp[n][0], dp[n][1]);
+    printf("%d\n", max(tmp, dp[n][2]));
     return 0;
 }
