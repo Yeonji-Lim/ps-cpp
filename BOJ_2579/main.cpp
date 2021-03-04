@@ -86,9 +86,9 @@ int main() {
         scanf("%d", &tmp);
         score[i] = tmp;
     }
-    dp[2][0] = score[1] + score[2];
-    dp[2][1] = score[1];
-    dp[2][2] = score[2];
+    dp[1][0] = score[1];
+    dp[1][1] = 0;
+    dp[1][2] = score[1];
     stairs(n);
     tmp = max(dp[n][0], dp[n][1]);
     printf("%d\n", max(tmp, dp[n][2]));
