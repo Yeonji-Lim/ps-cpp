@@ -62,7 +62,7 @@
 #include <cstring>
 #define MAX 301
 int dp[MAX][3];
-int score[MAX];
+short int score[MAX];
 
 int max(int a, int b) { return a > b? a: b; }
 
@@ -90,7 +90,7 @@ int main() {
     dp[1][1] = 0;
     dp[1][2] = score[1];
     stairs(n);
-    tmp = max(dp[n][0], dp[n][1]);
-    printf("%d\n", max(tmp, dp[n][2]));
+    tmp = max(dp[n][0], dp[n][2]);
+    printf("%d\n", tmp);
     return 0;
 }
