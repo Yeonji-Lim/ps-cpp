@@ -58,12 +58,12 @@
 //    return 0;
 //}
 
+/* */
 #include <cstdio>
 #include <cstring>
 #define MAX 301
 int dp[MAX][3];
 short int score[MAX];
-
 int max(int a, int b) { return a > b? a: b; }
 
 void stairs(int n) {
