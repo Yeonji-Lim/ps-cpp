@@ -2,12 +2,12 @@
 #define MAX 100001
 int dp[MAX];
 
-int min(int a, int b) { return a > b? b: a; }
+int min(int a, int b) { return a < b? a: b; }
 
 int squareNumSum(int n) {
     int & ret = dp[n];
     if(ret != MAX) return ret;
-    for(int i = n; i > 0; i--) {
+    for(int i = n; i > n/2-1; i--) {
         if((i*i) == n) {
             ret = 1;
             break;
