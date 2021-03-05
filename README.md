@@ -1,2 +1,2 @@
-# BOJ_Solutions_Cpp14
+# BOJ_Solutions_Cpp
 BOJ Soultions
