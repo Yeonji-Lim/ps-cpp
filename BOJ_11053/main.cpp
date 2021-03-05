@@ -41,25 +41,28 @@
 
 #include <cstdio>
 #define MAX 1000
-int dp[MAX] = {1};
-int nums[MAX] = {0};
 
 int max(int a, int b) { return a > b? a: b; }
 
 int main() {
+    int dp[MAX] = {};
+    int nums[MAX] = {};
     int n, i, j, tmp;
     scanf("%d", &n);
     for(i = 0; i < n; i++) {
         scanf("%d", &tmp);
         nums[i] = tmp;
     }
+    tmp = 0;
     for(i = 0; i < n; i++) {
+        dp[i] = 1;
         for(j = 0; j < i; j++) {
             if(nums[i] > nums[j]) {
                 dp[i] = max(dp[i], dp[j]+1);
             }
         }
+        tmp = max(tmp, dp[i]);
     }
-    printf("%d\n", dp[n-1]);
+    printf("%d\n", tmp);
     return 0;
 }
