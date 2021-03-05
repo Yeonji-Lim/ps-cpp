@@ -39,6 +39,7 @@
 //    return 0;
 //}
 
+/* 2021.3.5 Solved - 1116KB 0ms */
 #include <cstdio>
 #define MAX 1000
 
