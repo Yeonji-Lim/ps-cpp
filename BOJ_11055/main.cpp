@@ -1,3 +1,4 @@
+/* 2021.3.8 Solved - 1116Kb 0ms */
 #include <cstdio>
 #define MAX 1000
 
