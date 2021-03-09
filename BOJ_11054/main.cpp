@@ -1,3 +1,4 @@
+/* 2021.3.9 Solved - 1116KB 0ms */
 #include <cstdio>
 #define MAX 1000
 int max(int a, int b) { return a > b? a: b; }
