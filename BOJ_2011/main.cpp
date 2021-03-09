@@ -1,3 +1,4 @@
+/* 2021.3.9 Solved - 1248KB 0ms */
 #include <cstdio>
 #include <cstring>
 #define MOD 1000000
