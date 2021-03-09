@@ -7,7 +7,7 @@ char code[MAX];
 
 bool pairPossible(int n) {
     int tmp = (code[n-1] - '0') * 10 + code[n] - '0';
-    return tmp < 27 || 0 < tmp;
+    return tmp < 27 && 0 < tmp;
 }
 
 int numOfDecode(int n) {
