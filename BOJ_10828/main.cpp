@@ -36,3 +36,40 @@
 //    return 0;
 //}
 
+/* Solved - 1228KB 4ms */
+#include <cstdio>
+#include <cstring>
+#include <stack>
+using namespace std;
+stack<int> s;
+
+int main() {
+    int n, tmp;
+    char str[6];
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++) {
+        scanf("%s", str);
+        if(strcmp("push", str) == 0) {
+            scanf("%d", &tmp);
+            s.push(tmp);
+        } else if(strcmp("pop", str) == 0) {
+            if(s.empty()) {
+                printf("-1\n");
+            } else {
+                printf("%d\n", s.top());
+                s.pop();
+            }
+        } else if(strcmp("size", str) == 0) {
+            printf("%d\n", s.size());
+        } else if(strcmp("empty", str) == 0) {
+            printf("%d\n", s.empty());
+        } else if(strcmp("top", str) == 0) {
+            if(s.empty()) {
+                printf("-1\n");
+            } else {
+                printf("%d\n", s.top());
+            }
+        }
+    }
+    return 0;
+}
