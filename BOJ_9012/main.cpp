@@ -21,3 +21,33 @@
 //    }
 //    return 0;
 //}
+
+/* 2021.3.13 Solved - 1228KB 0ms */
+#include <cstdio>
+#include <stack>
+#define LEN 51
+using namespace std;
+
+int main() {
+    int t;
+    char ps[LEN];
+    stack<char> st;
+    scanf("%d", &t);
+    for(int i = 0; i < t; i++) {
+        scanf("%s", ps);
+        for(int j = 0; ps[j] != '\0'; j++) {
+            if(ps[j] == '(') {
+                st.push('(');
+            } else if(!st.empty()){
+                st.pop();
+            } else {
+                st.push('0');
+                break;
+            }
+        }
+        if(st.empty()) { printf("YES\n"); }
+        else { printf("NO\n"); }
+        while(!st.empty()) { st.pop(); }
+    }
+    return 0;
+}
