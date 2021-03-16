@@ -6,8 +6,8 @@
 
 #IncludeRegexTransform: 
 
-/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_10845/main.cpp
-iostream
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_10845/main.cpp
+cstdio
 -
 queue
 -
