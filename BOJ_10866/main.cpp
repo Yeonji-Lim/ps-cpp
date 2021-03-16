@@ -16,7 +16,7 @@ int main() {
                 else { dq.push_back(tmp); }
                 break;
             case 'o':
-                if(cmd[5] == 'f') {
+                if(cmd[4] == 'f') {
                     if(dq.empty()) { printf("-1\n"); }
                     else {
                         printf("%d\n", dq.front());
