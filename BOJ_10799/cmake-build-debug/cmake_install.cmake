@@ -1,4 +1,4 @@
-# Install script for directory: /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_10799
+# Install script for directory: /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_10799
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_10799/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_10799/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
