@@ -95,3 +95,40 @@
 //    }
 //    return 0;
 //}
+
+#include <cstdio>
+#include <vector>
+#define MAX 1000000
+using namespace std;
+
+vector<int> customSort(vector<int> list) {
+    int p = list[list.size()/2];
+    vector<int> left, right;
+    for(int i = 0; i < list.size(); i++) {
+        if(list[i] < p) {
+            left.push_back(list[i]);
+        } else if(list[i] > p) {
+            right.push_back(list[i]);
+        }
+    }
+    right = customSort(right);
+    left = customSort(left);
+    left.push_back(p);
+    left.insert(left.end(), right.begin(), right.end());
+    return left;
+}
+
+int main() {
+    int n, tmp, i;
+    vector<int> nums;
+    scanf("%d", &n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &tmp);
+        nums.push_back(tmp);
+    }
+    nums = customSort(nums);
+    for(i = 0; i < n; i++) {
+        printf("%d\n", nums[i]);
+    }
+    return 0;
+}

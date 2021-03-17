@@ -30,22 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5ac7384-465e-4004-a487-f8ea4dd296da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/BP_4673.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/BP_4673.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/BP_4673.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BP_4673/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../BP_4673/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +80,7 @@
       <workItem from="1600319083469" duration="1302000" />
       <workItem from="1600665879849" duration="25000" />
       <workItem from="1600671325076" duration="95000" />
+      <workItem from="1615982046885" duration="639000" />
     </task>
     <servers />
   </component>
