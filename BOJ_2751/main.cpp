@@ -96,32 +96,46 @@
 //    return 0;
 //}
 
+/* 2021.3.17 Solved - 29332KB 816ms*/
 #include <cstdio>
 #include <vector>
 using namespace std;
 
-vector<int> customSort(vector<int> list) {
-    if(list.size() == 1 || list.empty()) return list;
-    int p = list[list.size()/2], i;
-    vector<int> left, right;
-    for(i = 0; i < list.size(); i++) {
-        if(list[i] < p) {
-            left.push_back(list[i]);
-        } else if(list[i] > p) {
-            right.push_back(list[i]);
+vector<int> customMerge(vector<int> v1, vector<int> v2) {
+    vector<int> ret;
+    int i = 0, j = 0;
+    while(i != v1.size() && j != v2.size()) {
+        if(v1[i] < v2[j]) {
+            ret.push_back(v1[i]);
+            ++i;
+        } else {
+            ret.push_back(v2[j]);
+            ++j;
         }
     }
-    right = customSort(right);
-    left = customSort(left);
-    left.push_back(p);
-    left.insert(left.end(), right.begin(), right.end());
-    for(i = 0; i < right.size(); i++) { right.erase(right.begin()+i); }
-    return left;
+    if(i == v1.size() && j != v2.size()) {
+        ret.insert(ret.end(), v2.begin()+j, v2.end());
+    } else if(i != v1.size() && j == v2.size()){
+        ret.insert(ret.end(), v1.begin()+i, v1.end());
+    }
+    return ret;
+}
+
+vector<int> customSort(vector<int> v) {
+    if(v.size() == 1 || v.empty()) return v;
+    int m = v.size() / 2;
+    vector<int> l, r;
+    l.insert(l.end(), v.begin(), v.begin()+m);
+    r.insert(r.end(), v.begin()+m, v.end());
+    l = customSort(l);
+    r = customSort(r);
+    v = customMerge(l, r);
+    return v;
 }
 
 int main() {
-    int n, tmp, i;
     vector<int> nums;
+    int n, i, tmp;
     scanf("%d", &n);
     for(i = 0; i < n; i++) {
         scanf("%d", &tmp);
