@@ -30,7 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5ac7384-465e-4004-a487-f8ea4dd296da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +80,7 @@
       <workItem from="1600319083469" duration="1302000" />
       <workItem from="1600665879849" duration="25000" />
       <workItem from="1600671325076" duration="95000" />
-      <workItem from="1615982046885" duration="639000" />
+      <workItem from="1615982046885" duration="1535000" />
     </task>
     <servers />
   </component>
@@ -100,37 +100,21 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="264" key="GridCell.Tab.0.bottom" timestamp="1598008013020">
+    <state width="1238" height="146" key="GridCell.Tab.0.bottom" timestamp="1615983402639">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1598008013020" />
-    <state width="1238" height="264" key="GridCell.Tab.0.center" timestamp="1598008013018">
+    <state width="1238" height="146" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1615983402639" />
+    <state width="1238" height="146" key="GridCell.Tab.0.center" timestamp="1615983402638">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1598008013018" />
-    <state width="1238" height="264" key="GridCell.Tab.0.left" timestamp="1598008013017">
+    <state width="1238" height="146" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1615983402638" />
+    <state width="1238" height="146" key="GridCell.Tab.0.left" timestamp="1615983402638">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1598008013017" />
-    <state width="1238" height="264" key="GridCell.Tab.0.right" timestamp="1598008013019">
+    <state width="1238" height="146" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1615983402638" />
+    <state width="1238" height="146" key="GridCell.Tab.0.right" timestamp="1615983402639">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1598008013019" />
-    <state width="1238" height="264" key="GridCell.Tab.1.bottom" timestamp="1598008013021">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1598008013021" />
-    <state width="1238" height="264" key="GridCell.Tab.1.center" timestamp="1598008013021">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1598008013021" />
-    <state width="1238" height="264" key="GridCell.Tab.1.left" timestamp="1598008013020">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1598008013020" />
-    <state width="1238" height="264" key="GridCell.Tab.1.right" timestamp="1598008013021">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1598008013021" />
+    <state width="1238" height="146" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1615983402639" />
   </component>
 </project>

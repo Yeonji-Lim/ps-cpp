@@ -102,9 +102,9 @@ using namespace std;
 
 vector<int> customSort(vector<int> list) {
     if(list.size() == 1 || list.empty()) return list;
-    int p = list[list.size()/2];
+    int p = list[list.size()/2], i;
     vector<int> left, right;
-    for(int i = 0; i < list.size(); i++) {
+    for(i = 0; i < list.size(); i++) {
         if(list[i] < p) {
             left.push_back(list[i]);
         } else if(list[i] > p) {
@@ -115,6 +115,7 @@ vector<int> customSort(vector<int> list) {
     left = customSort(left);
     left.push_back(p);
     left.insert(left.end(), right.begin(), right.end());
+    for(i = 0; i < right.size(); i++) { right.erase(right.begin()+i); }
     return left;
 }
 
