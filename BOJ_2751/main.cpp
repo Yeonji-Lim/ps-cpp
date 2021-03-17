@@ -98,10 +98,10 @@
 
 #include <cstdio>
 #include <vector>
-#define MAX 1000000
 using namespace std;
 
 vector<int> customSort(vector<int> list) {
+    if(list.size() == 1 || list.empty()) return list;
     int p = list[list.size()/2];
     vector<int> left, right;
     for(int i = 0; i < list.size(); i++) {
