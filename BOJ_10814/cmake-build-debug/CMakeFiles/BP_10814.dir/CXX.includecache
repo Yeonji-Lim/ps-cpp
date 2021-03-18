@@ -7,7 +7,7 @@
 #IncludeRegexTransform: 
 
 /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_10814/main.cpp
-cstdio
+iostream
 -
 vector
 -

@@ -43,12 +43,13 @@
 //    return 0;
 //}
 
-#include <cstdio>
+/* 2021.3.18 */
+#include <iostream>
 #include <vector>
 using namespace std;
 
-vector<pair<int, char*>> merge (vector<pair<int, char*>> v1, vector<pair<int, char*>> v2) {
-    vector<pair<int, char*>> ret;
+vector<pair<int, string>> merge (vector<pair<int, string>> v1, vector<pair<int, string>> v2) {
+    vector<pair<int, string>> ret;
     int i = 0, j = 0;
     while(i != v1.size() && j != v2.size()) {
         if(v1[i].first < v2[j].first) {
@@ -78,9 +79,9 @@ vector<pair<int, char*>> merge (vector<pair<int, char*>> v1, vector<pair<int, ch
     return ret;
 }
 
-vector<pair<int, char*>> customSort (vector<pair<int, char*>> v) {
+vector<pair<int, string>> customSort (vector<pair<int, string>> v) {
     if(v.size() == 1 || v.empty()) return v;
-    vector<pair<int, char*>> ret, l, r;
+    vector<pair<int, string>> ret, l, r;
     l.insert(l.end(), v.begin(), v.begin()+v.size()/2);
     r.insert(r.end(), v.begin()+v.size()/2, v.end());
     l = customSort(l);
@@ -90,17 +91,18 @@ vector<pair<int, char*>> customSort (vector<pair<int, char*>> v) {
 }
 
 int main() {
-    int n, i, age;
-    vector<pair<int, char*>> v;
-    scanf("%d", &n);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int n, i;
+    cin >> n;
+    vector<pair<int, string>> v(n);
     for(i = 0; i < n; i++) {
-        char name[101];
-        scanf("%d %s", &age, name);
-        v.push_back(make_pair(age, name));
+        cin >> v[i].first >> v[i].second;
     }
     v = customSort(v);
     for(i = 0; i < n; i++) {
-        printf("%d %s\n", v[i].first, v[i].second);
+        cout << v[i].first << ' ' << v[i].second << '\n';
     }
     return 0;
 }
