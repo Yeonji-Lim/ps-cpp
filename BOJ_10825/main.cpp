@@ -1,4 +1,4 @@
-/* 2021.3.18 Solved - 34544KB 304ms*/
+/* 2021.3.18 Solved - 34544KB 300ms*/
 #include <iostream>
 #include <vector>
 using namespace std;
