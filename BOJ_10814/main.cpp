@@ -47,8 +47,8 @@
 #include <vector>
 using namespace std;
 
-vector<pair<int, const char*>> merge (vector<pair<int, const char*>> v1, vector<pair<int, const char*>> v2) {
-    vector<pair<int, const char*>> ret;
+vector<pair<int, char*>> merge (vector<pair<int, char*>> v1, vector<pair<int, char*>> v2) {
+    vector<pair<int, char*>> ret;
     int i = 0, j = 0;
     while(i != v1.size() && j != v2.size()) {
         if(v1[i].first < v2[j].first) {
@@ -78,9 +78,9 @@ vector<pair<int, const char*>> merge (vector<pair<int, const char*>> v1, vector<
     return ret;
 }
 
-vector<pair<int, const char*>> customSort (vector<pair<int, const char*>> v) {
+vector<pair<int, char*>> customSort (vector<pair<int, char*>> v) {
     if(v.size() == 1 || v.empty()) return v;
-    vector<pair<int, const char*>> ret, l, r;
+    vector<pair<int, char*>> ret, l, r;
     l.insert(l.end(), v.begin(), v.begin()+v.size()/2);
     r.insert(r.end(), v.begin()+v.size()/2, v.end());
     l = customSort(l);
@@ -90,13 +90,13 @@ vector<pair<int, const char*>> customSort (vector<pair<int, const char*>> v) {
 }
 
 int main() {
-    int n, i;
-    pair<int, const char*> p = make_pair(0, "0");
-    vector<pair<int, const char*>> v;
+    int n, i, age;
+    char name[101];
+    vector<pair<int, char*>> v;
     scanf("%d", &n);
     for(i = 0; i < n; i++) {
-        scanf("%d %s", &(p.first), p.second);
-        v.push_back(p);
+        scanf("%d %s", &age, name);
+        v.push_back(make_pair(age, name));
     }
     v = customSort(v);
     for(i = 0; i < n; i++) {
