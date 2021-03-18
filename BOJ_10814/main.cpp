@@ -95,7 +95,7 @@ int main() {
     vector<pair<int, const char*>> v;
     scanf("%d", &n);
     for(i = 0; i < n; i++) {
-        scanf("%d %s", &(p.first), &(p.second));
+        scanf("%d %s", &(p.first), p.second);
         v.push_back(p);
     }
     v = customSort(v);
