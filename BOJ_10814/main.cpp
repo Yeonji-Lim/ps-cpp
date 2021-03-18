@@ -89,7 +89,6 @@ vector<pair<int, const char*>> customSort (vector<pair<int, const char*>> v) {
     return ret;
 }
 
-
 int main() {
     int n, i;
     pair<int, const char*> p = make_pair(0, "0");
