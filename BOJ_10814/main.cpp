@@ -43,7 +43,7 @@
 //    return 0;
 //}
 
-/* 2021.3.18 */
+/* 2021.3.18 Solved - 29244KB 168ms */
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -52,20 +52,12 @@ vector<pair<int, string>> merge (vector<pair<int, string>> v1, vector<pair<int, 
     vector<pair<int, string>> ret;
     int i = 0, j = 0;
     while(i != v1.size() && j != v2.size()) {
-        if(v1[i].first < v2[j].first) {
-            ret.push_back(v1[i]);
-            i++;
-        } else if(v1[i].first > v2[j].first) {
+        if(v1[i].first > v2[j].first) {
             ret.push_back(v2[j]);
             j++;
         } else {
-            if(i < j) {
-                ret.push_back(v1[i]);
-                i++;
-            } else {
-                ret.push_back(v2[j]);
-                j++;
-            }
+            ret.push_back(v1[i]);
+            i++;
         }
     }
     while(i != v1.size()) {
@@ -89,7 +81,6 @@ vector<pair<int, string>> customSort (vector<pair<int, string>> v) {
     ret = merge(l, r);
     return ret;
 }
-
 
 int main() {
     ios_base::sync_with_stdio(false);
