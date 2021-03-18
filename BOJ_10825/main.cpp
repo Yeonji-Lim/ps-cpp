@@ -1,7 +1,6 @@
-/* 2021.3.18 Solved - 34544KB 300ms*/
+/* 2021.3.18 Solved - 34544KB 304ms*/
 #include <iostream>
 #include <vector>
-#include <cstring>
 using namespace std;
 struct Data {
     string name;
