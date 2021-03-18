@@ -109,7 +109,7 @@ int main() {
     vector<pair<int, int>> v;
     scanf("%d", &n);
     for(i = 0; i < n; i++ ) {
-        scanf("%d %d", p.first, p.second);
+        scanf("%d %d", &(p.first), &(p.second));
         v.push_back(p);
     }
     v = customSort(v);
