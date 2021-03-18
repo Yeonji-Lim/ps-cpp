@@ -98,6 +98,7 @@ int main() {
         scanf("%d %s", &age, name);
         v.push_back(make_pair(age, name));
     }
+
     v = customSort(v);
     for(i = 0; i < n; i++) {
         printf("%d %s\n", v[i].first, v[i].second);
