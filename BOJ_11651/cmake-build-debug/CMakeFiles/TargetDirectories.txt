@@ -1,3 +1,3 @@
-/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_11651/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_11651/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_11651/cmake-build-debug/CMakeFiles/BP_11651.dir
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_11651/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_11651/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_11651/cmake-build-debug/CMakeFiles/BP_11651.dir
