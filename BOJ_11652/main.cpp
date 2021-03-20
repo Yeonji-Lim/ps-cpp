@@ -1,4 +1,4 @@
-/* 2021.3.20 Failed - 정수 숫자 범위 고려 안함 */
+/* 2021.3.20 Failed - 정수 숫자 범위 고려했는 데 틀린 거 */
 //#include <cstdio>
 //#include <vector>
 //using namespace std;
@@ -37,69 +37,70 @@
 //    return 0;
 //}
 
-#include <iostream>
-#include <vector>
-using namespace std;
-vector<pair<string, int>> v;
-
-string smallerNum (string a, string b) {
-    if(a[0] == '-' && b[0] == '-') {
-        if(a.length() > b.length()) { return a; }
-        else if(a.length() < b.length()) { return b; }
-        else {
-            for(int i = 1; i < a.length(); i++) {
-                if(a[i] > b[i]) { return a; }
-                else if(a[i] < b[i]) { return b; }
-            }
-        }
-    } else if(a[0] == '-') {
-        return a;
-    } else if(b[0] == '-') {
-        return b;
-    } else {
-        if(a.length() < b.length()) { return a; }
-        else if(a.length() > b.length()) { return b; }
-        else {
-            for(int i = 0; i < a.length(); i++) {
-                if(a[i] < b[i]) { return a; }
-                else if(a[i] > b[i]) { return b; }
-            }
-        }
-    }
-}
-
-bool findNum (string tmp) {
-    for(int i = 0; i < v.size(); i++) {
-        if(v[i].first == tmp) {
-            v[i].second++;
-            return true;
-        }
-    }
-    return false;
-}
-
-int main() {
-    ios_base::sync_with_stdio();
-    cin.tie(NULL);
-    cout.tie(NULL);
-    int n, i;
-    string tmp;
-    cin >> n;
-    for(i = 0; i < n; i++) {
-        cin >> tmp;
-        if(!findNum(tmp)) {
-            v.push_back(make_pair(tmp, 1));
-        }
-    }
-    n = 1;
-    for(i = 0; i < v.size(); i++) {
-        if(v[i].second > n) {
-            tmp = v[i].first;
-            n = v[i].second;
-        } else if (v[i].second == n) {
-            tmp = smallerNum(tmp, v[i].first);
-        }
-    }
-    cout << tmp << '\n';
-    return 0;
-}
+/* 2021.3.20 Failed - 시간 초 */
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//vector<pair<string, int>> v;
+//
+//string smallerNum (string a, string b) {
+//    if(a[0] == '-' && b[0] == '-') {
+//        if(a.length() > b.length()) { return a; }
+//        else if(a.length() < b.length()) { return b; }
+//        else {
+//            for(int i = 1; i < a.length(); i++) {
+//                if(a[i] > b[i]) { return a; }
+//                else if(a[i] < b[i]) { return b; }
+//            }
+//        }
+//    } else if(a[0] == '-') {
+//        return a;
+//    } else if(b[0] == '-') {
+//        return b;
+//    } else {
+//        if(a.length() < b.length()) { return a; }
+//        else if(a.length() > b.length()) { return b; }
+//        else {
+//            for(int i = 0; i < a.length(); i++) {
+//                if(a[i] < b[i]) { return a; }
+//                else if(a[i] > b[i]) { return b; }
+//            }
+//        }
+//    }
+//}
+//
+//bool findNum (string tmp) {
+//    for(int i = 0; i < v.size(); i++) {
+//        if(v[i].first == tmp) {
+//            v[i].second++;
+//            return true;
+//        }
+//    }
+//    return false;
+//}
+//
+//int main() {
+//    ios_base::sync_with_stdio();
+//    cin.tie(NULL);
+//    cout.tie(NULL);
+//    int n, i;
+//    string tmp;
+//    cin >> n;
+//    for(i = 0; i < n; i++) {
+//        cin >> tmp;
+//        if(!findNum(tmp)) {
+//            v.push_back(make_pair(tmp, 1));
+//        }
+//    }
+//    n = 1;
+//    for(i = 0; i < v.size(); i++) {
+//        if(v[i].second > n) {
+//            tmp = v[i].first;
+//            n = v[i].second;
+//        } else if (v[i].second == n) {
+//            tmp = smallerNum(tmp, v[i].first);
+//        }
+//    }
+//    cout << tmp << '\n';
+//    return 0;
+//}
