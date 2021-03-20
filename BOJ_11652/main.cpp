@@ -104,3 +104,71 @@
 //    cout << tmp << '\n';
 //    return 0;
 //}
+
+/* 2021.3.20 */
+#include <cstdio>
+#include <vector>
+using namespace std;
+
+vector<long long int> merge(vector<long long int> v1, vector<long long int> v2) {
+    vector<long long int> ret;
+    int i = 0, j = 0;
+    while( i != v1.size() && j != v2.size()) {
+        if(v1[i] < v2[j]) {
+            ret.push_back(v1[i]);
+            i++;
+        } else {
+            ret.push_back(v2[j]);
+            j++;
+        }
+    }
+    while(i != v1.size()) {
+        ret.push_back(v1[i]);
+        i++;
+    }
+    while(j != v2.size()) {
+        ret.push_back(v2[j]);
+        j++;
+    }
+    return ret;
+}
+
+vector<long long int> customSort(vector<long long int> v) {
+    if(v.size() == 1 || v.empty()) { return v; }
+    vector<long long int> ret, l, r;
+    l.insert(l.end(), v.begin(), v.begin()+v.size()/2);
+    r.insert(r.end(), v.begin()+v.size()/2, v.end());
+    l = customSort(l);
+    r = customSort(r);
+    ret = merge(l, r);
+    return ret;
+}
+
+int main() {
+    int n, i, cnt = 1;
+    long long int tmp;
+    vector<long long int> v;
+    scanf("%d", &n);
+    for(i = 0; i < n; i++) {
+        scanf("%lld", &tmp);
+        v.push_back(tmp);
+    }
+    v = customSort(v);
+    n = 1;
+    tmp = v[0];
+    for(i = 1; i < v.size(); i++) {
+        if(v[i] == v[i-1]) {
+            n++;
+        } else {
+            if(cnt < n) {
+                cnt = n;
+                tmp = v[i];
+            } else if(cnt == n) {
+                if (tmp > v[i]) tmp = v[i];
+            }
+            n = 1;
+        }
+    }
+    printf("%lld", tmp);
+    return 0;
+}
