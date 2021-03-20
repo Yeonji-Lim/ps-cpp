@@ -7,7 +7,7 @@ int main() {
     char s[100];
     scanf("%s", s);
     for(i = 0; s[i] != '\0'; i++) {
-        a[s[i]-97] = i;
+        if(a[s[i]-97] == -1) a[s[i]-97] = i;
     }
     for(i = 0; i < 26; i++) {
         printf("%d ", a[i]);
