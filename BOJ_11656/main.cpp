@@ -1,19 +1,26 @@
-#include <cstdio>
+/* 2021.3.22 Solved - 2576KB 4ms */
+#include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
-char * compare(char * a, char * b) {
+bool compare(string a, string b) {
     return a < b;
 }
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
     int i;
-    char s[1001][1001];
-    char tmp[1001];
-    scanf("%s", tmp);
+    vector<string> v;
+    string tmp;
+    cin >> tmp;
     for(i = 0; tmp[i] != '\0'; i++) {
-        strcpy(s[i],tmp + i);
+        v.push_back(tmp.substr(i));
     }
-    sort(s, s+i+1, compare());
+    sort(v.begin(), v.end(), compare);
+    for(i = 0; i < v.size(); i++) {
+        cout << v[i] << '\n';
+    }
     return 0;
 }
