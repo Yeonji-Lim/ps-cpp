@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_2743/main.cpp
-iostream
+cstdio
+-
+cstring
 -
 
