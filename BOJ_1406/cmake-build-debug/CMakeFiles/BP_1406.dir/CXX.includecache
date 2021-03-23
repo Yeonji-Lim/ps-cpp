@@ -6,9 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_1406/main.cpp
-iostream
--
-list
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_1406/main.cpp
+cstdio
 -
 

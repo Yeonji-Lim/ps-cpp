@@ -130,52 +130,152 @@
 //    return 0;
 //}
 
-#include <iostream>
-#include <list>
-using namespace std;
+/* Solved - 20984KB 72ms */
+//#include <iostream>
+//#include <list>
+//using namespace std;
+//
+//int main() {
+//    ios_base::sync_with_stdio(false);
+//    cin.tie(NULL);
+//    cout.tie(NULL);
+//    string str;
+//    list<char> l;
+//    list<char>::iterator cur;
+//    int M;
+//    char command;
+//    char data;
+//
+//    cin >> str;
+//    for(int i=0; i<str.length(); i++) {
+//        l.push_back(str[i]);
+//    }
+//    cur = l.end();
+//    cin >> M;
+//    for(int i=0; i<M; i++) {
+//        cin >> command;
+//        switch (command) {
+//            case 'L':
+//                if(cur != l.begin())
+//                    cur--;
+//                break;
+//            case 'D':
+//                if(cur != l.end())
+//                    cur++;
+//                break;
+//            case 'B':
+//                if(cur != l.begin()) {
+//                    cur = l.erase(--cur);
+//                }
+//                break;
+//            case 'P':
+//                cin >> data;
+//                l.insert(cur, data);
+//                break;
+//        }
+//    }
+//    for(cur=l.begin(); cur!=l.end(); cur++) {
+//        cout << *cur;
+//    }
+//    cout << endl;
+//    return 0;
+//}
+
+/* 2021.3.22 */
+#include <cstdio>
+typedef struct _Node {
+   char data;
+   _Node * next = NULL;
+} Node;
+Node * head = NULL;
+Node * tail = NULL;
+Node * cursor = NULL;
+
+void addNode(char c) {
+    Node * newNode = new Node();
+    newNode->data = c;
+    if(head == NULL) {
+        head = newNode;
+        cursor = newNode;
+        tail = newNode;
+    } else if (cursor == tail) {
+        cursor->next = newNode;
+        cursor = newNode;
+        tail = newNode;
+    } else {
+        newNode -> next = cursor -> next;
+        cursor -> next = newNode;
+        cursor = newNode;
+    }
+    return;
+}
+
+void moveLeft() {
+    if(cursor == head) {
+        return;
+    }
+    Node * tmp = head;
+    while(tmp -> next != cursor) {
+        tmp = tmp -> next;
+    }
+    cursor = tmp;
+    return;
+}
+
+void moveRight() {
+    if(cursor == tail) {
+        return;
+    }
+    cursor = cursor -> next;
+    return;
+}
+
+void deleteNode() {
+    if(cursor == head) {
+        return;
+    }
+    Node * tmp = head;
+    while(tmp -> next != cursor) {
+        tmp = tmp -> next;
+    }
+    tmp -> next = cursor -> next;
+    cursor = tmp;
+    return;
+}
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    string str;
-    list<char> l;
-    list<char>::iterator cur;
-    int M;
-    char command;
-    char data;
-
-    cin >> str;
-    for(int i=0; i<str.length(); i++) {
-        l.push_back(str[i]);
+    char * tmp;
+    char cmd;
+    int m, i;
+    scanf("%s", tmp);
+    scanf("%d", &m);
+    addNode('*');
+    for(i = 0; tmp[i] != '\0'; i++) {
+        addNode(tmp[i]);
     }
-    cur = l.end();
-    cin >> M;
-    for(int i=0; i<M; i++) {
-        cin >> command;
-        switch (command) {
+    for(i = 0; i < m; i++) {
+        scanf("%c", &cmd);
+        switch (cmd) {
             case 'L':
-                if(cur != l.begin())
-                    cur--;
+                moveLeft();
                 break;
             case 'D':
-                if(cur != l.end())
-                    cur++;
+                moveRight();
                 break;
             case 'B':
-                if(cur != l.begin()) {
-                    cur = l.erase(--cur);
-                }
+                deleteNode();
                 break;
             case 'P':
-                cin >> data;
-                l.insert(cur, data);
+                scanf("%c", &cmd);
+                addNode(cmd);
                 break;
         }
     }
-    for(cur=l.begin(); cur!=l.end(); cur++) {
-        cout << *cur;
+    cursor = head->next;
+    while(cursor->next != NULL) {
+        printf("%c", cursor->data);
+        cursor = cursor->next;
     }
-    cout << endl;
+    printf("\n");
     return 0;
 }
