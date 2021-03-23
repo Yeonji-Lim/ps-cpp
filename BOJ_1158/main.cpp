@@ -88,45 +88,73 @@
 //}
 
 /* 2021.3.23 Solved - 1304KB 108ms */
-#include <cstdio>
-typedef struct _Node {
-    int data;
-    _Node * next = NULL;
-} Node;
-Node* head = NULL;
-Node* tail = NULL;
-Node* cursor = NULL;
+//#include <cstdio>
+//typedef struct _Node {
+//    int data;
+//    _Node * next = NULL;
+//} Node;
+//Node* head = NULL;
+//Node* tail = NULL;
+//Node* cursor = NULL;
+//
+//void deleteNode() {
+//    Node* tmp = cursor;
+//    while(tmp->next != cursor) { tmp = tmp->next; }
+//    tmp->next = cursor->next;
+//    cursor = tmp;
+//    return;
+//}
+//
+//int main() {
+//    int n, k, i;
+//    scanf("%d %d", &n, &k);
+//    for(i = 1; i <= n; i++) {
+//        Node* newNode = new Node();
+//        newNode->data = i;
+//        if(head == NULL) { head = newNode; }
+//        else { tail->next = newNode; }
+//        cursor = newNode;
+//        tail = newNode;
+//    }
+//    tail->next = head;
+//    printf("<");
+//    while(cursor != NULL) {
+//        if(cursor -> next == cursor) {
+//            printf("%d>", cursor->data);
+//            break;
+//        }
+//        for(i = 0; i < k; i++) { cursor = cursor->next; }
+//        printf("%d", cursor->data);
+//        deleteNode();
+//        printf(", ");
+//    }
+//    return 0;
+//}
 
-void deleteNode() {
-    Node* tmp = cursor;
-    while(tmp->next != cursor) { tmp = tmp->next; }
-    tmp->next = cursor->next;
-    cursor = tmp;
-    return;
-}
+/* 2021.3.23 */
+#include <cstdio>
+#include <vector>
+using namespace std;
 
 int main() {
     int n, k, i;
+    vector<int> v;
     scanf("%d %d", &n, &k);
     for(i = 1; i <= n; i++) {
-        Node* newNode = new Node();
-        newNode->data = i;
-        if(head == NULL) { head = newNode; }
-        else { tail->next = newNode; }
-        cursor = newNode;
-        tail = newNode;
+        v.push_back(i);
     }
-    tail->next = head;
     printf("<");
-    while(cursor != NULL) {
-        if(cursor -> next == cursor) {
-            printf("%d>", cursor->data);
+    n = 0;
+    while(!v.empty()) {
+        if(v.size() == 1) {
+            printf("%d>", v[0]);
             break;
         }
-        for(i = 0; i < k; i++) { cursor = cursor->next; }
-        printf("%d", cursor->data);
-        deleteNode();
-        printf(", ");
+        for(i = 1; i < k; i++) {
+            if(n == v.size() - 1) n = 0;
+            else n++;
+        }
+        printf("%d, ", v[n]);
+        v.erase(v.begin()+n);
     }
-    return 0;
 }
