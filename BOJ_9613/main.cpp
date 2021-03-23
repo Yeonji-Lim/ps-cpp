@@ -1,3 +1,4 @@
+/* 2021.3.23 Solved - 1116KB 0ms */
 #include <cstdio>
 
 int GCD(int a, int b) {
@@ -6,7 +7,8 @@ int GCD(int a, int b) {
 }
 
 int main() {
-    int t, n, rst = 0;
+    int t, n;
+    long long rst = 0;
     int a[100];
     scanf("%d", &t);
     while(t) {
@@ -19,7 +21,7 @@ int main() {
                 rst += GCD(a[i], a[j]);
             }
         }
-        printf("%d\n", rst);
+        printf("%lld\n", rst);
         rst = 0;
         t--;
     }
