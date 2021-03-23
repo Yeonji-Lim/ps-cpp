@@ -87,7 +87,6 @@
 //    return 0;
 //}
 
-/* 2021.3.23 */
 #include <cstdio>
 typedef struct _Node {
     int data;
@@ -98,11 +97,7 @@ Node* tail = NULL;
 Node* cursor = NULL;
 
 void deleteNode() {
-    if(cursor->next == cursor) {
-        cursor = NULL;
-        return;
-    }
-    Node* tmp = head;
+    Node* tmp = cursor;
     while(tmp->next != cursor) { tmp = tmp->next; }
     tmp->next = cursor->next;
     cursor = tmp;
@@ -123,11 +118,14 @@ int main() {
     tail->next = head;
     printf("<");
     while(cursor != NULL) {
+        if(cursor -> next == cursor) {
+            printf("%d>", cursor->data);
+            break;
+        }
         for(i = 0; i < k; i++) { cursor = cursor->next; }
         printf("%d", cursor->data);
         deleteNode();
-        if(cursor != NULL) { printf(", "); }
-        else { printf(">"); break;}
+        printf(", ");
     }
     return 0;
 }
