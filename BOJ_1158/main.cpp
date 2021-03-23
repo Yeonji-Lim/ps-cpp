@@ -88,3 +88,46 @@
 //}
 
 /* 2021.3.23 */
+#include <cstdio>
+typedef struct _Node {
+    int data;
+    _Node * next = NULL;
+} Node;
+Node* head = NULL;
+Node* tail = NULL;
+Node* cursor = NULL;
+
+void deleteNode() {
+    if(cursor->next == cursor) {
+        cursor = NULL;
+        return;
+    }
+    Node* tmp = head;
+    while(tmp->next != cursor) { tmp = tmp->next; }
+    tmp->next = cursor->next;
+    cursor = tmp;
+    return;
+}
+
+int main() {
+    int n, k, i;
+    scanf("%d %d", &n, &k);
+    for(i = 1; i <= n; i++) {
+        Node* newNode = new Node();
+        newNode->data = i;
+        if(head == NULL) { head = newNode; }
+        else { tail->next = newNode; }
+        cursor = newNode;
+        tail = newNode;
+    }
+    tail->next = head;
+    printf("<");
+    while(cursor != NULL) {
+        for(i = 0; i < k; i++) { cursor = cursor->next; }
+        printf("%d", cursor->data);
+        deleteNode();
+        if(cursor != NULL) { printf(", "); }
+        else { printf(">"); break;}
+    }
+    return 0;
+}
