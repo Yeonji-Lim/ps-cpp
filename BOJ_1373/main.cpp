@@ -1,21 +1,10 @@
 #include <cstdio>
-
-int binaryToDecimal(int a){
+int binaryToOctal(int a) {
     int ret = 0, tmp = 1;
     while(a != 0) {
-        ret += a%10*tmp;
-        tmp *= 2;
-        a = a/10;
-    }
-    return ret;
-}
-
-int decimalToOctal(int a) {
-    int ret = 0, tmp = 1;
-    while(a != 0) {
-        ret += a%8*tmp;
+        ret += (a%10 + (a%100-a%10)/10*2 + (a%1000-a%100)/100*4)*tmp;
         tmp *= 10;
-        a = a/8;
+        a /= 1000;
     }
     return ret;
 }
@@ -23,6 +12,6 @@ int decimalToOctal(int a) {
 int main() {
     int n;
     scanf("%d", &n);
-    printf("%d", decimalToOctal(binaryToDecimal(n)));
+    printf("%d", binaryToOctal(n));
     return 0;
 }
