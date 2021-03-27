@@ -1,3 +1,4 @@
+/* 2021.3.27 Solved - 1116KB 0ms */
 #include <cstdio>
 
 bool isPrimeNumber (int a) {
