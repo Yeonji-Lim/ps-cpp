@@ -1,26 +1,28 @@
 #include <cstdio>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main() {
-    int m, n, tmp, i, j;
+    int m, n, i, a;
     vector<int> v;
     scanf("%d %d", &m, &n);
-    if(n%2 == 1) n++;
-    for(i = 2; i <= n/2; i++) {
-        v.push_back(2*i-1);
-        if(2*i-1 >= m) tmp = v.size()-1;
-    }
-    for(i = tmp; i < v.size(); i++) {
-        for(j = 0; j < i; j++) {
-            if(v[i]%v[j] == 0) {
-                v.erase(v.begin()+i);
-                break;
+    for(i = 1; i < n/2; i++) {
+        a = (2*i+1)*2;
+        if(a >= n) { break; }
+        while(a <= n) {
+            if(a >= m && a%2 == 1) {
+                v.push_back(a);
             }
+            a += 2*i+1;
         }
     }
-    for(i = tmp; i < v.size(); i++) {
-        printf("%d\n", v[i]);
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+    for(i = m/2; i <= n/2; i++) {
+        a = 2*i+1;
+        if(a < v[0]) printf("%d\n", a);
+        else v.erase(v.begin());
     }
     return 0;
 }
