@@ -1,18 +1,32 @@
+/* 2021.3.30 Solved - 1116KB 0ms */
 #include <cstdio>
 
+int min(int a, int b) { return a < b? a: b; }
+
+int countFive(int n) {
+    int ret = 0;
+    while(n/5 != 0) {
+        n /= 5;
+        ret += n;
+    }
+    return ret;
+}
+
+int countTwo(int n) {
+    int ret = 0;
+    while(n/2 != 0) {
+        n /= 2;
+        ret += n;
+    }
+    return ret;
+}
+
 int main() {
-    int n, m, rst = 0, mcnt, tmp, mncnt, i;
+    int n, m, five = 0, two = 0;
     scanf("%d %d", &n, &m);
     if(m == 0 || m == n || n < 5) { printf("0\n"); return 0;}
-    for(i = 5; i <= n; i++) {
-        tmp = i;
-        while(tmp%5 == 0) {
-            ++rst;
-            tmp /= 5;
-        }
-        if(i == m) mcnt = rst;
-        if(i == n-m) mncnt = rst;
-    }
-    printf("%d\n", rst-mcnt-mncnt);
+    five = countFive(n)-countFive(m)-countFive(n-m);
+    two = countTwo(n)-countTwo(m)-countTwo(n-m);
+    printf("%d\n", min(five, two));
     return 0;
 }
