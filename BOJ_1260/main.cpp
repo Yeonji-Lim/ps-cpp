@@ -1,49 +1,69 @@
+/* 2021.4.1 Solved - 1364KB 4ms */
 #include <cstdio>
-#include <cstring>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <algorithm>
+using namespace std;
 
-int main() {
-    int n, m, v, i, a, b;
-    scanf("%d %d %d", &n, &m, &v);
-    bool graph[n+1][n+1];
-    bool visited[n+1];
-    memset(visited, false, sizeof(visited));
-    for(i = 0; i < n+1; i++) { memset(graph[i], false, sizeof(graph[0])); }
-    for(i = 0; i < m; i++) {
-        scanf("%d %d", &a, &b);
-        graph[a][b] = true;
-        graph[b][a] = true;
-    }
-    m = v; b = 0;
-    while(1){
-        printf("%d ", v);
-        visited[v] = true;
-        b++;
-        for(i = 1; i < n+1; i++) {
-            if(graph[v][i] && !visited[i]) {
-                v = i;
+void dfs(int v, vector<int> graph[], bool visited[]) {
+    stack<int> s;
+    s.push(v);
+    printf("%d ", v);
+    visited[v] = true;
+    while(!s.empty()) {
+        int current = s.top();
+        s.pop();
+        for(int i = 0; i < graph[current].size(); i++) {
+            int next = graph[current][i];
+            if(!visited[next]) {
+                printf("%d ", next);
+                visited[next] = true;
+                s.push(current);
+                s.push(next);
                 break;
             }
         }
-        if(i == n+1) break;
     }
-    printf("\n"); v = m;
-    memset(visited, false, sizeof(visited));
-    printf("%d ", v);
+    return;
+}
+
+void bfs(int v, vector<int> graph[], bool visited[]) {
+    queue<int> q;
+    q.push(v);
     visited[v] = true;
-    b--;
-    while(1){
-        a = 0;
-        for(i = 1; i < n+1; i++) {
-            if(graph[v][i] && !visited[i]) {
-                printf("%d ", i);
-                visited[i] = true;
-                b--;
-                if(a == 0) a = i;
+    while(!q.empty()) {
+        int parent = q.front();
+        printf("%d ", parent);
+        q.pop();
+        for(int i = 0; i < graph[parent].size(); i++) {
+            int child = graph[parent][i];
+            if(!visited[child]) {
+                q.push(child);
+                visited[child] = true;
             }
         }
-        v = a;
-        if(b == 0) break;
     }
+}
 
+int main() {
+    int n, m, v;
+    scanf("%d %d %d", &n, &m, &v);
+    vector<int> graph[n+1];
+    bool visited[n+1];
+    fill(visited, visited+n+1, false);
+    for(int i = 0; i < m; i++) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        graph[a].push_back(b);
+        graph[b].push_back(a);
+    }
+    for(int i = 1; i < n+1; i++) {
+        sort(graph[i].begin(), graph[i].end());
+    }
+    dfs(v, graph, visited);
+    printf("\n");
+    fill(visited, visited+n+1, false);
+    bfs(v, graph, visited);
     return 0;
 }

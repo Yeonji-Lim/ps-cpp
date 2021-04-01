@@ -9,6 +9,12 @@
 /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_1260/main.cpp
 cstdio
 -
-cstring
+vector
+-
+stack
+-
+queue
+-
+algorithm
 -
 
