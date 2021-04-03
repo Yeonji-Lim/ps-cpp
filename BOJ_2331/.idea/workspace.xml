@@ -11,7 +11,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71850b53-5603-4e15-ae78-89211680c05a" name="Default Changelist" comment="" />
+    <list default="true" id="71850b53-5603-4e15-ae78-89211680c05a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/BOJ_2331" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/BOJ_2331" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/BOJ_2331.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/BOJ_2331.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/BOJ_2331.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/BOJ_2331.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +39,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="BOJ_2331" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BOJ_2331" TARGET_NAME="BOJ_2331" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="BOJ_2331" RUN_TARGET_NAME="BOJ_2331">
@@ -52,7 +59,9 @@
       <option name="presentableId" value="Default" />
       <updated>1617359474093</updated>
       <workItem from="1617359475685" duration="11000" />
-      <workItem from="1617359512640" duration="2525000" />
+      <workItem from="1617359512640" duration="2815000" />
+      <workItem from="1617434034497" duration="278000" />
+      <workItem from="1617453931854" duration="1820000" />
     </task>
     <servers />
   </component>
@@ -60,21 +69,62 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="212" key="GridCell.Tab.0.bottom" timestamp="1617362129857">
+    <state width="1238" height="264" key="GridCell.Tab.0.bottom" timestamp="1617455245203">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1617362129857" />
-    <state width="1238" height="212" key="GridCell.Tab.0.center" timestamp="1617362129856">
+    <state width="1238" height="264" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1617455245203" />
+    <state width="1238" height="264" key="GridCell.Tab.0.center" timestamp="1617455245196">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1617362129856" />
-    <state width="1238" height="212" key="GridCell.Tab.0.left" timestamp="1617362129855">
+    <state width="1238" height="264" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1617455245196" />
+    <state width="1238" height="264" key="GridCell.Tab.0.left" timestamp="1617455245194">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1617362129855" />
-    <state width="1238" height="212" key="GridCell.Tab.0.right" timestamp="1617362129856">
+    <state width="1238" height="264" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1617455245194" />
+    <state width="1238" height="264" key="GridCell.Tab.0.right" timestamp="1617455245198">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1617362129856" />
+    <state width="1238" height="264" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1617455245198" />
+    <state width="1238" height="264" key="GridCell.Tab.1.bottom" timestamp="1617455262134">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="264" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1617455262134" />
+    <state width="1238" height="264" key="GridCell.Tab.1.center" timestamp="1617455262128">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="264" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1617455262128" />
+    <state width="1238" height="264" key="GridCell.Tab.1.left" timestamp="1617455262126">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="264" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1617455262126" />
+    <state width="1238" height="264" key="GridCell.Tab.1.right" timestamp="1617455262131">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="264" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1617455262131" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>58</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>67</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="visited[11]" language="ObjectiveC" />
+        <watch expression="visited[2]" language="ObjectiveC" />
+        <watch expression="visited[4]" language="ObjectiveC" />
+        <watch expression="visited[16]" language="ObjectiveC" />
+        <watch expression="visited[37]" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
