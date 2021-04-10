@@ -2,16 +2,14 @@
 #include <queue>
 using namespace std;
 
-bool hasTeam(int num, int graph[], bool team[], int max) {
-    if(team[num]) return true;
+bool hasTeam(int num, int graph[], bool team[]) {
     queue<int> tmp;
     tmp.push(num);
-    int next = graph[num], i = 1;
+    int next = graph[num];
     while(next != tmp.front()) {
         tmp.push(next);
         next = graph[next];
-        i++;
-        if(i > max || next == tmp.back()) return false;
+        if(next == tmp.back() || team[next]) return false;
     }
     while(!tmp.empty()) {
         team[tmp.front()] = true;
@@ -33,7 +31,8 @@ int main() {
             team[i] = false;
         }
         for(int i = 1; i <= n; i++) {
-            if(!hasTeam(i, graph, team, n)) ++rst;
+            if(team[i]) continue;
+            if(!hasTeam(i, graph, team)) ++rst;
         }
         printf("%d\n", rst);
     }
