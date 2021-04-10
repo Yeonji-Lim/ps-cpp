@@ -1,17 +1,21 @@
 #include <cstdio>
+#include <queue>
+using namespace std;
 
 bool hasTeam(int num, int graph[], bool team[], int max) {
     if(team[num]) return true;
+    queue<int> tmp;
+    tmp.push(num);
     int next = graph[num], i = 1;
-    bool tmp[max+1];
-    tmp[next] = true;
-    while(next != num) {
-        if(i > max || next == graph[next]) { return false; }
+    while(next != tmp.front()) {
+        tmp.push(next);
         next = graph[next];
         i++;
+        if(i > max || next == tmp.back()) return false;
     }
-    for(int i = 1; i <= max; i++) {
-        if(tmp[i]) { team[i] = true; }
+    while(!tmp.empty()) {
+        team[tmp.front()] = true;
+        tmp.pop();
     }
     return true;
 }
