@@ -72,7 +72,7 @@ int main() {
         for(int i = 1; i <= n; i++) {
             if(!visited[i]) dfs(i, graph, visited, done);
         }
-        printf("%d", n - cnt);
+        printf("%d\n", n - cnt);
     }
     return 0;
 }
