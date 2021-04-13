@@ -57,4 +57,49 @@
 //    return 0;
 //}
 
-/* 2021.4.13 */
+/* 2021.4.13 Solved - 9176KB 116ms*/
+#include <cstdio>
+#include <queue>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int m, n, i, j, k, ni, nj, box[1000][1000];
+    int di[4] = {-1, 0, 0, 1};
+    int dj[4] = {0, -1, 1, 0};
+    queue<pair<int, int>> q;
+    scanf("%d %d", &m, &n);
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < m; j++) {
+            scanf("%d", &box[i][j]);
+            if(box[i][j] == 1) q.push(make_pair(i, j));
+        }
+    }
+    while(!q.empty()) {
+        i = q.front().first;
+        j = q.front().second;
+        for(k = 0; k < 4; k++) {
+            ni = i + di[k];
+            nj = j + dj[k];
+            if(ni > -1 && ni < n && nj > -1 && nj < m
+                && box[ni][nj] == 0) {
+                q.push(make_pair(ni, nj));
+                box[ni][nj] = box[i][j] + 1;
+            }
+        }
+        q.pop();
+    }
+    k = 1;
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < m; j++) {
+            if(box[i][j] == 0) {
+                printf("-1\n");
+                return 0;
+            }
+            if(box[i][j] > k) k = box[i][j];
+        }
+    }
+    if(k == 1) printf("0\n");
+    else printf("%d", k-1);
+    return 0;
+}
