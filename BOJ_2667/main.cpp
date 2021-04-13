@@ -1,18 +1,18 @@
 #include <cstdio>
 #include <vector>
+#include <algorithm>
 using namespace std;
-int n, cnt = 0, tmp;
+int n, cnt;
 int map[25][25];
 bool visited[25][25];
 
 void dfs(int i, int j) {
     visited[i][j] = true;
-    map[i][j] += cnt;
-    tmp++;
-    if(i != 0 && !visited[i-1][j] && map[i-1][j] == 1) dfs(i-1, j);
-    if(j != 0 && !visited[i][j-1] && map[i][j-1] == 1) dfs(i, j-1);
-    if(i != n-1 && !visited[i+1][j] && map[i+1][j] == 1) dfs(i+1, j);
-    if(j != n-1 && !visited[i][j+1] && map[i][j+1] == 1) dfs(i, j+1);
+    cnt++;
+    if(i > 0 && !visited[i-1][j] && map[i-1][j] == 1) dfs(i-1, j);
+    if(j > 0 && !visited[i][j-1] && map[i][j-1] == 1) dfs(i, j-1);
+    if(i < n-1 && !visited[i+1][j] && map[i+1][j] == 1) dfs(i+1, j);
+    if(j < n-1 && !visited[i][j+1] && map[i][j+1] == 1) dfs(i, j+1);
 }
 
 int main() {
@@ -31,14 +31,14 @@ int main() {
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < n; j++) {
             if(map[i][j] == 1 && !visited[i][j]) {
-                tmp = 0;
+                cnt = 0;
                 dfs(i, j);
-                v.push_back(tmp);
-                cnt++;
+                v.push_back(cnt);
             }
         }
     }
-    printf("%d\n", cnt);
+    printf("%d\n", v.size());
+    sort(v.begin(), v.end());
     for(int i = 0; i < v.size(); i++) {
         printf("%d\n", v[i]);
     }
