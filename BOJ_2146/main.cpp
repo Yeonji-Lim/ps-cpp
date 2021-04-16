@@ -49,7 +49,7 @@
 #include <queue>
 #include <vector>
 using namespace std;
-int n, rst = 0, map[100][100];
+int n, map[100][100];
 int di[4] = {-1, 0, 1, 0};
 int dj[4] = {0, -1, 0, 1};
 bool visit[100][100];
