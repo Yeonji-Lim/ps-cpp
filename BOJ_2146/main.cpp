@@ -44,7 +44,7 @@
 //    return 0;
 //}
 
-/*2021.4.14 */
+/* 2021.4.14 Solved - 1688KB 808ms */
 #include <cstdio>
 #include <queue>
 #include <vector>
@@ -55,8 +55,26 @@ int dj[4] = {0, -1, 0, 1};
 bool visit[100][100];
 vector< vector< pair<int, int> > > v;
 
-int minBridge(vector<pair<int, int>> isl1, vector<pair<int, int>> isl2) {
+int min(int a, int b) { return a < b? a: b; }
+
+int difference(pair<int, int> a, pair<int, int> b) {
     int ret = 0;
+    if(a.first > b.first) ret += a.first - b.first;
+    else if(a.first <= b.first) ret += b.first - a.first;
+    if(a.second > b.second) ret += a.second - b.second;
+    else if(a.second <= b.second) ret += b.second - a.second;
+    if(ret > 0) --ret;
+    return ret;
+}
+
+int minBridge(vector<pair<int, int>> isl1, vector<pair<int, int>> isl2) {
+    int ret = 200, tmp;
+    for(int i = 0; i < isl1.size(); i++) {
+        for(int j = 0; j < isl2.size(); j++) {
+            tmp = difference(isl1[i], isl2[j]);
+            ret = min(ret, tmp);
+        }
+    }
     return ret;
 }
 
@@ -76,7 +94,7 @@ void bfs(int i, int j) {
             if(ni > -1 && ni < n && nj > -1 && nj < n
                 && !visit[ni][nj] && map[ni][nj] == 1) {
                 visit[ni][nj] = true;
-                tmpv.push_back(make_pair(i,j));
+                tmpv.push_back(make_pair(ni,nj));
                 q.push(make_pair(ni, nj));
             }
         }
@@ -85,7 +103,7 @@ void bfs(int i, int j) {
 }
 
 int main() {
-    int i, j;
+    int i, j, rst = 200;
     scanf("%d", &n);
     for(i = 0; i < n; i++) {
         for(j = 0; j < n; j++) {
@@ -101,7 +119,10 @@ int main() {
         }
     }
     for(i = 0; i < v.size()-1; i++) {
-
+        for(j = i+1; j < v.size(); j++) {
+            rst = min(rst, minBridge(v[i], v[j]));
+        }
     }
+    printf("%d\n", rst);
     return 0;
 }
