@@ -1,19 +1,23 @@
-/* 2021.4.19 */
+/* 2021.4.20 */
 #include <cstdio>
 #include <vector>
+#define MAX 100001
 using namespace std;
+vector<pair<int, int>> tree[MAX];
+bool visited[MAX];
+int rst = 0;
+int farthestNode = 0;
 
 int max(int a, int b) { return a > b? a: b; }
 
-int dfs(int start, vector<pair<int, int>> tree[], bool visited[], int ret) {
+void dfs(int start, int ret) {
+    if(visited[start]) return;
     int origin = ret;
     visited[start] = true;
     for(int i = 0; i < tree[start].size(); i++) {
         pair<int, int> next = tree[start][i];
-        if(!visited[next.first])
-            ret = max(ret, dfs(next.first, tree, visited, origin)+next.second);
+        dfs(next.first, origin + next.second);
     }
-    return ret;
 }
 
 int main() {
