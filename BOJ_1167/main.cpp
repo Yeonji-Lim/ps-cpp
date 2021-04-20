@@ -1,6 +1,7 @@
-/* 2021.4.20 */
+/* 2021.4.20 Solved - 7736KB 112ms 근데 마지막에 왜 rst 0으로 초기화하는 건지 모르겟..*/
 #include <cstdio>
 #include <vector>
+#include <cstring>
 #define MAX 100001
 using namespace std;
 vector<pair<int, int>> tree[MAX];
@@ -8,23 +9,22 @@ bool visited[MAX];
 int rst = 0;
 int farthestNode = 0;
 
-int max(int a, int b) { return a > b? a: b; }
-
 void dfs(int start, int ret) {
     if(visited[start]) return;
-    int origin = ret;
     visited[start] = true;
+    if(rst < ret) {
+        rst = ret;
+        farthestNode = start;
+    }
     for(int i = 0; i < tree[start].size(); i++) {
         pair<int, int> next = tree[start][i];
-        dfs(next.first, origin + next.second);
+        dfs(next.first, ret + next.second);
     }
 }
 
 int main() {
     int v, a, b, c;
     scanf("%d", &v);
-    vector<pair<int, int>> tree[v+1];
-    bool visited[v+1];
     for(int i = 1; i <= v; i++) {
         scanf("%d", &c);
         visited[c] = false;
@@ -35,7 +35,10 @@ int main() {
             tree[c].push_back(make_pair(a, b));
         }
     }
-    c = dfs(1, tree, visited, 0);
-    printf("%d\n", &c);
+    dfs(1, 0);
+    memset(visited, false, sizeof(visited));
+    rst = 0;
+    dfs(farthestNode, 0);
+    printf("%d\n", rst);
     return 0;
 }
