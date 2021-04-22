@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BP_1654/main.cpp
-iostream
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_1654/main.cpp
+cstdio
 -
-deque
+vector
 -
-climits
+algorithm
 -
 
