@@ -3,22 +3,16 @@
 #include <algorithm>
 using namespace std;
 vector<int> cards;
-vector<int> targetNums;
-int rst = 0;
+bool findRst = false;
 
 void findTarget (int l, int r, int x) {
     int mid = (l+r)/2;
-    if(l >= r || mid == l || mid == r) {
-        if(cards[l] == x || cards[r] == x || cards[mid] == x) rst = 1;
-        else rst = 0;
-        return;
-    }
-    if(cards[mid] > x) {
-        findTarget(l, mid, x);
-    } else if (cards[mid] < x) {
-        findTarget(mid, r, x);
+    if(l > r) return;
+    if(cards[mid] == x) findRst = true;
+    else if(cards[mid] > x) {
+        findTarget(l, mid-1, x);
     } else {
-        rst = 1;
+        findTarget(mid+1, r, x);
     }
 }
 
@@ -29,19 +23,14 @@ int main() {
         scanf("%d", &tmp);
         cards.push_back(tmp);
     }
+    sort(cards.begin(), cards.end());
     scanf("%d", &m);
     for(i = 0; i < m; i++) {
         scanf("%d", &tmp);
-        targetNums.push_back(tmp);
-    }
-    sort(cards.begin(), cards.end());
-    for(i = 0; i < m; i++) {
-        findTarget(0, m, targetNums[i]);
-        targetNums[i] = rst;
-        rst = 0;
-    }
-    for(i = 0; i < m; i++) {
-        printf("%d ", targetNums[i]);
+        findTarget(0, n, tmp);
+        if(findRst) printf("1 ");
+        else printf("0 ");
+        findRst = false;
     }
     return 0;
 }
