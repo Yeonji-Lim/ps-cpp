@@ -141,29 +141,28 @@
 #include <cstdio>
 #include <vector>
 #include <algorithm>
+#define N_MAX 500000
 using namespace std;
 vector<int> cards;
+int upperIdx = -1, lowerIdx = N_MAX;
 
 int findUpper (int l, int r, int num) {
-    if(l > r) return -1;
+    if(l > r) return upperIdx;
     int mid = (l+r)/2;
-    if(cards[mid] == num) {
-        while(cards[mid] == num) ++mid;
-        return mid-1;
-    }
+    if(cards[mid] == num && mid > upperIdx) upperIdx = mid;
     if(cards[mid] > num) return findUpper(l, mid-1, num);
     else return findUpper(mid+1, r, num);
 }
 
 int findLower (int l, int r, int num) {
-    if(l > r) return -1;
-    int mid = (l+r)/2;
-    if(cards[mid] == num) {
-        while(cards[mid] == num) --mid;
-        return mid+1;
+    if(l > r) {
+        if(lowerIdx == N_MAX) return -1;
+        return lowerIdx;
     }
-    if(cards[mid] > num) return findLower(l, mid-1, num);
-    else return findLower(mid+1, r, num);
+    int mid = (l+r)/2;
+    if(cards[mid] == num && lowerIdx > mid) lowerIdx = mid;
+    if(cards[mid] < num) return findLower(mid+1, r, num);
+    else return findLower(l, mid-1, num);
 }
 
 int main() {
@@ -183,6 +182,8 @@ int main() {
             idx -= findLower(0, idx, tmp)-1;
             printf("%d ", idx);
         }
+        upperIdx = -1;
+        lowerIdx = N_MAX;
     }
     return 0;
 }
