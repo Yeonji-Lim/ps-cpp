@@ -100,39 +100,89 @@
 //    return 0;
 //}
 
-/* 2021.4.29 */
+/* 2021.4.29 Failed - 시간 초과 */
+//#include <cstdio>
+//#include <vector>
+//#include <algorithm>
+//using namespace std;
+//vector<pair<int, int>> cards;
+//
+//int findNum(int l, int r, int num) {
+//    if(l > r || cards.empty()) return -1;
+//    int mid = (l+r)/2;
+//    if(cards[mid].first == num) return mid;
+//    if(cards[mid].first > num) return findNum(l, mid-1, num);
+//    else return findNum(mid+1, r, num);
+//}
+//
+//int main() {
+//    int n, m, tmp, idx = -1;
+//    scanf("%d", &n);
+//    for(int i = 0; i < n; i++) {
+//        scanf("%d", &tmp);
+//        idx = findNum(0, i-1, tmp);
+//        if(idx == -1) {
+//            cards.emplace_back(tmp, 1);
+//            sort(cards.begin(), cards.end());
+//        }
+//        else ++cards[idx].second;
+//    }
+//    scanf("%d", &m);
+//    for(int i = 0; i < m; i++) {
+//        scanf("%d", &tmp);
+//        idx = findNum(0, n, tmp);
+//        if(idx == -1) printf("0 ");
+//        else printf("%d ", cards[idx].second);
+//    }
+//    return 0;
+//}
+
+/* 2021.4.29 Failed - 시간 초과 */
 #include <cstdio>
 #include <vector>
 #include <algorithm>
 using namespace std;
-vector<pair<int, int>> cards;
+vector<int> cards;
 
-int findNum(int l, int r, int num) {
-    if(l > r || cards.empty()) return -1;
+int findUpper (int l, int r, int num) {
+    if(l > r) return -1;
     int mid = (l+r)/2;
-    if(cards[mid].first == num) return mid;
-    if(cards[mid].first > num) return findNum(l, mid-1, num);
-    else return findNum(mid+1, r, num);
+    if(cards[mid] == num) {
+        while(cards[mid] == num) ++mid;
+        return mid-1;
+    }
+    if(cards[mid] > num) return findUpper(l, mid-1, num);
+    else return findUpper(mid+1, r, num);
+}
+
+int findLower (int l, int r, int num) {
+    if(l > r) return -1;
+    int mid = (l+r)/2;
+    if(cards[mid] == num) {
+        while(cards[mid] == num) --mid;
+        return mid+1;
+    }
+    if(cards[mid] > num) return findLower(l, mid-1, num);
+    else return findLower(mid+1, r, num);
 }
 
 int main() {
-    int n, m, tmp, idx = -1;
+    int n, m, i, tmp, idx;
     scanf("%d", &n);
-    for(int i = 0; i < n; i++) {
+    for(i = 0; i < n; i++) {
         scanf("%d", &tmp);
-        idx = findNum(0, i-1, tmp);
-        if(idx == -1) {
-            cards.emplace_back(tmp, 1);
-            sort(cards.begin(), cards.end());
-        }
-        else ++cards[idx].second;
+        cards.push_back(tmp);
     }
+    sort(cards.begin(), cards.end());
     scanf("%d", &m);
-    for(int i = 0; i < m; i++) {
+    for(i = 0; i < m; i++) {
         scanf("%d", &tmp);
-        idx = findNum(0, n, tmp);
+        idx = findUpper(0, n, tmp);
         if(idx == -1) printf("0 ");
-        else printf("%d ", cards[idx].second);
+        else {
+            idx -= findLower(0, idx, tmp)-1;
+            printf("%d ", idx);
+        }
     }
     return 0;
 }
