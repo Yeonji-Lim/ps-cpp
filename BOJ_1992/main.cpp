@@ -1,11 +1,16 @@
-#include <cstdio>
+#include <iostream>
 #include <queue>
 using namespace std;
 int video[64][64];
 queue<char> rstQ;
 
-void quadTree(int sx, int sy, int n) {
+queue<char> quadTree(int sx, int sy, int n) {
+    queue<char> retQ;
     int i, j, ret = video[sx][sy];
+    if(n == 1) {
+        retQ.push(ret);
+        return retQ;
+    }
     bool isEqual = true;
     for(i = sx; i < sx+n; i++) {
         for(j = sy; j < sy+n; j++) {
@@ -16,40 +21,47 @@ void quadTree(int sx, int sy, int n) {
         }
     }
     if(isEqual) {
-        rstQ.push(ret+'0');
-        return;
+        retQ.push(ret);
+        return retQ;
     }
-    if(n == 2) {
-        for(i = 0; i < 2; i++) {
-            for(j = 0; j < 2; j++) {
-                rstQ.push(video[i][j]+'0');
-            }
-        }
-        return;
-    }
+    queue<char> tmpQ;
     for(i = 0; i < 2; i++) {
         for(j = 0; j < 2; j++) {
-            rstQ.push('(');
-            quadTree(sx+i*n/2, sy+j*n/2, n/2);
-            rstQ.push(')');
+            tmpQ = quadTree(sx+i*n/2, sy+j*n/2, n/2);
+            if(tmpQ.size() == 1) retQ.push(tmpQ.front());
+            else {
+                retQ.push('(');
+                while(!tmpQ.empty()) {
+                    retQ.push(tmpQ.front());
+                    tmpQ.pop();
+                }
+                retQ.push(')');
+            }
         }
     }
+    return retQ;
 }
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     int n;
-    scanf("%d", &n);
+    string tmp;
+    queue<char> tmpQ;
+    cin >> n;
     for(int i = 0; i < n; i++) {
+        cin >> tmp;
         for(int j = 0; j < n; j++) {
-            scanf("%d", &video[i][j]);
+            video[i][j] = tmp[j];
         }
     }
-    rstQ.push('(');
-    quadTree(0, 0, n);
-    rstQ.push(')');
+    rstQ = quadTree(0, 0, n);
+    cout << '(';
     while(!rstQ.empty()) {
-        printf("%c ", rstQ.front());
+        cout << rstQ.front();
         rstQ.pop();
     }
+    cout << ')';
     return 0;
 }
