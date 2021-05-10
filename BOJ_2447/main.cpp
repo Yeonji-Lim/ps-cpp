@@ -74,40 +74,70 @@
 //    return 0;
 //}
 
-/* 2021.5.10 */
+/* 2021.5.10 Failed - 시간 초과 */
+//#include <cstdio>
+//#include <cstring>
+//bool isStar[6561][6561];
+//
+//void fillFalse(int sx, int sy, int n) {
+//    for(int i = 0; i < n; i++) { for(int j = 0; j < n; j++) {
+//        isStar[sx+i][sy+j] = false;
+//    } }
+//}
+//
+//void findStar(int sx, int sy, int n) {
+//    if(n == 3) {
+//        isStar[sx+1][sy+1] = false;
+//        return;
+//    }
+//    for(int i = 0; i < 3; i++) { for(int j = 0; j < 3; j++) {
+//        if(i == 1 && j == 1) fillFalse(sx+n/3, sy+n/3, n/3);
+//        else findStar(sx+i*n/3, sy+j*n/3, n/3);
+//    } }
+//}
+//
+//int main() {
+//    int n;
+//    scanf("%d", &n);
+//    for(int i = 0; i < 729; i++) {
+//        memset(isStar, true, sizeof(isStar));
+//    }
+//    findStar(0, 0, n);
+//    for(int i = 0; i < n; i++) {
+//        for (int j = 0; j < n; j++) {
+//            if (isStar[i][j]) printf("*");
+//            else printf(" ");
+//        }
+//        printf("\n");
+//    }
+//    return 0;
+//}
+
 #include <cstdio>
-#include <cstring>
-bool isStar[6561][6561];
 
-void fillFalse(int sx, int sy, int n) {
-    for(int i = 0; i < n; i++) { for(int j = 0; j < n; j++) {
-        isStar[sx+i][sy+j] = false;
-    } }
-}
-
-void findStar(int sx, int sy, int n) {
-    if(n == 3) {
-        isStar[sx+1][sy+1] = false;
+void printStar(int n, int i, bool print) {
+    if(n == 1) {
+        if(print) printf("*");
+        else printf(" ");
         return;
     }
-    for(int i = 0; i < 3; i++) { for(int j = 0; j < 3; j++) {
-        if(i == 1 && j == 1) fillFalse(sx+n/3, sy+n/3, n/3);
-        else findStar(sx+i*n/3, sy+j*n/3, n/3);
-    } }
+    int ni = i;
+    if(i >= n/3) ni = i-n/3;
+    if(i >= 2*n/3) ni = i-2*n/3;
+    if(!print) {
+        for(int j = 0; j < 3; j++) printStar(n/3, ni, false);
+        return;
+    }
+    for(int j = 0; j < 3; j++) {
+        printStar(n / 3, ni, !(i >= n / 3 && i < 2 * n / 3 && j == 1));
+    }
 }
 
 int main() {
     int n;
     scanf("%d", &n);
-    for(int i = 0; i < 729; i++) {
-        memset(isStar, true, sizeof(isStar));
-    }
-    findStar(0, 0, n);
     for(int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (isStar[i][j]) printf("*");
-            else printf(" ");
-        }
+        printStar(n, i, true);
         printf("\n");
     }
     return 0;
