@@ -44,10 +44,10 @@ RM = "/Users/im-yeonji/Library/Application Support/JetBrains/Toolbox/apps/CLion/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/im-yeonji/CLionProjects/BP_2447
+CMAKE_SOURCE_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_2447
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/im-yeonji/CLionProjects/BP_2447/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_2447/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ clean: CMakeFiles/BP_2447.dir/clean
 CMakeFiles/BP_2447.dir/all:
 	$(MAKE) -f CMakeFiles/BP_2447.dir/build.make CMakeFiles/BP_2447.dir/depend
 	$(MAKE) -f CMakeFiles/BP_2447.dir/build.make CMakeFiles/BP_2447.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/im-yeonji/CLionProjects/BP_2447/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target BP_2447"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_2447/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target BP_2447"
 .PHONY : CMakeFiles/BP_2447.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/BP_2447.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/CLionProjects/BP_2447/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_2447/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BP_2447.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/CLionProjects/BP_2447/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_2447/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/BP_2447.dir/rule
 
 # Convenience name for target.
