@@ -117,24 +117,29 @@
 #include <cstdio>
 
 void printStar(int n, int i, bool print) {
+    // 기저사례
     if(n == 1) {
         if(print) printf("*");
         else printf(" ");
         return;
     }
+    // n/3이 봤을 때 몇번째 줄인건지 넘겨줄 ni
     int ni = i;
-    if(i >= n/3) ni = i-n/3;
     if(i >= 2*n/3) ni = i-2*n/3;
+    else if(i >= n/3) ni = i-n/3;
+    //세 번으로 나눠서 출력
     for(int j = 0; j < 3; j++) {
-        if(!print) printStar(n/3, ni, print);
-        else printStar(n/3, ni, !(i >= n/3 && i < 2*n / 3 && j == 1));
+        if(!print) // 빈칸을 출력해야 하는 경우
+            printStar(n/3, ni, print);
+        else printStar(n/3, ni, !(i >= n/3 && i < 2*n/3 && j == 1));
+        // 넘겨줄 print는 n/3에게 빈칸 출력을 명령해야 하는 경우 (n이 볼 때 가운데 위치인 경우)
     }
 }
 
 int main() {
     int n;
     scanf("%d", &n);
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++) { // 줄 별로 출력
         printStar(n, i, true);
         printf("\n");
     }
