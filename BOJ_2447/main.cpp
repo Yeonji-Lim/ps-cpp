@@ -113,6 +113,7 @@
 //    return 0;
 //}
 
+/* 2021.5.10 Solved - 1116KB 96ms */
 #include <cstdio>
 
 void printStar(int n, int i, bool print) {
