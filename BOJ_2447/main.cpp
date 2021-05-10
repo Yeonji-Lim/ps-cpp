@@ -125,12 +125,9 @@ void printStar(int n, int i, bool print) {
     int ni = i;
     if(i >= n/3) ni = i-n/3;
     if(i >= 2*n/3) ni = i-2*n/3;
-    if(!print) {
-        for(int j = 0; j < 3; j++) printStar(n/3, ni, false);
-        return;
-    }
     for(int j = 0; j < 3; j++) {
-        printStar(n / 3, ni, !(i >= n / 3 && i < 2 * n / 3 && j == 1));
+        if(!print) printStar(n/3, ni, print);
+        else printStar(n/3, ni, !(i >= n/3 && i < 2*n / 3 && j == 1));
     }
 }
 
