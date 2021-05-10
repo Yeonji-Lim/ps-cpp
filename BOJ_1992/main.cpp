@@ -57,11 +57,17 @@ int main() {
         }
     }
     rstQ = quadTree(0, 0, n);
-    cout << '(';
-    while(!rstQ.empty()) {
+    if(rstQ.size() == 1) {
         cout << rstQ.front();
-        rstQ.pop();
+        cout << endl;
+    } else {
+        cout << '(';
+        while(!rstQ.empty()) {
+            cout << rstQ.front();
+            rstQ.pop();
+        }
+        cout << ')' << endl;
     }
-    cout << ')';
+    cout << endl;
     return 0;
 }
