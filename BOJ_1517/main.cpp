@@ -1,3 +1,4 @@
+/* 2021.5.11 Failed - 시간 초과 */
 #include <cstdio>
 #include <vector>
 #include <algorithm>
@@ -20,7 +21,7 @@ void countSwap() {
 int main() {
     int n, tmp;
     scanf("%d", &n);
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < n; i++) {
         scanf("%d", &tmp);
         v.push_back(tmp);
     }

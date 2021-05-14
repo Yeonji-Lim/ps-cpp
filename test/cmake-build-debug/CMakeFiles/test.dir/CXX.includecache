@@ -7,12 +7,10 @@
 #IncludeRegexTransform: 
 
 /Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/test/main.cpp
-iostream
--
 string
 -
-cstdio
+iostream
 -
-vector
+algorithm
 -
 
