@@ -62,38 +62,35 @@
 //    return 0;
 //}
 
-/* 2021.5.14 */
+/* 2021.5.14 Failed - 시간 초과 */
 #include <cstdio>
 #include <vector>
 using namespace std;
 int ret = 0;
+vector<int> v;
 
-void countSwap(vector<int> lv, vector<int> rv) {
-    for(int i = 0; i < lv.size(); i++)
-        for (int j = 0; j < rv.size(); j++)
-            if (lv[i] > rv[j]) ret++;
+void countSwap(int l, int mid, int r) {
+    for(int i = l; i <= mid; i++)
+        for (int j = mid+1; j <= r; j++)
+            if (v[i] > v[j]) ret++;
 }
 
-void mergeSort (vector<int> v) {
-    if(v.size() == 1) return;
-    vector<int> lv, rv;
-    int mid = v.size()/2;
-    lv.assign(v.begin(), v.begin()+mid);
-    rv.assign(v.begin()+mid, v.end());
-    mergeSort(lv);
-    mergeSort(rv);
-    countSwap(lv, rv);
+void mergeSort (int l, int r) {
+    if(r == l) return;
+    int mid = (l+r)/2;
+    mergeSort(l, mid);
+    mergeSort(mid+1, r);
+    countSwap(l, mid, r);
 }
 
 int main() {
     int n, tmp;
-    vector<int> v;
     scanf("%d", &n);
     for(int i = 0; i < n; i++) {
         scanf("%d", &tmp);
         v.push_back(tmp);
     }
-    mergeSort(v);
+    mergeSort(0, n-1);
     printf("%d", ret);
     return 0;
 }
