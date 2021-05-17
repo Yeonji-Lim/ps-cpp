@@ -79,11 +79,9 @@ void mergeSort (vector<int> v) {
     vector<int> lv, rv;
     int mid = v.size()/2;
     lv.assign(v.begin(), v.begin()+mid);
-    rv.assign(v.begin()+mid+1, v.end());
-
+    rv.assign(v.begin()+mid, v.end());
     mergeSort(lv);
     mergeSort(rv);
-
     countSwap(lv, rv);
 }
 
