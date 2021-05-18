@@ -63,34 +63,34 @@
 //}
 
 /* 2021.5.14 Failed - 시간 초과 */
-#include <cstdio>
-#include <vector>
-using namespace std;
-int ret = 0;
-vector<int> v;
-
-void countSwap(int l, int mid, int r) {
-    for(int i = l; i <= mid; i++)
-        for (int j = mid+1; j <= r; j++)
-            if (v[i] > v[j]) ret++;
-}
-
-void mergeSort (int l, int r) {
-    if(r == l) return;
-    int mid = (l+r)/2;
-    mergeSort(l, mid);
-    mergeSort(mid+1, r);
-    countSwap(l, mid, r);
-}
-
-int main() {
-    int n, tmp;
-    scanf("%d", &n);
-    for(int i = 0; i < n; i++) {
-        scanf("%d", &tmp);
-        v.push_back(tmp);
-    }
-    mergeSort(0, n-1);
-    printf("%d", ret);
-    return 0;
-}
+//#include <cstdio>
+//#include <vector>
+//using namespace std;
+//int ret = 0;
+//vector<int> v;
+//
+//void countSwap(int l, int mid, int r) {
+//    for(int i = l; i <= mid; i++)
+//        for (int j = mid+1; j <= r; j++)
+//            if (v[i] > v[j]) ret++;
+//}
+//
+//void mergeSort (int l, int r) {
+//    if(r == l) return;
+//    int mid = (l+r)/2;
+//    mergeSort(l, mid);
+//    mergeSort(mid+1, r);
+//    countSwap(l, mid, r);
+//}
+//
+//int main() {
+//    int n, tmp;
+//    scanf("%d", &n);
+//    for(int i = 0; i < n; i++) {
+//        scanf("%d", &tmp);
+//        v.push_back(tmp);
+//    }
+//    mergeSort(0, n-1);
+//    printf("%d", ret);
+//    return 0;
+//}
