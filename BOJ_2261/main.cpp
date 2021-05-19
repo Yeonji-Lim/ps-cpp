@@ -6,38 +6,39 @@
 using namespace std;
 
 vector<pair<int, int>> v;
-double d = 40000;
 
-double min(double a, double b) { return a<b? a: b; }
+int min(int a, int b) { return a<b? a: b; }
 
 bool compare (pair<int, int> a, pair<int, int> b) {
     if(a.first == b.first) return a.second < b.second;
     return a.first < b.first;
 }
 
-double distance (pair<int, int> a, pair<int, int> b) {
-    return sqrt(pow(a.first-b.first, 2) + pow(a.second-b.second,2));
+int distancePow (pair<int, int> a, pair<int, int> b) {
+    return pow(a.first-b.first, 2) + pow(a.second-b.second,2);
 }
 
 int main() {
-    int n, x, y;
+    int n, x, y, d;
     scanf("%d", &n);
     for(int i = 0; i < n; i++) {
         scanf("%d %d", &x, &y);
         v.emplace_back(x, y);
     }
     sort(v.begin(), v.end(), compare);
+    d = distancePow(v[0], v[1]);
     for(int i = 0; i < n-1; i++) {
         for(int j = i+1; j < n; j++) {
+            if(i==0 && j==1) continue;
             if(v[i].first == v[j].first) {
-                if(v[j].second-v[i].second >= d) break;
-                else d = v[j].second-v[i].second;
+                if(abs(v[j].second-v[i].second) >= sqrt(d)) break;
+                else d = pow(v[j].second-v[i].second, 2);
             } else {
-                if(v[j].first-v[i].first >= d || v[j].second-v[i].second >= d) break;
-                else d = min(d, distance(v[i], v[j]));
+                if(v[j].first-v[i].first >= sqrt(d) || abs(v[j].second-v[i].second) >= sqrt(d)) break;
+                else d = min(d, distancePow(v[i], v[j]));
             }
         }
     }
-    printf("%d\n", (int)pow(d, 2));
+    printf("%d\n", d);
     return 0;
 }
