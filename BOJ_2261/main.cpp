@@ -6,17 +6,17 @@
 using namespace std;
 
 vector<pair<int, int>> v;
-int d = 40000;
+double d = 40000;
 
-int min(int a, int b) { return a<b? a: b; }
+double min(double a, double b) { return a<b? a: b; }
 
 bool compare (pair<int, int> a, pair<int, int> b) {
     if(a.first == b.first) return a.second < b.second;
     return a.first < b.first;
 }
 
-int distance (pair<int, int> a, pair<int, int> b) {
-    return (int)sqrt(pow(a.first-b.first, 2) + pow(a.second-b.second,2));
+double distance (pair<int, int> a, pair<int, int> b) {
+    return sqrt(pow(a.first-b.first, 2) + pow(a.second-b.second,2));
 }
 
 int main() {
@@ -31,12 +31,10 @@ int main() {
         for(int j = i+1; j < n; j++) {
             if(v[i].first == v[j].first) {
                 if(v[j].second-v[i].second >= d) break;
-                else d = distance(v[i], v[j]);
+                else d = v[j].second-v[i].second;
             } else {
                 if(v[j].first-v[i].first >= d || v[j].second-v[i].second >= d) break;
-                else {
-                    d = min(d, distance(v[i], v[j]));
-                }
+                else d = min(d, distance(v[i], v[j]));
             }
         }
     }
