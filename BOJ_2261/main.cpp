@@ -11,8 +11,8 @@ int d = 40000;
 int min(int a, int b) { return a<b? a: b; }
 
 bool compare (pair<int, int> a, pair<int, int> b) {
-    if(a.first == b.first) return a.second > b.second;
-    return a.first > b.first;
+    if(a.first == b.first) return a.second < b.second;
+    return a.first < b.first;
 }
 
 int distance (pair<int, int> a, pair<int, int> b) {
