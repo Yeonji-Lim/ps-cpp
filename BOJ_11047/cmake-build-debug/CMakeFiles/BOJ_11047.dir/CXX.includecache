@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp14/BOJ_11047/main.cpp
+/Users/im-yeonji/Documents/GitHub/BOJ_Solution_Cpp/BOJ_11047/main.cpp
 cstdio
+-
+vector
 -
 
