@@ -1,2 +1,3 @@
-# BOJ_Solutions_Cpp
-BOJ Soultions
+# ps-cpp
+
+PS with C++
