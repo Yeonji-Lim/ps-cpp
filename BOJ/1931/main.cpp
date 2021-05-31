@@ -45,7 +45,7 @@ using namespace std;
 
 bool compare(pair<int, int> a, pair<int, int> b) {
     if(a.second == b.second) return a.first < b.first;
-    else return a.second < b.second;
+    return a.second < b.second;
 }
 
 int main() {
@@ -57,11 +57,14 @@ int main() {
         v.emplace_back(a, b);
     }
     sort(v.begin(), v.end(), compare);
+    for(i = 0; i < n; i++){
+        printf(" %d %d |", v[i].first, v[i].second);
+    }
     a = v[0].second;
     i = 1;
     while(true) {
         if(i == v.size()) break;
-        if(v[i].first > a) {
+        if(v[i].first >= a) {
             a = v[i].second;
             rst++;
         }
