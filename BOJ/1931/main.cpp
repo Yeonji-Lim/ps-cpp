@@ -37,7 +37,7 @@
 //    return 0;
 //}
 
-/* 2021.5.31 */
+/* 2021.5.31 Solved - 2776KB 40ms */
 #include <cstdio>
 #include <vector>
 #include <algorithm>
