@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    int n, tmp, rst;
+    int n, tmp, rst = 0;
     vector<int> v;
     scanf("%d", &n);
     for(int i = 0; i < n; i++) {
@@ -13,9 +13,8 @@ int main() {
         v.push_back(tmp);
     }
     sort(v.begin(), v.end());
-    tmp = v[0];
-    rst = tmp;
-    for(int i = 1; i < n; i++) {
+    tmp = 0;
+    for(int i = 0; i < n; i++) {
         tmp += v[i];
         rst += tmp;
     }
