@@ -3,8 +3,62 @@ using namespace std;
 int r, c;
 int map[1001][1001];
 bool visited[1001][1001];
+int ci = 0, cj = 0;
 
-bool isInMap(int x, int y) { return x > -1 && y > -1 && x < r && y < c; }
+bool isInMap(int i, int j) { return i > -1 && j > -1 && i < r && j < c; }
+
+void U() { printf("U"); visited[--ci][cj] = true; }
+
+void D() { printf("D"); visited[++ci][cj] = true; }
+
+void L() { printf("L"); visited[ci][--cj] = true; }
+
+void R() { printf("R"); visited[ci][++cj] = true; }
+
+void goToRight() {
+    int di = ci, dj = c - 1;
+    while(visited[di][dj]) di++;
+    while(!(ci == di && cj == dj)) {
+        if(isInMap(ci-1, cj) && !visited[ci-1][cj]) U();
+        else if(!visited[ci][cj+1]) R();
+        else D();
+    }
+    D();
+}
+
+void goToDown() {
+    int di = r - 1, dj = cj;
+    while(visited[di][dj]) dj++;
+    while(!(ci == di && cj == dj)) {
+        if(isInMap(ci, cj-1) && !visited[ci][cj-1]) L();
+        else if(!visited[ci+1][cj]) D();
+        else R();
+    }
+    R();
+}
+
+void goToUp() {
+    int di = 0, dj = cj;
+    while(visited[di][dj]) di++;
+    if(di == r) return;
+    if(!visited[di][dj-1]) dj--;
+    while(!(ci == di && cj == dj)) {
+        if(!visited[ci][cj-1]) L();
+        else if(!visited[ci-1][cj]) U();
+        else R();
+    }
+}
+
+void goToLeft() {
+    int di = ci, dj = 0;
+    while(visited[di][dj]) dj++;
+    if(!visited[di-1][dj]) di--;
+    while(!(ci == di && cj == dj)) {
+        if(!visited[ci-1][cj]) U();
+        else if(!visited[ci][cj-1]) L();
+        else if(visited[ci][cj-1]) D();
+    }
+}
 
 int main() {
     int i, j;
@@ -21,6 +75,7 @@ int main() {
         int min = 1000, mi, mj;
         for(i = 0; i < r; i++) {
             for(j = 0; j < c; j++) {
+                if((i == 0 && j == 0) || (i == r-1 && j == c-1)) continue;
                 if((i+j)%2 == 1 && min > map[i][j]) {
                     min = map[i][j];
                     mi = i;
@@ -28,52 +83,32 @@ int main() {
                 }
             }
         }
+        visited[ci][cj] = true;
         visited[mi][mj] = true;
-        bool goR = true;
         i = 0;
-        j = 0;
-        while(i != r-1 || j != c-1){
-            visited[i][j] = true;
-            if(goR) {
-                if(isInMap(i-1, j) && !visited[i-1][j]) { //위있으면 위로
-                    printf("U");
-                    i--;
-                } else if(isInMap(i, j+1)) { //오른쪽 맵 안에 있음
-                    if(!visited[i][j+1]){ //오른쪽으로 갈 수 있음
-                        printf("R");
-                        j++;
-                    } else { //맵 안에서 오른쪽 막힘
-                        visited[i+1][j] = true; //아래로 한칸, 오른쪽으로 한칸
-                        printf("DR");
-                        i++;
-                        j++;
-                    }
-                } else if(!isInMap(i, j+1)) { //맨 끝임
-                    printf("D");
-                    i++;
-                    goR = false; //방향전환
-                }
-            } else {
-                if(isInMap(i-1, j) && !visited[i-1][j]) { //위있으면 위로
-                    printf("U");
-                    i--;
-                } else if(isInMap(i, j-1)) { //왼쪽 맵 안에 있음
-                    if(!visited[i][j-1]){ //왼쪽으로 갈 수 있음
-                        printf("L");
-                        j--;
-                    } else { //맵 안에서 왼쪽 막힘
-                        visited[i+1][j] = true; //아래로 한칸, 왼쪽으로 한칸
-                        printf("DL");
-                        i++;
-                        j--;
-                    }
-                } else if(!isInMap(i, j-1)) { //맨 끝임
-                    printf("D");
-                    i++;
-                    goR = true; //방향전환
-                }
-            }
-        }
+        //이동
+//        while(!(ci == r-1 && cj == c-1)) {
+//            switch(i%4) {
+//                case 0:
+//                    goToRight();
+//                    break;
+//                case 1:
+//                    goToLeft();
+//                    break;
+//                case 2:
+//                    goToDown();
+//                    break;
+//                case 3:
+//                    goToUp();
+//                    break;
+//            }
+//            if(ci == r-1 && cj == c-1) break;
+//            i++;
+//        }
+        goToRight();
+        goToLeft();
+        goToDown();
+        goToUp();
     } else if(r%2 == 0) {
         for(i = 0; i < r; i++) {
             if(i%2 == 0) for(j = 1; j < c; j++) printf("D");
