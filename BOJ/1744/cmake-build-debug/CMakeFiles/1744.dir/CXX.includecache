@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/im-yeonji/Documents/GitHub/ps-cpp/BOJ/1744/main.cpp
+cstdio
+-
+vector
+-
+algorithm
+-
+
