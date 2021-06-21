@@ -1,3 +1,4 @@
+/* 2021.6.9 Failed */
 //#include <iostream>
 //bool numbers[10];
 //using namespace std;
@@ -52,6 +53,7 @@
 //    return 0;
 //}
 
+/* 2021.6.21 */
 #include <cstdio>
 
 int diff(int a, int b) { return a>b? a-b: b-a; }
@@ -66,10 +68,8 @@ int main() {
         scanf("%d", &tmp1);
         able[tmp1] = false;
     }
-    if(diff(n, 100) < 3) {
-        printf("%d\n", diff(n, 100));
-        return 0;
-    }
+    if(diff(n, 100) < 3 || m == 10) { printf("%d\n", diff(n, 100)); return 0; }
+    if(n == 0) { printf("1\n"); return 0; }
     int tmp2, cur = 0, rst = 0, dig = 100000;
     while(dig != 0) {
         m = n/dig;
@@ -81,8 +81,10 @@ int main() {
                 if(diff(m, tmp1) < diff(m, tmp2)) m = tmp1;
                 else m = tmp2;
             }
-            cur = cur*10+m;
-            rst++;
+            if(diff(cur, cur*10+m) != 0) {
+                cur = cur * 10 + m;
+                rst++;
+            }
         }
         dig /= 10;
     }
