@@ -7,6 +7,6 @@
 #IncludeRegexTransform: 
 
 /Users/im-yeonji/Documents/GitHub/ps-cpp/BOJ/1107/main.cpp
-iostream
+cstdio
 -
 

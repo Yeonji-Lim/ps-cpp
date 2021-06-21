@@ -51,3 +51,42 @@
 //    cout << rst;
 //    return 0;
 //}
+
+#include <cstdio>
+
+int diff(int a, int b) { return a>b? a-b: b-a; }
+
+int main() {
+    int n, m, tmp1;
+    bool able[10];
+    for(int i = 0; i < 10; i++) { able[i] = true; }
+    scanf("%d", &n);
+    scanf("%d", &m);
+    for(int i = 0; i < m; i++) {
+        scanf("%d", &tmp1);
+        able[tmp1] = false;
+    }
+    if(diff(n, 100) < 3) {
+        printf("%d\n", diff(n, 100));
+        return 0;
+    }
+    int tmp2, cur = 0, rst = 0, dig = 100000;
+    while(dig != 0) {
+        m = n/dig;
+        if(m != 0) {
+            m %= 10;
+            if(!able[m]) {
+                for(tmp1 = m+1; tmp1 < 10; tmp1++) { if(able[tmp1]) break; }
+                for(tmp2 = m-1; tmp2 > -1; tmp2--) { if(able[tmp2]) break; }
+                if(diff(m, tmp1) < diff(m, tmp2)) m = tmp1;
+                else m = tmp2;
+            }
+            cur = cur*10+m;
+            rst++;
+        }
+        dig /= 10;
+    }
+    rst += diff(n, cur);
+    printf("%d\n", rst);
+    return 0;
+}
