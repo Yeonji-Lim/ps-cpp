@@ -1,45 +1,33 @@
-/*
-You should use the standard input/output
-
-in order to receive a score properly.
-
-Do not use file input and output
-
-Please be very careful. 
-*/
-
 #include <cstdio>
 #include <iostream>
 #include <vector>
-#define NSIZE 100000
-
 using namespace std;
 
 int n;
-int nums[NSIZE + 2];
-bool visited[NSIZE + 2];
+vector<pair<int, int>> nums;
 
-void makeFriends(vector<int> &v, int mi)
+void makeFriends(vector<pair<int, int>> &v, int mi)
 {
-    v.push_back(mi);
-    if (nums[mi] + mi <= n && !visited[nums[mi] + mi])
+    v.push_back(nums[mi]);
+    int i = nums[mi].first;
+    int d = nums[mi].second;
+    nums.erase(nums.begin() + mi);
+
+    if (i + d > n && i < nums[0].first)
+        return;
+
+    for (int j = 0; j < nums.size(); j++)
     {
-        visited[nums[mi] + mi] = true;
-        makeFriends(v, nums[mi] + mi);
-    }
-    for (int i = 1; i <= n; i++)
-    {
-        if (nums[i] + i == mi && !visited[i])
-        {
-            visited[i] = true;
-            makeFriends(v, i);
-        }
+        int fi = nums[j].first;
+        int fd = nums[j].second;
+        if (fi == i + d || fi + fd == i)
+            makeFriends(v, j);
     }
 }
 
 int main(int argc, char **argv)
 {
-    int T, test_case;
+    int T, test_case, tmp;
 
     freopen("input.txt", "r", stdin);
 
@@ -47,26 +35,20 @@ int main(int argc, char **argv)
     for (test_case = 0; test_case < T; test_case++)
     {
         cin >> n;
-        vector<vector<int>> fri;
-        nums[0] = -1;
+        vector<vector<pair<int, int>>> fri;
         for (int i = 1; i <= n; i++)
         {
-            cin >> nums[i];
-            visited[i] = false;
+            cin >> tmp;
+            nums.emplace_back(i, tmp);
         }
-        for (int i = 1; i <= n; i++)
+        while (!nums.empty())
         {
-            if (!visited[i])
-            {
-                visited[i] = true;
-                vector<int> v;
-                makeFriends(v, i);
-                fri.push_back(v);
-            }
+            vector<pair<int, int>> v;
+            makeFriends(v, 0);
+            fri.push_back(v);
         }
         cout << "Case #" << test_case + 1 << endl;
         cout << fri.size() << endl;
     }
-
     return 0;
 }
