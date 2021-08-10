@@ -90,174 +90,176 @@
 //     return 0;
 // }
 
-/* 2021.8.7 Failed */
-// #include <iostream>
-// #include <vector>
-// using namespace std;
-// int n, m, map[101][101], ans = 0;
-
-// int max(int a, int b) { return a > b ? a : b; }
-
-// int sepHV(bool h) {
-//     int ret = 1, tmp = 0, a = n, b = m;
-//     vector<int> tmpV;
-//     if (!h) { a = m; b = n; }
-//     for (int i = 0; i < a; i++) {
-//         for (int j = 0; j < b; j++)
-//             if (h) tmp += map[i][j];
-//             else tmp += map[j][i];
-//         tmpV.push_back(tmp);
-//         tmp = 0;
-//     }
-//     int fir = 0, sec = 0, thr = 0, t1 = 1, t2 = 2;
-//     while (t1 < a - 1) {
-//         for (int i = 0; i < t1; i++) fir += tmpV[i];
-//         while (t2 < a) {
-//             for (int i = t1; i < t2; i++) sec += tmpV[i];
-//             for (int i = t2; i < a; i++) thr += tmpV[i];
-//             ret = max(fir * sec * thr, ret);
-//             sec = 0;
-//             thr = 0;
-//             t2++;
-//         }
-//         fir = 0;
-//         t2 = ++t1 + 1;
-//     }
-//     return ret;
-// }
-
-// int sepNom(int a, int b) {
-//     int ret = 0;
-//     int part[4] = {0, 0, 0, 0};
-//     for(int i = 0; i < a+1; i++) {
-//         for(int j = 0; j < b+1; j++)
-//             part[0] += map[i][j];
-//         for(int j = b+1; j < m; j++)
-//             part[1] += map[i][j];
-//     }
-//     for(int i = a+1; i < n; i++) {
-//         for (int j = 0; j < b+1; j++)
-//             part[2] += map[i][j];
-//         for (int j = b+1; j < m; j++)
-//             part[3] += map[i][j];
-//     }
-
-//     ret = max((part[0]+part[1]) * part[2] * part[3], ret);
-//     ret = max((part[0]+part[2]) * part[1] * part[3], ret);
-//     ret = max((part[2]+part[3]) * part[0] * part[1], ret);
-//     ret = max((part[1]+part[3]) * part[0] * part[2], ret);
-//     return ret;
-// }
-
-// int main()
-// {
-//     ios_base::sync_with_stdio(false);
-//     cin.tie(NULL);
-//     cout.tie(NULL);
-//     cin >> n >> m;
-//     string str;
-//     for (int i = 0; i < n; i++) {
-//         cin >> str;
-//         for (int j = 0; j < m; j++) {
-//             map[i][j] = str[j] - '0';
-//         }
-//     }
-//     if (n > 2)
-//         ans = max(ans, sepHV(true));
-//     if (m > 2)
-//         ans = max(ans, sepHV(false));
-//     if(n > 1 && m >1) {
-//         for(int i = 0; i < n-1; i++) 
-//             for(int j = 0; j < m-1; j++) 
-//                 ans = max(ans, sepNom(i, j));
-//     }
-//     cout << ans << endl;
-//     return 0;
-// }
-
-/* 2021.8.7, 8.10 Solved - 2144KB 0ms */
+/* 2021.8.7 Failed , 8.10 Solved - 2064KB 8ms */
 #include <iostream>
+#include <vector>
 using namespace std;
-
-int n, m;
+int n, m, map[101][101];
 long long ans = 0;
-int val[101][101];
-long long dp[101][101];
-int max (int a, int b) { return a > b? a: b; }
 
-int main() {
+long long max(long long a, long long b) { return a > b ? a : b; }
+
+long long sepHV(bool h) {
+    long long ret = 1, tmp = 0, a = n, b = m;
+    vector<long long> tmpV;
+    if (!h) { a = m; b = n; }
+    for (int i = 0; i < a; i++) {
+        for (int j = 0; j < b; j++)
+            if (h) tmp += map[i][j];
+            else tmp += map[j][i];
+        tmpV.push_back(tmp);
+        tmp = 0;
+    }
+    long long fir = 0, sec = 0, thr = 0;
+    int t1 = 1, t2 = 2;
+    while (t1 < a - 1) {
+        for (int i = 0; i < t1; i++) fir += tmpV[i];
+        while (t2 < a) {
+            for (int i = t1; i < t2; i++) sec += tmpV[i];
+            for (int i = t2; i < a; i++) thr += tmpV[i];
+            ret = max(fir * sec * thr, ret);
+            sec = 0;
+            thr = 0;
+            t2++;
+        }
+        fir = 0;
+        t2 = ++t1 + 1;
+    }
+    return ret;
+}
+
+long long sepNom(int a, int b) {
+    long long ret = 0;
+    long long part[4] = {0, 0, 0, 0};
+    for(int i = 0; i < a+1; i++) {
+        for(int j = 0; j < b+1; j++)
+            part[0] += map[i][j];
+        for(int j = b+1; j < m; j++)
+            part[1] += map[i][j];
+    }
+    for(int i = a+1; i < n; i++) {
+        for (int j = 0; j < b+1; j++)
+            part[2] += map[i][j];
+        for (int j = b+1; j < m; j++)
+            part[3] += map[i][j];
+    }
+
+    ret = max((part[0]+part[1]) * part[2] * part[3], ret);
+    ret = max((part[0]+part[2]) * part[1] * part[3], ret);
+    ret = max((part[2]+part[3]) * part[0] * part[1], ret);
+    ret = max((part[1]+part[3]) * part[0] * part[2], ret);
+    return ret;
+}
+
+int main()
+{
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL); cout.tie(NULL);
-
+    cin.tie(NULL);
+    cout.tie(NULL);
     cin >> n >> m;
     string str;
-    for(int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         cin >> str;
-        for(int j = 0; j < m; j++) {
-            val[i][j] = str[j] - '0';
-            if(i > 0 && j > 0) dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1] + val[i][j];
-            else if(j > 0) dp[i][j] = dp[i][j-1] + val[i][j];
-            else if(i > 0) dp[i][j] = dp[i-1][j] + val[i][j];
-            else dp[i][j] = val[i][j];
+        for (int j = 0; j < m; j++) {
+            map[i][j] = str[j] - '0';
         }
     }
-    long long fir, sec, thr;
-    int  a, b;
-
-    for (a = 0; a < n - 2; a++) {
-        for (b = a+1; b < n - 1; b++) {
-            fir = dp[a][m - 1];
-            sec = dp[b][m-1] - fir;
-            thr = dp[n-1][m-1] - dp[b][m-1];
-            ans = max(fir * sec * thr, ans);
-        }
+    if (n > 2)
+        ans = max(ans, sepHV(true));
+    if (m > 2)
+        ans = max(ans, sepHV(false));
+    if(n > 1 && m >1) {
+        for(int i = 0; i < n-1; i++) 
+            for(int j = 0; j < m-1; j++) 
+                ans = max(ans, sepNom(i, j));
     }
-
-    for (a = 0; a < m - 2; a++) {
-        for (b = a+1; b < m - 1; b++) {
-            fir = dp[n - 1][a];
-            sec = dp[n-1][b] - fir;
-            thr = dp[n-1][m-1] - dp[n-1][b];
-            ans = max(fir * sec * thr, ans);
-        }
-    }
-
-    for (a =  0; a < n - 1; a++) {
-        for (b = 0; b < m - 1; b++) {
-            fir = dp[a][m - 1];
-            sec = dp[n-1][b] - dp[a][b];
-            thr = dp[n-1][m-1] - fir - sec;
-            ans = max(fir * sec * thr, ans);
-        }
-    }
-
-    for (a = 0; a < n - 1; a++) {
-        for (b = 0; b < m - 1; b++) {
-            fir = dp[a][b];
-            sec = dp[a][m-1] - fir;
-            thr = dp[n-1][m-1] - fir - sec;
-            ans = max(fir * sec * thr, ans);
-        }
-    }
-
-    for (a = 0; a < m - 1; a++) {
-        for (b =0; b < n - 1; b++) {
-            fir = dp[n - 1][a];
-            sec = dp[b][m-1] - dp[b][a];
-            thr = dp[n-1][m-1] - fir - sec;
-            ans = max(fir * sec * thr, ans);
-        }
-    }
-
-    for (a = 0; a < n - 1; a++) {
-        for (b =0; b < m - 1; b++) {
-            fir = dp[a][b];
-            sec = dp[n-1][b] - fir;
-            thr = dp[n-1][m-1] - fir - sec;
-            ans = max(fir * sec * thr, ans);
-        }
-    }
-
     cout << ans << endl;
     return 0;
 }
+
+/* 2021.8.7, 8.10 Solved - 2144KB 0ms */
+// #include <iostream>
+// using namespace std;
+
+// int n, m;
+// long long ans = 0;
+// int val[101][101];
+// long long dp[101][101];
+// long long max (long long a, long long b) { return a > b? a: b; }
+
+// int main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL); cout.tie(NULL);
+
+//     cin >> n >> m;
+//     string str;
+//     for(int i = 0; i < n; i++) {
+//         cin >> str;
+//         for(int j = 0; j < m; j++) {
+//             val[i][j] = str[j] - '0';
+//             if(i > 0 && j > 0) dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1] + val[i][j];
+//             else if(j > 0) dp[i][j] = dp[i][j-1] + val[i][j];
+//             else if(i > 0) dp[i][j] = dp[i-1][j] + val[i][j];
+//             else dp[i][j] = val[i][j];
+//         }
+//     }
+//     long long fir, sec, thr;
+//     int  a, b;
+
+//     for (a = 0; a < n - 2; a++) {
+//         for (b = a+1; b < n - 1; b++) {
+//             fir = dp[a][m - 1];
+//             sec = dp[b][m-1] - fir;
+//             thr = dp[n-1][m-1] - dp[b][m-1];
+//             ans = max(fir * sec * thr, ans);
+//         }
+//     }
+
+//     for (a = 0; a < m - 2; a++) {
+//         for (b = a+1; b < m - 1; b++) {
+//             fir = dp[n - 1][a];
+//             sec = dp[n-1][b] - fir;
+//             thr = dp[n-1][m-1] - dp[n-1][b];
+//             ans = max(fir * sec * thr, ans);
+//         }
+//     }
+
+//     for (a =  0; a < n - 1; a++) {
+//         for (b = 0; b < m - 1; b++) {
+//             fir = dp[a][m - 1];
+//             sec = dp[n-1][b] - dp[a][b];
+//             thr = dp[n-1][m-1] - fir - sec;
+//             ans = max(fir * sec * thr, ans);
+//         }
+//     }
+
+//     for (a = 0; a < n - 1; a++) {
+//         for (b = 0; b < m - 1; b++) {
+//             fir = dp[a][b];
+//             sec = dp[a][m-1] - fir;
+//             thr = dp[n-1][m-1] - fir - sec;
+//             ans = max(fir * sec * thr, ans);
+//         }
+//     }
+
+//     for (a = 0; a < m - 1; a++) {
+//         for (b =0; b < n - 1; b++) {
+//             fir = dp[n - 1][a];
+//             sec = dp[b][m-1] - dp[b][a];
+//             thr = dp[n-1][m-1] - fir - sec;
+//             ans = max(fir * sec * thr, ans);
+//         }
+//     }
+
+//     for (a = 0; a < n - 1; a++) {
+//         for (b =0; b < m - 1; b++) {
+//             fir = dp[a][b];
+//             sec = dp[n-1][b] - fir;
+//             thr = dp[n-1][m-1] - fir - sec;
+//             ans = max(fir * sec * thr, ans);
+//         }
+//     }
+
+//     cout << ans << endl;
+//     return 0;
+// }
