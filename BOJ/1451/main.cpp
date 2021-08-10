@@ -175,12 +175,14 @@
 //     return 0;
 // }
 
-/* 2021.8.7 */
+/* 2021.8.7, 8.10 */
 #include <iostream>
 using namespace std;
 
-int n, m, ans = 0;
-int val[101][101], dp[101][101];
+int n, m;
+long long ans = 0;
+int val[101][101];
+long long dp[101][101];
 int max (int a, int b) { return a > b? a: b; }
 
 int main() {
@@ -199,80 +201,61 @@ int main() {
             else dp[i][j] = val[i][j];
         }
     }
-    int fir, sec, thr, a = 0, b = 1;
-    while (a < n - 2) {
-        fir = dp[a][m-1];
-        while (b < n - 1) {
+    long long fir, sec, thr;
+    int  a, b;
+
+    for (a = 0; a < n - 2; a++) {
+        for (b = a+1; b < n - 1; b++) {
+            fir = dp[a][m - 1];
             sec = dp[b][m-1] - fir;
             thr = dp[n-1][m-1] - dp[b][m-1];
             ans = max(fir * sec * thr, ans);
-            b++;
         }
-        b = ++a + 1;
     }
 
-    a = 0; b = 1;
-    while (a < m - 2) {
-        fir = dp[n-1][a];
-        while (b < m - 1) {
+    for (a = 0; a < m - 2; a++) {
+        for (b = a+1; b < m - 1; b++) {
+            fir = dp[n - 1][a];
             sec = dp[n-1][b] - fir;
             thr = dp[n-1][m-1] - dp[n-1][b];
             ans = max(fir * sec * thr, ans);
-            b++;
         }
-        b = ++a + 1;
     }
 
-    a = 0; b = 0;
-    while(a < n - 1) {
-        fir = dp[a][m-1];
-        while(b < m - 1) {
+    for (a =  0; a < n - 1; a++) {
+        for (b = 0; b < m - 1; b++) {
+            fir = dp[a][m - 1];
             sec = dp[n-1][b] - dp[a][b];
             thr = dp[n-1][m-1] - fir - sec;
             ans = max(fir * sec * thr, ans);
-            b++;
         }
-        b = 0;
-        a++;
     }
 
-    a = 0; b = 0;
-    while(a < n - 1) {
-        while(b < m - 1) {
+    for (a = 0; a < n - 1; a++) {
+        for (b = 0; b < m - 1; b++) {
             fir = dp[a][b];
             sec = dp[a][m-1] - fir;
             thr = dp[n-1][m-1] - fir - sec;
             ans = max(fir * sec * thr, ans);
-            b++;
         }
-        b = 0;
-        a++;
     }
 
-    a = 0; b = 0;
-    while(a < m - 1) {
-        fir = dp[n-1][a];
-        while(b < n - 1) {
+    for (a = 0; a < m - 1; a++) {
+        for (b =0; b < n - 1; b++) {
+            fir = dp[n - 1][a];
             sec = dp[b][m-1] - dp[b][a];
             thr = dp[n-1][m-1] - fir - sec;
             ans = max(fir * sec * thr, ans);
-            b++;
         }
-        b = 0;
-        a++;
     }
 
-    a = 0; b = 0;
-    while(a < n - 1) {
-        while(b < m - 1) {
+    for (a = 0; a < n - 1; a++) {
+        for (b =0; b < m - 1; b++) {
             fir = dp[a][b];
             sec = dp[n-1][b] - fir;
             thr = dp[n-1][m-1] - fir - sec;
             ans = max(fir * sec * thr, ans);
-            b++;
         }
-        b = 0;
-        a++;
     }
 
     cout << ans << endl;
