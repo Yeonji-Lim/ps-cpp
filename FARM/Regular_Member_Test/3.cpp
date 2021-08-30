@@ -4,12 +4,12 @@
 #include <vector>
 using namespace std;
 
-vector<string> split(string str, char delimiter) {
+vector<string> split(string str, char deli) {
     vector<string> ret;
     stringstream ss(str);
     string tmp;
 
-    while (getline(ss, tmp, delimiter)) { ret.push_back(tmp); }
+    while (getline(ss, tmp, deli)) { ret.push_back(tmp); }
 
     return ret;
 }
