@@ -5,13 +5,13 @@
 using namespace std;
 
 vector<string> split(string str, char delimiter) {
-    vector<string> answer;
+    vector<string> ret;
     stringstream ss(str);
-    string temp;
+    string tmp;
 
-    while (getline(ss, temp, delimiter)) { answer.push_back(temp); }
+    while (getline(ss, tmp, delimiter)) { ret.push_back(tmp); }
 
-    return answer;
+    return ret;
 }
 
 int main() {
