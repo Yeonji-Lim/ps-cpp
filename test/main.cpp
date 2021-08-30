@@ -85,6 +85,7 @@ string findAns(string x) {
 }
 
 int main() {
+    /*
     string s = "0111111010";
     string tmp = findAns(s);
     while(s != tmp) {
@@ -92,5 +93,30 @@ int main() {
         tmp = findAns(tmp);
     }
     cout << tmp << endl;
+    */
+    char str[40];
+    int num = 0;
+    int list[100];
+    int cnt = 0, i;
+    cin.getline(str, 40);
+    for (int i = 0; cnt < 40 && str[i]; i++)
+    {
+        if (str[i] != ' ')
+        {
+            num = num * 10 + str[i] - '0';
+        }
+        else
+        {
+            if (num > 0)
+            {
+                list[cnt++] = num;
+                num = 0;
+            }
+        }
+    }
+    for(int i = 0; i < 100 && list[i]; i++) {
+        cout << list[i] << ' ' << endl;
+    }
+    return 0;
 }
 
