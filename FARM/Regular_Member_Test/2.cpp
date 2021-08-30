@@ -24,12 +24,11 @@ bool chli_to_ili(char chli[], vector<int>& ili) {
 int main()
 {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    cin.tie(NULL); cout.tie(NULL);
 
     vector<int> nums;
     char tmp_str[40];
-    int max_num = INT_MIN, max_idx, tmp, cnt = 0;
+    int max_num = INT_MIN, max_idx;
 
     cin.getline(tmp_str, 40);
     if(chli_to_ili(tmp_str, nums)) {
