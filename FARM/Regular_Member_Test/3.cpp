@@ -4,8 +4,7 @@
 #include <vector>
 using namespace std;
 
-vector<string> split(string str, char delimiter)
-{
+vector<string> split(string str, char delimiter) {
     vector<string> answer;
     stringstream ss(str);
     string temp;
