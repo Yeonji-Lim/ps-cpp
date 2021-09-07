@@ -10,21 +10,6 @@ deque<pair<int, int>> dq;
 bool isInMap(int i, int j) { return (i > -1 && i < n && j > -1 && j < m); }
 int min(int a, int b) { return a < b ? a : b; }
 
-int solvingF() {
-    int ret = INT_MAX;
-    int i = dq.front().first, j = dq.front().second;
-    dq.pop_front();
-    if(i == n-1 && j == m-1) return 1;
-    for(int k = 0; k < 2; k++){
-        int ni = i+k, nj = j+1-k;
-        if(isInMap(ni, nj) && map[ni][nj]==1){
-            dq.emplace_back(ni, nj);
-            ret = min(ret, solvingF()+1);
-        }
-    }
-    return ret;
-}
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
@@ -34,10 +19,21 @@ int main() {
     for(int i = 0; i < n; i++) {
         cin >> tmp;
         for(int j = 0; j < m; j++) {
-            map[i][j] = tmp[j];
+            map[i][j] = tmp[j]-'0';
         }
     }
     dq.emplace_back(0, 0);
-    ans = 1+solvingF();
+    while(!dq.empty()) {
+        int i = dq.front().first, j = dq.front().second;
+        ans = map[i][j];
+        dq.pop_front();
+        for(int k = 0; k < 2; k++) {
+            int ni = i+k, nj = j+1-k;
+            if(isInMap(ni, nj) && map[ni][nj] != 0) {
+                dq.emplace_back(ni, nj);
+                map[ni][nj] += ans;
+            }
+        }
+    }
     cout << ans << '\n';
 }
