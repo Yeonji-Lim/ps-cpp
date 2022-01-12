@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int x;
-int DP[30000] = {0};
+int DP[30001] = {0};
 
 int min(int a, int b) { return a < b? a: b; }
 

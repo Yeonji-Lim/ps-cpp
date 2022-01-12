@@ -10,7 +10,7 @@ int main() {
     int x;
     cin >> x;
 
-    int DP[30000] = {0};
+    int DP[30001] = {0};
 
     for(int i = 2; i <= x; i++) {
         DP[i] = DP[i-1]+1;
