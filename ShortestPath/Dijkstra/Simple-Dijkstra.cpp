@@ -11,7 +11,11 @@ int min(int a, int b) { return a < b? a: b; }
 
 int findSmallestPathNode() {
     int idx = -1, tmp = INT_MAX;
+<<<<<<< HEAD
     for(int i = V; i > 0; i--) {
+=======
+    for(int i = 1; i <= V; i++) {
+>>>>>>> ef63472912cd3eaa7bf447830d4f7db095161146
         if(!visited[i] && tmp > table[i]) {
             tmp = table[i];
             idx = i;
