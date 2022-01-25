@@ -5,7 +5,7 @@ using namespace std;
 
 int V, E, start_node;
 int graph[100][100];
-int table[100];
+int parent[100];
 bool visited[100] = {false};
 priority_queue<pair<int, int>> pq;
 
@@ -13,9 +13,9 @@ int min(int a, int b) { return a < b? a: b; }
 
 void updateTable(int cur) {
     for(int i = 1; i <= V; i++) {
-        if (graph[cur][i] != -1 && table[i] > table[cur] + graph[cur][i]) {
-            table[i] = table[cur] + graph[cur][i];
-            pq.emplace(table[i], i);
+        if (graph[cur][i] != -1 && parent[i] > parent[cur] + graph[cur][i]) {
+            parent[i] = parent[cur] + graph[cur][i];
+            pq.emplace(parent[i], i);
         }
     }
 }
@@ -28,15 +28,15 @@ int main() {
     cin >> start_node;
 
     fill(&graph[0][0], &graph[V+1][V+1], -1);
-    fill_n(table, V+1, INT_MAX);
-    table[start_node] = 0;
+    fill_n(parent, V+1, INT_MAX);
+    parent[start_node] = 0;
 
     int i, j;
     for(int x = 0; x < E; x++) {
         cin >> i >> j >> graph[i][j];
         graph[j][i] = graph[i][j];
     }
-    pq.emplace(table[start_node], start_node);
+    pq.emplace(parent[start_node], start_node);
 
     while(!pq.empty()) {
         i = pq.top().second;
@@ -46,7 +46,7 @@ int main() {
         updateTable(i);
     }
 
-    for (i = 1; i <= V; cout << table[i] << endl, i++);
+    for (i = 1; i <= V; cout << parent[i] << endl, i++);
 
     return 0;
 }
