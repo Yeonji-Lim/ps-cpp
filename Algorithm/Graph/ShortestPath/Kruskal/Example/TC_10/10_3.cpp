@@ -76,29 +76,24 @@
 using namespace std;
 
 int N, M, rst = 0;
-int parent[100000];
+vector<int> parent;
 vector<tuple<int, int, int>> edges;
 
 bool cmp(tuple<int, int, int> &x, tuple<int, int, int> &y) {
     return get<2>(x) < get<2>(y);
 }
 
-    int find_parent(int x)
-{
-    if(parent[x] != x) {
-        parent[x] = find_parent(parent[x]);
-    }
-    return x;
+int find_parent(int x) {
+    if(parent[x] != x) parent[x] = find_parent(parent[x]);
+    return parent[x];
 }
 
 void union_parent(int x, int y) {
     x = find_parent(x);
     y = find_parent(y);
 
-    if(x < y)
-        parent[y] = x;
-    else
-        parent[x] = y;
+    if(x < y) parent[y] = x;
+    else parent[x] = y;
 
 }
 
@@ -108,31 +103,29 @@ int main() {
 
     cin >> N >> M;
 
-    for(int x = 1; x <= N; x++) {
-        parent[x] = x;
-    }
+    for(int x = 0; x <= N; x++) parent.push_back(x);
 
     int i, j, c;
-    while(M-- != 0) {
+    for (int x = 0; x < M; x++) {
         cin >> i >> j >> c;
         edges.emplace_back(i, j, c);
-        union_parent(i, j);
     }
 
     sort(edges.begin(), edges.end(), cmp);
 
-    for(int x = 0; x < edges.size(); x++) {
-        i = get<0>(edges[x]);
-        j = get<1>(edges[x]);
+    for(int x = 0; x < M; x++) {
+        i = find_parent(get<0>(edges[x]));
+        j = find_parent(get<1>(edges[x]));
 
-        if(find_parent(i) != find_parent(j)) {
-            rst += get<2>(edges[x]);
+        if(i != j) {
             c = get<2>(edges[x]);
+            rst += c;
+            union_parent(i, j);
         }
     }
 
     rst -= c;
-    
+
     cout << rst << endl;
 
     return 0;
