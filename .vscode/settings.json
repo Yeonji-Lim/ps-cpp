@@ -9,6 +9,9 @@
         "istream": "cpp",
         "limits": "cpp",
         "numeric": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "streambuf": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp"
     }
 }
