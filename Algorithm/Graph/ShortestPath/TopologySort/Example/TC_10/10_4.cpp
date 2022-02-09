@@ -68,6 +68,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 
 int N;
@@ -75,6 +76,9 @@ vector<int> indegree;
 vector<int> result;
 vector<int> cost;
 vector<vector<int>> graph;
+queue<int> q;
+
+int max(int x, int y) { return x > y? x: y; }
 
 int main() {
     ios_base::sync_with_stdio(false);  
@@ -82,22 +86,44 @@ int main() {
 
     cin >> N;
     indegree.resize(N+1, 0);
+    result.resize(N+1, 0);
     cost.resize(N+1, 0);
     graph.push_back(cost);
 
-    int c, i, j;
+    int i, j;
 
     for(int x = 1; x <= N; x++) {
         vector<int> tmp;
-        cin >> c;
-        cost.push_back(c);
-        cin >> i;
+        cin >> cost[x] >> i;
         while(i != -1) {
             indegree[x]++;
             tmp.push_back(i);
             cin >> i;
         }
         graph.push_back(tmp);
+    }
+    
+    copy(cost.begin(), cost.end(), result.begin());
+
+    for(int x = 1; x <=N; x++) {
+        if(indegree[x] == 0) q.push(x);
+    }
+
+    while(!q.empty()) {
+        i = q.front();
+        q.pop();
+        for(int x = 0; x < graph[i].size(); x++) {
+            j = graph[i][x]; // i : now
+            result[j] = max(result[j], result[i] + cost[j]);
+            indegree[j]--;
+            if(indegree[j] == 0) {
+                q.push(j);
+            }
+        }
+    }
+
+    for(int x = 1; x <= N; x++) {
+        cout << result[x] << endl;
     }
     
     return 0;
