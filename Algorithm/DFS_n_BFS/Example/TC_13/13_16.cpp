@@ -19,7 +19,6 @@ void pushDQ(int x, int y) {
     for(int i = 0; i < 2; i++) {
         nx = x + di[i]; ny = y + dj[i];
         if(isInGraph(nx, ny)) {
-            visited[i][j];
             
         }
     }
