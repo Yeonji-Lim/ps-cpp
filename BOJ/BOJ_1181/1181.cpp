@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 vector<string> v;
 using namespace std;
 
