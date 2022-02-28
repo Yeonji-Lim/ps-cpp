@@ -1,7 +1,8 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
-vector<string> v;
 using namespace std;
+vector<string> v;
 
 int N;
 
