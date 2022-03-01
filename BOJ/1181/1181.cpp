@@ -22,6 +22,6 @@ int main() {
     sort(v.begin(), v.end(), customSort);
     v.erase(unique(v.begin(), v.end()), v.end());
 
-    for(int i = 0; i < N; i++) { cout << v[i] << endl; }
+    for(int i = 0; i < v.size(); i++) { cout << v[i] << endl; }
     return 0;
 }
