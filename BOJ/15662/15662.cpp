@@ -51,9 +51,7 @@ int main() {
         fill(isActive.begin(), isActive.end(), 0);
     }
 
-    for(i = 0; i < T; i++) {
-        K += link[i][0]-'0';
-    }
+    for(i = 0; i < T; i++) { K += link[i][0]-'0'; }
 
     cout << ++K << endl;
     return 0;
