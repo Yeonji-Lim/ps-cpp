@@ -20,15 +20,21 @@ int main() {
         cin >> food_times[i];
     }
 
-    int cur = 0;
+    int cur = 0, ck = 0;
     for(int i = 0; i < K; i++) {
-        while(food_times[cur] == 0) {
+        while(food_times[cur] == 0 && ck < N) {
+            ck++;
             next(cur);
+        }
+        if(ck == N) {
+            cur = -1;
+            break;
         }
         food_times[cur]--;
         next(cur);
     }
 
-    cout << ++cur << endl;
+    if(cur != -1) ++cur;
+    cout << cur << endl;
     return 0;
 } 
