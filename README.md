@@ -1,6 +1,3 @@
-# ps-cpp
+# ps-log
 
-PS with C++
-
-Fail to keep history when rename.. 
-Commits before renaming can be found in Repository commits
+Yeonji's Problem Solving Log
