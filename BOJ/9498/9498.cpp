@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-void main() {
+int main() {
     int N;
     cin>>N;
     if(N>=90) cout<<'A';
