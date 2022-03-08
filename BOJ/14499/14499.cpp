@@ -18,7 +18,7 @@ void copy() {
     }
 }
 
-void rotateDice(int direc) {
+bool rotateDice(int direc) {
     int prevCur = cur;
     switch(direc) {
         case 1:
@@ -26,26 +26,27 @@ void rotateDice(int direc) {
             cur = 5-wes;
             wes = prevCur;
             y++; copy();
-            break;
+            return true;
         case 2:
             if(!isInMap(x, y-1)) break;
             cur = wes;
             wes = 5-prevCur;
             y--; copy();
-            break;
+            return true;
         case 3:
             if(!isInMap(x-1, y)) break;
             cur = nor;
             nor = 5-prevCur;
             x--; copy();
-            break;
+            return true;
         case 4:
             if(!isInMap(x+1, y)) break;
             cur = 5-nor;
             nor = prevCur;
             x++; copy();
-            break;
+            return true;
     }
+    return false;
 }
 
 int main() {
@@ -63,7 +64,6 @@ int main() {
     int cmd;
     for(int i = 0; i < K; i++) {
         cin >> cmd;
-        rotateDice(cmd);
-        cout << dice[5-cur] << "\n";
+        if(rotateDice(cmd)) cout << dice[5-cur] << endl;
     }
 }
