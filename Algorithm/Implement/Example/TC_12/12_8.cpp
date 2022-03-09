@@ -23,7 +23,7 @@ int main() {
         else s+=tmp[i];
     }
     sort(s.begin(), s.end());
-    s += to_string(num);
+    if(num != 0) s += to_string(num);
     cout << s << "\n";
     return 0;
 }
