@@ -13,13 +13,8 @@ int d[4][2] = { {0, 1}, {-1, 0}, {0, -1}, {1, 0} };
 bool isInMap(int i, int j) { return i > -1 && i < N && j >-1 && j < N; }
 
 void turn(char cmd) {
-    if(cmd == 'L') {
-        if(direc == 3) direc = 0;
-        else ++direc;
-    } else {
-        if(direc == 0) direc = 3;
-        else --direc;
-    }
+    if(cmd == 'L') direc = (direc+1) % 4;
+    else direc = (direc+1) % 4;
 }
 
 bool isSnake(int ti, int tj) {
@@ -37,7 +32,7 @@ bool move() {
     else map[x][y] = false;
 
     if(isSnake(x, y)) return false;
-    
+
     snake.emplace_front(x, y);
     return true;
 }
