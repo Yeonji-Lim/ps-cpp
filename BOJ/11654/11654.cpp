@@ -4,9 +4,8 @@ using namespace std;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
-    int ans;
-    cin >> ans;
-    if(ans >= 0 && ans <= 9) ans += 48;
-    cout << ans << endl;
+    char ch;
+    cin >> ch;
+    cout << (int)ch << endl;
     return 0;
 }
