@@ -1,38 +1,33 @@
+//2018112178 임연지
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
 using namespace std;
 
-void Sort(vector<int> V, vector<int> &L, vector<int> &R, int p) {
-    int i = 0, j = 0, tmp;
-    while(i < L.size() && j < R.size()) {
-        while(i<L.size() && p>L[i]) i++;
-        while(j<R.size() && p<=R[j]) j++;
-        if(i == L.size || j == R.size) break;
-        tmp = L[i];
-        L[i] = R[j];
-        R[j] = tmp;
-        
-        i++;
-        j++;
-    }
-    while(i<L.size()) {
-        if(p<=L[i]) R.push_back(L[i]);
-        i++;
-    }
-    while(j<R.size()) {
-        if(p>R[j]) L.push_back(R[j]);
-        j++;
-    }
-}
+// 퀵소트로 정렬을 진행한다.
+void quickSort(int A[], int low, int high) {
+    if (low >= high) return; //정렬 종료 조건
 
-vector<int> Merge(vector<int> L, vector<int> R, int p) {
-    vector<int> ret(L.size()+R.size()+1, 0);
-    copy(L.begin(), L.end(), ret.begin())
-    ret.push_back(p);
-    copy(R.begin(), R.end(), ret.begin()+L.size()+1);
-    return ret;
+    int i = low, j, tmp;
+
+    // 비교할 기준인 피벗을 마지막 원소로 설정한다.
+    int &pivot = A[high]; 
+    //
+    for (j = low; j < high; ++j) {
+        if (A[j] < pivot) {
+            tmp = A[i];
+            A[i] = A[j];
+            A[j] = tmp;
+            i++;
+        }
+    }
+    tmp = A[i];
+    A[i] = pivot;
+    pivot = tmp;
+
+    quickSort(A, low, i - 1);
+    quickSort(A, i + 1, high);
 }
 
 int main() {
@@ -45,5 +40,11 @@ int main() {
         cout << A[i] << " ";
     }
     cout << "\n-------------------------------------------------------\n";
+    quickSort(A, 0, 99);
+    cout << "--------------------- after sorted ---------------------\n";
+    for (int i = 0; i < 100; i++) { cout << A[i] << " "; }
+    cout << "\n-------------------------------------------------------\n";
     return 0;
 }
+
+
