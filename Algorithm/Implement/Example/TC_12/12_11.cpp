@@ -81,49 +81,43 @@ typedef vector<int> vi;
 
 vvi map;
 
-vvi lotateKey(vvi key)
-{
-    vvi rotKey(key.size(), vi(key[0].size(), 0));
-    for (int i = 0; i < key.size(); i++)
-    {
-        for (int j = 0; j < key.size(); j++)
-        {
-            rotKey[key.size() - j][i] = key[i][j];
-        }
-    }
+vvi rotateKey(vvi key) {
+    vvi rotKey(key[0].size(), vi(key[0].size(), 0));
+    for(int i = 0; i < key[0].size(); i++)
+        for(int j = 0; j < key[0].size(); j++)
+            rotKey[key.size()-j][i] = key[i][j];
     return rotKey;
 }
 
-int isOpen(vvi key, int ki, int kj)
-{
+int isOpen(vvi key, int ki, int kj) {
     int ret = 0;
-    for (int i = 0; i < key.size(); i++)
-    {
-        for (int j = 0; j < key.size(); j++)
-        {
-            if (key[i][j] == 1)
-                if (map[ki + i][kj + j] == 1)
-                    return -1;
-                else if (map[ki + i][kj + j] == 0)
-                    ret++;
+    for(int i=0; i<key[0].size(); i++) {
+        for(int j=0; j<key[0].size(); j++) {
+            if(key[i][j] == 1) {
+                if(map[ki+i][kj+j] == 1) return -1;
+                if(map[ki+i][kj+j] == 0) ret++;
+            }
         }
     }
     return ret;
 }
 
-bool solution(vvi key, vvi lock)
-{
+bool solution(vvi key, vvi lock) {
     bool answer = true;
-    int hole = 0;
-    map.resize(key.size() + 2 * lock.size() - 2, vi(key.size() + 2 * lock.size() - 2, 2)) for (int i = 0; i < lock.size(); i++)
-    {
-        for (int j = 0; j < lock.size(); j++)
-        {
-            map[key.size() - 1 + i][key.size() - 1 + j] = lock[i][j];
-            if (lock[i][j] == 0)
-                hole++;
+    int hole = 0, N = lock[0].size(), M = key[0].size();
+    map.resize(N+2*M-2, vi(N+2*M-2, 2));
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            map[M-1+i][M-1+j] = lock[i][j];
+            if(lock[i][j] == 0) hole++;
         }
     }
-
-    return answer;
+    
+    for(int k = 0; k < 3; k++) {
+        for(int i = 0; i < N+M-1; i++) 
+            for(int j = 0; j < N+M-1; j++) 
+                if(isOpen(key, i, j) == hole) return true;
+        key = rotateKey(key);
+    }
+    return false;
 }
