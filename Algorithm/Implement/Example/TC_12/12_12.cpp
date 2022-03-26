@@ -23,21 +23,30 @@ bool addCheck(vvi ans, vi item) {
 
 bool delCheck(vvi ans, vi item) {
     int x = item[0], y = item[1];
+    bool ret = true;
     if(item[2] == 0) { //기둥
         ans.erase(find(ans.begin(), ans.end(), vi{x, y, 0}));
-        return addCheck(ans, vi{x, y+1, 0})
-            && addCheck(ans, vi{x, y+1, 1})
-            && addCheck(ans, vi{x-1, y+1, 1});
+        if(find(ans.begin(), ans.end(), vi{x, y+1, 0}) != ans.end()) 
+           ret = ret && addCheck(ans, vi{x, y+1, 0});
+        if(find(ans.begin(), ans.end(), vi{x, y+1, 1}) != ans.end()) 
+           ret = ret && addCheck(ans, vi{x, y+1, 1});
+        if(find(ans.begin(), ans.end(), vi{x-1, y+1, 1}) != ans.end()) 
+           ret = ret && addCheck(ans, vi{x-1, y+1, 1});
     } else { //보
         ans.erase(find(ans.begin(), ans.end(), vi{x, y, 1}));
-        return addCheck(ans, vi{x, y, 0})
-            && addCheck(ans, vi{x+1, y, 0})
-            && addCheck(ans, vi{x-1, y, 1})
-            && addCheck(ans, vi{x+1, y, 1});
+        if(find(ans.begin(), ans.end(), vi{x, y, 0}) != ans.end()) 
+           ret = ret && addCheck(ans, vi{x, y, 0});
+        if(find(ans.begin(), ans.end(), vi{x+1, y, 0}) != ans.end()) 
+           ret = ret && addCheck(ans, vi{x+1, y, 0});
+        if(find(ans.begin(), ans.end(), vi{x-1, y, 1}) != ans.end()) 
+           ret = ret && addCheck(ans, vi{x-1, y, 1});
+        if(find(ans.begin(), ans.end(), vi{x+1, y, 1}) != ans.end()) 
+           ret = ret && addCheck(ans, vi{x+1, y, 1});
     }
+    return ret;
 }
 
-bool compare(vi a, vi b) {
+bool compare(vi a, vi b){
     if(a[0] == b[0]) {
         if(a[1] == b[1])
             return a[2] < b[2];
