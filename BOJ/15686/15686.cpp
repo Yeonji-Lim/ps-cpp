@@ -39,7 +39,7 @@ void helpFunc() {
         }
     }
     sort(tmp.begin(), tmp.end());
-    for(int i = 0; i < tmp.size(); i++) {
+    for(int i = 0; i < M; i++) {
         ci = tmp[i][1]; cj = tmp[i][2];
         cMap[ci][cj] += M-i;
     }
