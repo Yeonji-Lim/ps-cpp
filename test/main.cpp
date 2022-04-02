@@ -48,75 +48,90 @@
 //    return 0;
 //}
 
-#include <string>
+// #include <string>
+// #include <iostream>
+// #include <algorithm>
+// using namespace std;
+
+// string findAns(string x) {
+//     if(x.length() < 4) return x;
+//     string ltmp, rtmp;
+//     int idx = 0;
+//     for(int i = 0; i < x.length()-2; i++) {
+//         if(x.substr(i, 3) == "110") {
+//             ltmp = x.substr(0, i);
+//             rtmp = x.substr(i+3, x.length()-i-2);
+//             rtmp = findAns(rtmp);
+//             if(rtmp[0] == '0') {
+//                 while(rtmp[idx] == '0') idx++;
+//                 if(idx < 0) ltmp += rtmp+"110";
+//                 else ltmp += rtmp.substr(0, idx) + "110" + rtmp.substr(idx, rtmp.length()-idx);
+//                 break;
+//             } else if(ltmp[i-1] == '1') {
+//                 idx = i-1;
+//                 while(ltmp[idx] == '1') idx--;
+//                 if(idx < 0) ltmp = "110"+ltmp+rtmp;
+//                 else {
+//                     idx = ltmp.length()-idx-1;
+//                     ltmp = ltmp.substr(0, idx+1) + "110"
+//                            + ltmp.substr(idx+1, ltmp.length()-idx-1) + rtmp;
+//                 }
+//                 break;
+//             }
+//         }
+//     }
+//     if(ltmp.length() != x.length()) return x;
+//     return ltmp;
+// }
+
+// int main() {
+//     /*
+//     string s = "0111111010";
+//     string tmp = findAns(s);
+//     while(s != tmp) {
+//         s = tmp;
+//         tmp = findAns(tmp);
+//     }
+//     cout << tmp << endl;
+//     */
+//     char str[40];
+//     int num = 0;
+//     int list[100];
+//     int cnt = 0, i;
+//     cin.getline(str, 40);
+//     for (int i = 0; cnt < 40 && str[i]; i++)
+//     {
+//         if (str[i] != ' ')
+//         {
+//             num = num * 10 + str[i] - '0';
+//         }
+//         else
+//         {
+//             if (num > 0)
+//             {
+//                 list[cnt++] = num;
+//                 num = 0;
+//             }
+//         }
+//     }
+//     for(int i = 0; i < 100 && list[i]; i++) {
+//         cout << list[i] << ' ' << endl;
+//     }
+//     return 0;
+// }
+
+//2차원 벡터의 find
+
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
-string findAns(string x) {
-    if(x.length() < 4) return x;
-    string ltmp, rtmp;
-    int idx = 0;
-    for(int i = 0; i < x.length()-2; i++) {
-        if(x.substr(i, 3) == "110") {
-            ltmp = x.substr(0, i);
-            rtmp = x.substr(i+3, x.length()-i-2);
-            rtmp = findAns(rtmp);
-            if(rtmp[0] == '0') {
-                while(rtmp[idx] == '0') idx++;
-                if(idx < 0) ltmp += rtmp+"110";
-                else ltmp += rtmp.substr(0, idx) + "110" + rtmp.substr(idx, rtmp.length()-idx);
-                break;
-            } else if(ltmp[i-1] == '1') {
-                idx = i-1;
-                while(ltmp[idx] == '1') idx--;
-                if(idx < 0) ltmp = "110"+ltmp+rtmp;
-                else {
-                    idx = ltmp.length()-idx-1;
-                    ltmp = ltmp.substr(0, idx+1) + "110"
-                           + ltmp.substr(idx+1, ltmp.length()-idx-1) + rtmp;
-                }
-                break;
-            }
-        }
-    }
-    if(ltmp.length() != x.length()) return x;
-    return ltmp;
-}
-
 int main() {
-    /*
-    string s = "0111111010";
-    string tmp = findAns(s);
-    while(s != tmp) {
-        s = tmp;
-        tmp = findAns(tmp);
-    }
-    cout << tmp << endl;
-    */
-    char str[40];
-    int num = 0;
-    int list[100];
-    int cnt = 0, i;
-    cin.getline(str, 40);
-    for (int i = 0; cnt < 40 && str[i]; i++)
-    {
-        if (str[i] != ' ')
-        {
-            num = num * 10 + str[i] - '0';
-        }
-        else
-        {
-            if (num > 0)
-            {
-                list[cnt++] = num;
-                num = 0;
-            }
-        }
-    }
-    for(int i = 0; i < 100 && list[i]; i++) {
-        cout << list[i] << ' ' << endl;
-    }
+    vector<vector<int>> v;
+    //vector<int> item = [1, 2, 3]; // 이렇게 하면 안됨
+    vector<int> item = {1, 2, 3};
+    v.push_back({1, 2, 3});
+    if(find(v.begin(), v.end(), vector<int>{1, 2, 3}) != v.end()) cout << "true\n";
     return 0;
 }
-
