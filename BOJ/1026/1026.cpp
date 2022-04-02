@@ -14,6 +14,8 @@ int main() {
     cin.tie(NULL); cout.tie(NULL);
     
     cin >> N;
+    A.resize(N, 0);
+    B.resize(N, 0);
     
     for(int i = 0; i < N; i++){
         cin >> A[i]; 
