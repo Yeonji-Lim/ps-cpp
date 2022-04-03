@@ -3,18 +3,37 @@
 #include <vector>
 using namespace std;
 
+int N;
+vector<int> A;
+
+void quickSort(int l, int r) {
+    int &p = A[r];
+    int i = l, j = r-1, tmp;
+    while(i < j) {
+        if(A[j] < p) {
+            tmp = A[j];
+            A[j] = A[i];
+            A[i++] = tmp;
+        }
+        j--;
+    }
+    tmp = p;
+    p = A[i];
+    A[i] = tmp;
+    quickSort(l, i-1);
+    quickSort(i+1, r);
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     
-    int N;
     cin >> N;
-
-    vector<int> A(N, 0);
+    A.resize(N, 0);
     for(int i = 0; i < N; i++) {
         cin >> A[i];
     }
-    sort(A.begin(), A.end());
+    quickSort(0, A.size()-1);
 
     int tmp = A[0];
     cout << A[0] << " ";
