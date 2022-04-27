@@ -3,8 +3,10 @@ using namespace std;
 vector<vector<bool>> graph;
 vector<int> dist;
 stack<int> st;
+queue<int> q;
 int n, m, k, x;
 
+// 이 문제는 bfs로 해결해야 한다.
 void dfs(int d) {
     if(st.empty()) return;
     int cur = st.top();
@@ -31,8 +33,22 @@ int main() {
         graph[i][j] = true;
     }
 
-    st.push(x);
-    dfs(0);
+    // st.push(x);
+    // dfs(0);
+
+    int d = 1;
+    q.push(x);
+    while(!q.empty()) {
+        int cur = q.front();
+        q.pop();
+        for(j = 1; j < n+1; j++) {
+            if(graph[cur][j]){
+                dist[j] = min(dist[j], d);
+                q.push(j);
+            }
+        }
+        d++;
+    }
     
     bool find = false;
     for(i = 1; i < n+1; i++) {
