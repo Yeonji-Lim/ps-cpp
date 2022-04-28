@@ -1,9 +1,11 @@
+# Solution in Book
 from collections import deque
 
 n, m, k, x = map(int, input().split())
 graph = [[] for _ in range(n+1)]
 
 for _ in range(m):
+    # 이 부분이 다름 : 나는 인접 행렬로 만든 반면, 인접 리스트 방식과 같음
     a, b = map(int, input().split())
     graph[a].append(b)
 
