@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 vector<int> graph[300001];
 vector<int> dist(300001, -1);
 int n, m, k, x;
