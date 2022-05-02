@@ -15,9 +15,9 @@ vector<vector<int>> placementWall(int loc[][2]) {
     for(int i = 0; i < 0; i++) {
         newMap[loc[i][0]][loc[i][1]] = 1;
     }
-    for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
-        cout << newMap[i][j];
-    }   cout << endl;}
+    // for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
+    //     cout << newMap[i][j];
+    // }   cout << endl;}
     return newMap;
 }
 
@@ -68,7 +68,10 @@ int main() {
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < M; j++) {
             cin >> map[i][j];
-            if(map[i][j] == 0) candidates.emplace_back(i, j);
+            if(map[i][j] == 0) {
+                cout << i << " " << j << endl;
+                candidates.emplace_back(i, j);
+            }
         }
     }
     vector<bool> perm(candidates.size(), false);
@@ -80,14 +83,14 @@ int main() {
         for(int i = 0; i < perm.size(); i++) {
             if(j == 3) break;
             if(perm[i]){
-                targets[j][0] = candidates[perm[i]].first;
-                targets[j][1] = candidates[perm[i]].second;
-                cout << targets[j][0] << " " << targets[j][1] << endl;
+                targets[j][0] = candidates[i].first;
+                targets[j][1] = candidates[i].second;
+                // cout << i << " " << targets[j][0] << " " << targets[j][1] << endl;
                 j++;
             }
         }
         tmp = countSafe(placementWall(targets));
-        cout << tmp << endl;
+        // cout << tmp << endl;
         ans = max(tmp, ans);
     } while( next_permutation(perm.begin(), perm.end()) );
     cout << ans << endl;
