@@ -16,9 +16,9 @@ vector<vector<int>> placementWall(int loc[][2]) {
         newMap[loc[i][0]][loc[i][1]] = 1;
         cout << loc[i][0] << " " << loc[i][1] << endl;
     }
-    for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
-        cout << newMap[i][j];
-    }   cout << endl;}
+    // for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
+    //     cout << newMap[i][j];
+    // }   cout << endl;}
     return newMap;
 }
 
@@ -44,6 +44,9 @@ void virusAttack(vector<vector<int>> &targetMap) {
             }
         }
     }}
+    for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
+        cout << targetMap[i][j];
+    }   cout << endl;}
 }
 
 int countSafe(vector<vector<int>> targetMap) {
