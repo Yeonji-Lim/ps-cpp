@@ -24,26 +24,28 @@ vector<vector<int>> placementWall(int loc[][2]) {
 
 void virusAttack(vector<vector<int>> &targetMap) {
     bool visited[8][8];
-    for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
-        if(targetMap[i][j] == 2 && !visited[i][j]) {
-            visited[i][j] = true;
-            queue<pair<int, int>> q;
-            q.push(make_pair(i, j));
+    for(int i = 0; i < N; i++) { 
+        for(int j = 0; j < M; j++) {
+            if((targetMap[i][j] == 2) && !visited[i][j]) {
+                visited[i][j] = true;
+                queue<pair<int, int>> q;
+                q.push(make_pair(i, j));
 
-            while(!q.empty()) {
-                int x = q.front().first, y = q.front().second;
-                q.pop();
-                for(int k = 0; k < 4; k++) {
-                    int nx = x + di[k][0], ny = y + di[k][1];
-                    if(isInMap(nx, ny) && targetMap[nx][ny] == 0) {
-                        targetMap[nx][ny] = 2;
-                        visited[nx][ny] = true;
-                        q.push(make_pair(nx, ny));
+                while(!q.empty()) {
+                    int x = q.front().first, y = q.front().second;
+                    q.pop();
+                    for(int k = 0; k < 4; k++) {
+                        int nx = x + di[k][0], ny = y + di[k][1];
+                        if(isInMap(nx, ny) && targetMap[nx][ny] == 0) {
+                            targetMap[nx][ny] = 2;
+                            visited[nx][ny] = true;
+                            q.push(make_pair(nx, ny));
+                        }
                     }
                 }
             }
         }
-    }}
+    }
     for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
         cout << targetMap[i][j];
     }   cout << endl;}
@@ -82,21 +84,22 @@ int main() {
     fill(perm.end()-3, perm.end(), true);
     int targets[3][2];
     int tmp = 0;
-    do {
-        int j = 0;
-        for(int i = 0; i < perm.size(); i++) {
-            if(j == 3) break;
-            if(perm[i]){
-                targets[j][0] = candidates[i].first;
-                targets[j][1] = candidates[i].second;
-                cout << i << " " << targets[j][0] << " " << targets[j][1] << endl;
-                j++;
-            }
-        }
-        tmp = countSafe(placementWall(targets));
-        cout << tmp << endl;
-        ans = max(tmp, ans);
-    } while( next_permutation(perm.begin(), perm.end()) );
+    // do {
+    //     int j = 0;
+    //     for(int i = 0; i < perm.size(); i++) {
+    //         if(j == 3) break;
+    //         if(perm[i]){
+    //             targets[j][0] = candidates[i].first;
+    //             targets[j][1] = candidates[i].second;
+    //             cout << i << " " << targets[j][0] << " " << targets[j][1] << endl;
+    //             j++;
+    //         }
+    //     }
+    //     tmp = countSafe(placementWall(targets));
+    //     cout << tmp << endl;
+    //     ans = max(tmp, ans);
+    // } while( next_permutation(perm.begin(), perm.end()) );
+    ans = countSafe(map);
     cout << ans << endl;
     return 0;
 }
