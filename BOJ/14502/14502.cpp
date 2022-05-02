@@ -15,10 +15,13 @@ vector<vector<int>> placementWall(int loc[][2]) {
     for(int i = 0; i < 0; i++) {
         newMap[loc[i][0]][loc[i][1]] = 1;
     }
+    for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
+        cout << newMap[i][j];
+    }   cout << endl;}
     return newMap;
 }
 
-void virusAttack(vector<vector<int>> targetMap) {
+void virusAttack(vector<vector<int>> &targetMap) {
     bool visited[8][8];
     for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
         if(targetMap[i][j] == 2 && !visited[i][j]) {
@@ -71,6 +74,7 @@ int main() {
     vector<bool> perm(candidates.size(), false);
     fill(perm.end()-3, perm.end(), true);
     int targets[3][2];
+    int tmp = 0;
     do {
         int j = 0;
         for(int i = 0; i < perm.size(); i++) {
@@ -78,10 +82,13 @@ int main() {
             if(perm[i]){
                 targets[j][0] = candidates[perm[i]].first;
                 targets[j][1] = candidates[perm[i]].second;
+                cout << targets[j][0] << " " << targets[j][1] << endl;
                 j++;
             }
         }
-        ans = max( countSafe(placementWall(targets)), ans );
+        tmp = countSafe(placementWall(targets));
+        cout << tmp << endl;
+        ans = max(tmp, ans);
     } while( next_permutation(perm.begin(), perm.end()) );
     cout << ans << endl;
     return 0;
