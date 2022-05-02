@@ -7,6 +7,7 @@ using namespace std;
 int N, M;
 vector<vector<int>> map(8, vector<int>(8, -1));
 int di[4][2] = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+bool isInMap(int i, int j) { return -1 < i && i < N && -1 < j && j < M; }
 
 vector<vector<int>> placementWall(int loc[][2]) {
     vector<vector<int>> newMap(8, vector<int>(8, -1));
@@ -30,7 +31,7 @@ void virusAttack(vector<vector<int>> targetMap) {
                 q.pop();
                 for(int k = 0; k < 4; k++) {
                     int nx = x + di[k][0], ny = y + di[k][1];
-                    if(targetMap[nx][ny] == 0) {
+                    if(isInMap(nx, ny) && targetMap[nx][ny] == 0) {
                         targetMap[nx][ny] = 2;
                         visited[nx][ny] = true;
                         q.push(make_pair(nx, ny));
