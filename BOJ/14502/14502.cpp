@@ -14,11 +14,7 @@ vector<vector<int>> placementWall(int loc[][2]) {
     copy(map.begin(), map.end(), newMap.begin());
     for(int i = 0; i < 3; i++) {
         newMap[loc[i][0]][loc[i][1]] = 1;
-        // cout << loc[i][0] << " " << loc[i][1] << endl;
     }
-    // for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
-    //     cout << newMap[i][j];
-    // }   cout << endl;}
     return newMap;
 }
 
@@ -45,9 +41,6 @@ void virusAttack(vector<vector<int>> &targetMap) {
             }
         }
     }
-    // for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
-    //     cout << targetMap[i][j];
-    // }   cout << endl;}
 }
 
 int countSafe(vector<vector<int>> targetMap) {
@@ -74,7 +67,6 @@ int main() {
         for(int j = 0; j < M; j++) {
             cin >> map[i][j];
             if(map[i][j] == 0) {
-                // cout << i << " " << j << endl;
                 candidates.emplace_back(i, j);
             }
         }
@@ -90,15 +82,12 @@ int main() {
             if(perm[i]){
                 targets[j][0] = candidates[i].first;
                 targets[j][1] = candidates[i].second;
-                // cout << i << " " << targets[j][0] << " " << targets[j][1] << endl;
                 j++;
             }
         }
         tmp = countSafe(placementWall(targets));
-        // cout << tmp << endl;
         ans = max(tmp, ans);
     } while( next_permutation(perm.begin(), perm.end()) );
-    // ans = countSafe(map);
     cout << ans << endl;
     return 0;
 }
