@@ -20,27 +20,25 @@ vector<vector<int>> placementWall(int loc[][2]) {
 
 void virusAttack(vector<vector<int>> &targetMap) {
     bool visited[8][8] = {false};
-    for(int i = 0; i < N; i++) { 
-        for(int j = 0; j < M; j++) {
-            if((targetMap[i][j] == 2) && !visited[i][j]) {
-                queue<pair<int, int>> q;
-                q.push(make_pair(i, j));
+    for(int i = 0; i < N; i++) { for(int j = 0; j < M; j++) {
+        if((targetMap[i][j] == 2) && !visited[i][j]) {
+            queue<pair<int, int>> q;
+            q.push(make_pair(i, j));
 
-                while(!q.empty()) {
-                    int x = q.front().first, y = q.front().second;
-                    visited[x][y] = true;
-                    q.pop();
-                    for(int k = 0; k < 4; k++) {
-                        int nx = x + di[k][0], ny = y + di[k][1];
-                        if(isInMap(nx, ny) && targetMap[nx][ny] != 1 && !visited[nx][ny]) {
-                            targetMap[nx][ny] = 2;
-                            q.push(make_pair(nx, ny));
-                        }
+            while(!q.empty()) {
+                int x = q.front().first, y = q.front().second;
+                visited[x][y] = true;
+                q.pop();
+                for(int k = 0; k < 4; k++) {
+                    int nx = x + di[k][0], ny = y + di[k][1];
+                    if(isInMap(nx, ny) && targetMap[nx][ny] != 1 && !visited[nx][ny]) {
+                        targetMap[nx][ny] = 2;
+                        q.push(make_pair(nx, ny));
                     }
                 }
             }
         }
-    }
+    }}
 }
 
 int countSafe(vector<vector<int>> targetMap) {
@@ -48,9 +46,7 @@ int countSafe(vector<vector<int>> targetMap) {
     virusAttack(targetMap);
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < M; j++) {
-            if(targetMap[i][j] == 0) {
-                ret++;
-            }
+            if(targetMap[i][j] == 0) ret++;
         }
     }
     return ret;
