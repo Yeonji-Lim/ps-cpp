@@ -31,8 +31,11 @@ int priceOf(int length) {
 
 int main() {
     // 모든 길이에 대해서 최대 가격을 계산한다.
-    for(int length = 1; length < 11; length++) 
-        cout << priceOf(length) << " ";
+    for(int length = 10; length > 0; length--) 
+        priceOf(length);
+    for(int i = 1; i < 11; i++) {
+        cout << DP[i] << " ";
+    }
     cout << endl;
     return 0;
 }
