@@ -11,7 +11,11 @@ bool isInMap(int i, int j) { return -1 < i && i < N && -1 < j && j < M; }
 
 vector<vector<int>> placementWall(int loc[][2]) {
     vector<vector<int>> newMap(8, vector<int>(8, -1));
-    copy(map.begin(), map.end(), newMap.begin());
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < M; j++) {
+            newMap[i][j] = map[i][j];
+        }
+    }
     for(int i = 0; i < 3; i++) {
         newMap[loc[i][0]][loc[i][1]] = 1;
     }
