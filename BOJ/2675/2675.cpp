@@ -11,7 +11,7 @@ int main() {
         cin >> M >> str;
         for(int j=0; j<str.length(); j++) {
             for(int k=0; k<M; k++) {
-                cout << str[i];
+                cout << str[j];
             }
         }
         cout << endl;
