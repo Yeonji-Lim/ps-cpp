@@ -29,13 +29,16 @@ bool makeUnion(int x, int y) {
         for(int k = 0; k < 4; k++) {
             ni = ci+d[k][0]; nj = cj+d[k][1];
             if(isUnion(ci, cj, ni, nj)) {
-                visited[ci][cj] = true;
+                visited[ni][nj] = true;
                 u.emplace_back(ni, nj);
                 q.emplace(ni, nj);
             }
         }
     }
-    if(u.size() == 1) return false;
+    if(u.size() == 1) {
+        visited[x][y] = false;
+        return false;
+    }
     for(int i = 0; i < u.size(); i++) world[u[i].first][u[i].second] = tot/u.size();
     return true;
 }
@@ -52,21 +55,15 @@ int main() {
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
                 if(!visited[i][j]) {
+                    visited[i][j] = true;
                     if(makeUnion(i, j)) done = false;
                 }
             }
         }
         if(done) break;
         ans++;
-        fill(&visited[0][0], &visited[n-1][n-1], false);
+        fill(&visited[0][0], &visited[n][n], false);
         done = true;
-        cout << "---------\n" ;
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                cout << world[i][j] << " ";
-            }
-            cout << endl;
-        }
     }
     cout << ans << endl;
     return 0;
