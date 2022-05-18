@@ -11,8 +11,7 @@ bool isGroupWord() {
     for(int i = 1; i < str.length(); i++) {
         if(str[i-1] != str[i]) {
             for(int j = 0; j < v.size(); j++)
-                if(v[j] == str[i])
-                    return false;
+                if(v[j] == str[i]) return false;
             v.push_back(str[i]);
         }
     }
