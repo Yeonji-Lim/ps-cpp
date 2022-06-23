@@ -12,12 +12,10 @@ struct Node {
     int h = 0;
     Node(int _i, int _j, Node* _parent, int _g, int _h) : i(_i), j(_j), parent(_parent), g(_g), h(_h){};
 };
-int n, m, r, k;
+int n, m;
 
 vector<vector<char>> map(100, vector<char>(100, '.'));
 vector<vector<bool>> visited(100, vector<bool>(100, false));
-vector<pair<int, int>> excalibur;
-pair<int, int> S;
 
 int d[4][2] = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
 bool isInMap(int i, int j) { return -1 < i && i < n && -1 < j && j < m; }
@@ -66,13 +64,42 @@ int aStar(int si, int sj, pair<int, int> target, int mode) {
     return 10000;
 }
 
+int subProcess(int r, int k, vector<pair<int, int>> excalibur, pair<int, int> S) {
+    int ret = 0;
+    vector<char> exChar;
+    for(int mode = 0; mode < 4; mode++) {
+        if(mode == 3) {
+            // 모두 찾았으니 궁전 가기
+            ret += aStar(r, k, S, mode);
+            open.clear();
+            fill(visited.begin(), visited.begin() + n, vector<bool>(m, false));
+            for(int i = 0; i < 3; i++) {
+                map[excalibur[i].first][excalibur[i].second] = exChar[i];
+            }
+            break;
+        }
+        // 엑스칼리버 부품찾기
+        ret += aStar(r, k, excalibur[mode], mode);
+        r = excalibur[mode].first;
+        k = excalibur[mode].second;
+        exChar.push_back(map[r][k]);
+        map[r][k] = '.';
+        open.clear();
+        fill(visited.begin(), visited.begin() + n, vector<bool>(m, false));
+    }
+    return ret;
+}
+
 int main() {
     int T;
     string str;
     cin >> T;
     for(int t = 1; t <= T; t++) {
-        int ans = 0;
+        int r, k, ans = 10000;
         cin >> n >> m >> r >> k;
+
+        vector<pair<int, int>> excalibur;
+        pair<int, int> S;
         for(int i = 0; i < n; i++) {
             cin >> str;
             for(int j = 0; j < m; j++) {
@@ -81,34 +108,13 @@ int main() {
                 if(str[j] == 'S') S = make_pair(i, j);
             }
         }
-        // 실제 인덱스에 맞추기
         r--; k--;
-        for(int mode = 0; mode < 4; mode++) {
-            if(excalibur.empty()) {
-                // 모두 찾았으니 궁전 가기
-                ans += aStar(r, k, S, mode);
-                open.clear();
-                fill(visited.begin(), visited.begin() + n, vector<bool>(m, false));
-                break;
-            }
-            // 부품 별 거리
-            vector<int> dist;
-            for(int i = 0; i < (int)excalibur.size(); i++) {
-                // 가까운 엑스칼리버 찾기
-                dist.push_back(aStar(r, k, excalibur[i], mode));
-                open.clear();
-                fill(visited.begin(), visited.begin() + n, vector<bool>(m, false));
-            }
-            int idx = 0;
-            for(int i = 1; i < (int)dist.size(); i++) {
-                if(dist[idx] > dist[i]) idx = i;
-            }
-            ans += dist[idx];
-            r = excalibur[idx].first;
-            k = excalibur[idx].second;
-            map[r][k] = '.';
-            excalibur.erase(excalibur.begin()+idx);
-        }
+        sort(excalibur.begin(), excalibur.end());
+        do {
+            int tmp = subProcess(r, k, excalibur, S);
+            cout << tmp << endl;
+            ans = min(ans, tmp);
+        } while(next_permutation(excalibur.begin(), excalibur.end()));        
         cout << "#" << t << " " << ans << endl;
     }
     return 0;
