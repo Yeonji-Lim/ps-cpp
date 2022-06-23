@@ -62,6 +62,7 @@ int aStar(int si, int sj, pair<int, int> target, int mode) {
                 }
             }
         }
+        if(open.empty()) return 10000;
         sort(open.begin(), open.end(), compare);
         curNode = open[0];
         open.erase(open.begin());
