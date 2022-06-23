@@ -47,9 +47,6 @@ int aStar(int si, int sj, pair<int, int> target, int mode) {
             if (isInMap(ni, nj) && !visited[ni][nj]) { // visited가 닫힌 목록
                 // 목표물에 도착하면 이동거리 반환
                 if(ni == target.first && nj == target.second) {
-                    // 반환 전에 초기화
-                    open.clear();
-                    fill(visited.begin(), visited.begin() + n, vector<bool>(m, false));
                     return curNode->g+1;
                 }
                 // 목표물이 아닌 다른 것인 경우 다음꺼 확인
@@ -90,6 +87,8 @@ int main() {
             if(excalibur.empty()) {
                 // 모두 찾았으니 궁전 가기
                 ans += aStar(r, k, S, mode);
+                open.clear();
+                fill(visited.begin(), visited.begin() + n, vector<bool>(m, false));
                 break;
             }
             // 부품 별 거리
@@ -97,6 +96,8 @@ int main() {
             for(int i = 0; i < (int)excalibur.size(); i++) {
                 // 가까운 엑스칼리버 찾기
                 dist.push_back(aStar(r, k, excalibur[i], mode));
+                open.clear();
+                fill(visited.begin(), visited.begin() + n, vector<bool>(m, false));
             }
             int idx = 0;
             for(int i = 1; i < (int)dist.size(); i++) {
