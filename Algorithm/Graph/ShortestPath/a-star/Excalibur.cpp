@@ -34,9 +34,12 @@ int isInOpen(int i, int j) {
 
 int aStar(int si, int sj, pair<int, int> target, int mode) {
     int ni, nj, tmp;
-
-    Node* curNode = new Node(si, sj, NULL, 0, h(si, sj, target));
+    Node* curNode;
+    open.push_back(new Node(si, sj, NULL, 0, h(si, sj, target)));
     do {
+        sort(open.begin(), open.end(), compare);
+        curNode = open[0];
+        open.erase(open.begin());
         visited[curNode->i][curNode->j] = true;
         for (int k = 0; k < 4; k++) {
             ni = curNode->i + d[k][0];
@@ -61,11 +64,7 @@ int aStar(int si, int sj, pair<int, int> target, int mode) {
                     open[tmp]->g = curNode->g+1;
                 }
             }
-        }
-        if(open.empty()) return 10000;
-        sort(open.begin(), open.end(), compare);
-        curNode = open[0];
-        open.erase(open.begin());
+        }        
     } while (!open.empty());
     return 10000;
 }
@@ -76,7 +75,6 @@ int main() {
     cin >> T;
     for(int t = 1; t <= T; t++) {
         int ans = 0;
-
         cin >> n >> m >> r >> k;
         for(int i = 0; i < n; i++) {
             cin >> str;
