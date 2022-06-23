@@ -111,9 +111,7 @@ int main() {
         r--; k--;
         sort(excalibur.begin(), excalibur.end());
         do {
-            int tmp = subProcess(r, k, excalibur, S);
-            cout << tmp << endl;
-            ans = min(ans, tmp);
+            ans = min(ans, subProcess(r, k, excalibur, S));
         } while(next_permutation(excalibur.begin(), excalibur.end()));        
         cout << "#" << t << " " << ans << endl;
     }
