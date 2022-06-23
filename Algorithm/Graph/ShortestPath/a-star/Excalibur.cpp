@@ -26,7 +26,7 @@ int h(int i, int j, pair<int, int> t) { return max(t.first, i) - min(t.first, i)
 bool compare(Node* a, Node* b) { return a->g+a->h < b->g+b->h; }
 vector<Node*> open;
 int isInOpen(int i, int j) {
-    for(int idx = 0; idx < open.size(); idx++) {
+    for(int idx = 0; idx < (int)open.size(); idx++) {
         if(open[idx]->i == i && open[idx]->j == j) return idx;
     }
     return -1;
@@ -96,12 +96,12 @@ int main() {
             }
             // 부품 별 거리
             vector<int> dist;
-            for(int i = 0; i < excalibur.size(); i++) {
+            for(int i = 0; i < (int)excalibur.size(); i++) {
                 // 가까운 엑스칼리버 찾기
                 dist.push_back(aStar(r, k, excalibur[i], mode));
             }
             int idx = 0;
-            for(int i = 1; i < dist.size(); i++) {
+            for(int i = 1; i < (int)dist.size(); i++) {
                 if(dist[idx] > dist[i]) idx = i;
             }
             ans += dist[idx];
