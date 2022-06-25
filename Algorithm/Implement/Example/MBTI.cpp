@@ -112,7 +112,6 @@ int main() {
                 tmp++;
             }
         }
-
         cout << "#" << t << " " << ans << endl;
     }
     return 0;
