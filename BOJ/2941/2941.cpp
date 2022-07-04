@@ -1,14 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string [8] = {"c=", "c-", "dzw=", "", }
+string [8] crotia = {"c=", "c-", "dzw=", "d-", "lj", "nj", "s=", "z="}
 int main() {
-    string str;
+    int ans = 0;
+    string str; 
     cin >> str; 
-    for(int i = 0; i<str.length(); i++){
-        string sub = str.substr(i, i+2);
-        for(int j = 0; j < crotia; j++) {
-            
+    for(int i = 0; i<str.length()-2; i++) {
+        for(int j = 0; j < crotia.size(); j++) {
+            if (str.sub(i, crotia[j].length()) == crotia[j]) {
+                ans++;
+                i += crotia[j].length();
+            }
         }
     }
+    cout << ans << endl;
 }
