@@ -3,7 +3,6 @@
 #define NUM_MAX 1000000000
 using namespace std;
 string str;
-vector<string> cmds;
 int n, num;
 
 int stringToInt(string tar) {
@@ -137,6 +136,7 @@ int main() {
     while(1) {
         cin >> str;
         if(str == "QUIT") return 0;
+        vector<string> cmds;
         while(str != "END") {
             cmds.push_back(str);
             cin >> str;
