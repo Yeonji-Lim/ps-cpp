@@ -3,36 +3,32 @@ using namespace std;
 vector<int> tree;
 int n, m, len;
 
-bool isValid(int height) {
-    int l = 0, r = n-1, tot = 0, mid;
-    while(l <= r) {        
-        mid = (l+r)/2;
-        if(tree[mid] == height){
-            break;
-        } else if(tree[mid] > height) {
-            r = mid-1;
-        } else {
-            l = mid+1;
-        }
+long long cutRst(int height) {
+    long long ret = 0, tmp;
+    for(int i = 0; i < n; i++) {
+        tmp = tree[i]-height;
+        if(tmp > 0) ret += tmp;
     }
-    if(l > r) mid = (l+r)/2+1;
-    for(int i = mid; i < n; i++) 
-        tot += tree[i]-height;
-    if(tot >= m) return true;
-    return false;
+    return ret;
 }
 
 int main() {
+    int tmp = 0;
     cin >> n >> m;
     for(int i = 0; i < n; i++) {
         cin >> len;
         tree.push_back(len);
+        tmp = max(len, tmp);
     }
-    sort(tree.begin(), tree.end());
-    int l = 0, r = tree[n-1], mid, ans = 0;
+    int l = 0, r = tmp, mid, ans = 0;
+    long long com;
     while(l <= r) {
         mid = (l+r)/2;
-        if(isValid(mid)) {
+        com = cutRst(mid);
+        if(com == m) {
+            ans = mid;
+            break;
+        } else if(com > m) {
             l = mid+1;
             ans = max(ans, mid);
         } else {
