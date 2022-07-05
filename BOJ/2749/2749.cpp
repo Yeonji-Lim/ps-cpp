@@ -19,10 +19,10 @@ int main() {
         cout << n << endl;
         return 0;
     }
-    n-=2;
+    n--;
     vector<vector<ull>> a = {{1, 1}, {1, 0}};
     vector<vector<ull>> b = {{1, 0}, {0, 1}};
-    for(int i = n; i > 0; i = i >> 1) {
+    for(long long i = n; i > 0; i = i >> 1) {
         if(i & 1) {
             b = vectorSquared(a, b);
         }
