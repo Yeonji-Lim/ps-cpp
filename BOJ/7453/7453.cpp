@@ -33,7 +33,7 @@ int main() {
     sort(pvs[0].begin(), pvs[0].end());
     sort(pvs[1].begin(), pvs[1].end());
     int i = 0, j = pvs[1].size()-1;
-    while(i < pvs[0].size()) {
+    while(i < pvs[0].size() && j > -1) {
         int com = pvs[0][i] + pvs[1][j];
         if(com == 0) {
             ans++;
