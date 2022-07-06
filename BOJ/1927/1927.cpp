@@ -9,33 +9,6 @@ void swap(int i, int j) {
     min_heap[j] = tmp;
 }
 
-void setHeapInsert() {
-    if(ti == 2) return;
-    int i = ti-1, j = (i >> 1);
-    while(i > -1) {
-        if(min_heap[j] < min_heap[i]) break;
-        swap(j, i);
-        i = j;
-        j = (i >> i);
-    }
-}
-
-void setHeapDelete() {
-    if(ti == 2) return;
-    int i = 1, l, r;
-    while(i < ti) {
-        l = i*2; r = i*2+1;
-        if(l >= ti) break;
-        if(min_heap[i] < min_heap[l]) {
-            if(r >= ti) break;
-            if(min_heap[i] < min_heap[r]) break;
-        }
-        if(min_heap[l] > min_heap[r]) l++;
-        swap(i, l);
-        i = l;
-    }
-}
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
@@ -46,17 +19,35 @@ int main() {
         cin >> num;
         if(num == 0) {
             if(ti == 1) {
-                cout << 0 << endl;
+                cout << "0\n";
                 continue;
             }
-            cout << min_heap[1] << endl;
+            cout << min_heap[1] << '\n';
             min_heap[1] = min_heap[--ti];
-            if(ti == 1) continue;
-            setHeapDelete();
+            if(ti <= 2) continue;
+            int c = 1, l, r;
+            while(c < ti) {
+                l = c*2; r = c*2+1;
+                if(l >= ti) break; // 자식 없음
+                if(min_heap[c] < min_heap[l]) { // 왼쪽 자식 정상
+                    if(r >= ti) break; // 오른쪽 자식 없음
+                    if(min_heap[c] < min_heap[r]) break; // 오른쪽 자식 정상
+                }
+                if(min_heap[l] > min_heap[r]) l++; // 더 작은 자식 선택
+                swap(c, l);
+                c = l;
+            }
         } else {
             min_heap[ti] = num;
             ti++;
-            setHeapInsert();
+            if(ti == 2) continue;
+            int c = ti-1, p = (c >> 1);
+            while(c > -1) {
+                if(min_heap[p] < min_heap[c]) break;
+                swap(p, c);
+                c = p;
+                p = (c >> 1);
+            }
         }
     }
     return 0;
