@@ -20,14 +20,11 @@ int main() {
     cin >> T;
     for(int t = 0; t < T; t++) {
         cin >> K >> C;
-        K *= -1;
-        div = gcd(K, C);
+        div = gcd(-K, C);
         if(div == 1 || div == -1) {
-            e = euclidean(1, 0, K, 0, 1, C);
-            if(e < 0) e -= K;
-            div *= e;
-            if(div < 0) div *= -1;
-            cout << div << '\n';
+            e = euclidean(1, 0, -K, 0, 1, C);
+            if(e < 0) e += K;
+            cout << e << '\n';
         } else {
             cout << "IMPOSSIBLE\n";
         }
