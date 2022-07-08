@@ -26,6 +26,10 @@ int main() {
         if(div == 1 || div == -1) {
             e = euclidean(1, 0, -K, 0, 1, C);
             if(e <= 0) e += K;
+            if(e > 1000000000) {
+                cout << "IMPOSSIBLE\n";
+                continue;
+            }
             cout << e << '\n';
         } else {
             cout << "IMPOSSIBLE\n";
