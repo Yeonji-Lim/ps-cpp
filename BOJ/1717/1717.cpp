@@ -3,10 +3,8 @@ using namespace std;
 vector<int> parent(1000000, 0);
 
 int group(int a) {
-    if(parent[a] != a) {
-        parent[a] = group(parent[a]);
-    }
-    return parent[a];
+    if(parent[a] == a) return a;
+    return parent[a] = group(parent[a]);
 }
 
 void join(int a, int b) {
