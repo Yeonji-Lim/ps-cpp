@@ -39,85 +39,80 @@ int main() {
                     break; // 완전 종료
                 }
                 for(auto && st : sts) { 
-                    if(st.top() == MAXVAL+1) continue;
+                    if(!st.empty() && st.top() == MAXVAL+1) continue;
                     st.push(num); 
                 }
             } else if(cmd == "POP") {
-                for(auto && st : sts) {
-                    if(st.top() == MAXVAL+1) continue;
+                for(auto && st : sts) {                   
                     if(st.empty()) st.push(MAXVAL+1);
-                    else st.pop();
+                    if(st.top() == MAXVAL+1) continue;
+                    st.pop();
                 }
             } else if(cmd == "INV") {
-                for(auto && st : sts) {
-                    if(st.top() == MAXVAL+1) continue;
+                for(auto && st : sts) {                    
                     if(st.empty()) st.push(MAXVAL+1);
-                    else {
-                        num = st.top();
-                        st.pop();
-                        st.push(-num);
-                    }
+                    if(st.top() == MAXVAL+1) continue;
+                    num = st.top();
+                    st.pop();
+                    st.push(-num);
                 }
             } else if(cmd == "DUP") {
-                for(auto && st : sts) {
-                    if(st.top() == MAXVAL+1) continue;
+                for(auto && st : sts) {                    
                     if(st.empty()) st.push(MAXVAL+1);
-                    else {
-                        num = st.top();
-                        st.push(num);
-                    }
+                    if(st.top() == MAXVAL+1) continue;
+                    num = st.top();
+                    st.push(num);   
                 }
             } else if(cmd == "SWP") {
-                for(auto && st : sts) {
-                    if(st.top() == MAXVAL+1) continue;
+                for(auto && st : sts) {                    
                     if(st.size() < 2) st.push(MAXVAL+1);
-                    else {
-                        num = st.top();
-                        st.pop();
-                        num2 = st.top();
-                        st.pop();
-                        st.push(num2);
-                        st.push(num);
-                    }
+                    if(st.top() == MAXVAL+1) continue;
+
+                    num = st.top();
+                    st.pop();
+                    num2 = st.top();
+                    st.pop();
+                    st.push(num2);
+                    st.push(num);   
                 }
             } else  {
                 for(auto && st : sts) {
-                    if(st.top() == MAXVAL+1) continue;
                     if(st.size() < 2) st.push(MAXVAL+1);
-                    else {
-                        num = st.top();
-                        st.pop();
-                        num2 = st.top();
-                        st.pop();
-                        if(cmd == "ADD") {
-                            num2 += num;
-                        } else if(cmd == "SUB") {
-                            num2 -= num;
-                        } else if(cmd == "MUL") {
-                            num2 *= num;
-                        } else if(cmd == "DIV") {
-                            if(num == 0) {
-                                st.push(MAXVAL+1);
-                            } else {
-                                bool minus = false;
-                                if(num < 0 || num2 < 0) minus = true;
-                                num2 /= num;
-                                if(num2 > 0) num *= -1;
-                            }
-                        } else if(cmd == "MOD") {
-                            if(num == 0) {
-                                st.push(MAXVAL+1);
-                            } else {
-                                bool minus = false;
-                                if(num < 0) minus = true;
-                                num2 %= num;
-                                if(num2 > 0) num *= -1;
-                            }
+                    if(st.top() == MAXVAL+1) continue;
+
+                    num = st.top();
+                    st.pop();
+                    num2 = st.top();
+                    st.pop();
+                    if(cmd == "ADD") {
+                        num2 += num;
+                    } else if(cmd == "SUB") {
+                        num2 -= num;
+                    } else if(cmd == "MUL") {
+                        num2 *= num;
+                    } else if(cmd == "DIV") {
+                        if(num == 0) {
+                            st.push(MAXVAL+1);
+                        } else {
+                            bool minus = false;
+                            if(num < 0 || num2 < 0) minus = true;
+                            num2 /= num;
+                            if(num2 > 0) num *= -1;
                         }
-                        if(!st.empty() && st.top() == MAXVAL+1) continue;
-                        if(num2 > MAXVAL || num2 < -MAXVAL) st.push(MAXVAL+1);
-                        else st.push(num2);
+                    } else if(cmd == "MOD") {
+                        if(num == 0) {
+                            st.push(MAXVAL+1);
+                        } else {
+                            bool minus = false;
+                            if(num < 0) minus = true;
+                            num2 %= num;
+                            if(num2 > 0) num *= -1;
+                        }
                     }
+                    if(!st.empty() && st.top() == MAXVAL+1) continue;
+                    if(num2 > MAXVAL || num2 < -MAXVAL) st.push(MAXVAL+1);
+                    else st.push(num2);
+                    
                 }
             }
         }
