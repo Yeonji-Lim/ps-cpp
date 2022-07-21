@@ -1,52 +1,50 @@
 #include <bits/stdc++.h>
+#define MAX 3600
 using namespace std;
+// vector<vector<int>> board(50, vector<int>(50, 0));
+int board[51][51];
+int visited[51][51];
 int n, m;
-vector<vector<int>> board(50, vector<int>(50, 0));
-vector<vector<int>> visited(50, vector<int>(50, -1));
-int d[4][2] = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-bool isInMap(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
-bool isInHole(int i, int j) { return board[i][j] == 'H'; } 
-stack<pair<int, int>> st;
+string str;
+int direc[4][2] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+bool isInBoard(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
 
-int move(int ci, int cj) {
-    int ans = 0;
+int go(int i, int j) {
+    visited[i][j] = 1;
+    int dist = board[i][j];
+    if(dist == -1) return 0;
+    // 상하좌우 진행
+    int ret = 0, ni, nj;
     for(int k = 0; k < 4; k++) {
-        int ni = ci+d[k][0]*board[ci][cj], nj = ci+d[k][1]*board[ci][cj], tmp = 0;
-        if(!isInMap(ni, nj)) continue;
-        if(isInHole(ni, nj)) continue;
-        tmp = visited[ni][nj];
-        if(tmp != 0) { ans = -1; break; }
-        tmp = move(ni, nj);
-        if(ans < tmp) ans = tmp;
+        ni = i+direc[k][0]*dist; nj = j+direc[k][1]*dist;
+        if(isInBoard(ni, nj)) { // 모두 못가는 위치면 ret == 0
+            if(visited[ni][nj] == 1) return MAX;
+            ret = max(ret, go(ni, nj));
+            if(ret == MAX) return MAX;
+        }
     }
-    if(ans != -1) ans++;
-    visited[ci][cj] = ans;
-    return ans;
+    visited[i][j] = 2;
+    return ret+1;
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
+    ios_base::sync_with_stdio(0);
     cin.tie(NULL); cout.tie(NULL);
     cin >> n >> m;
     for(int i = 0; i < n; i++) {
-        for(int j = 0; j < m; j++) {
-            cin >> board[i][j];
+        cin >> str;
+        for(int j = 0; j < m ; j++) {
+            board[i][j] = str[j]=='H'? -1: str[j]-'0';
         }
     }
-    // st.emplace(0, 0);
-    // while(!st.empty()) {
-    //     int ci = st.top().first, cj = st.top().second;
-    //     st.pop();
-    //     for(int k = 0; k < 4; k++) {
-    //         int ni = ci+d[k][0]*board[ci][cj], nj = ci+d[k][1]*board[ci][cj];
-    //         if(!isInMap(ni, nj)) continue;
-    //         if(isInHole(ni, nj)) continue;
-    //         if(visited[ni][nj] == 1) {}
-    //         st.emplace(ni, nj);
-    //         visited[ci][cj] = 2;
-    //     }
-    //     if(visited[ci][cj] == 0) visited[ci][cj] = 1;
-    // }
-    cout << move(0, 0) << endl;
+
+    // visited : 방문 안함 - 0, 진행중 - 1, 처리완료 - 2
+    // 상하좌우 간 것 중에 최대 
+    // 무한인 경우 MAX를 넣고 출력할 때만 -1 출력
+
+    int ans = go(0, 0);
+    if(ans == MAX) cout << "-1\n";
+    else cout << ans << '\n';
+
     return 0;
 }
