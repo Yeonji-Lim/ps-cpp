@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define MAX 3600
 using namespace std;
 int board[51][51];
 int visited[51][51];
@@ -20,9 +19,9 @@ int go(int i, int j) {
     for(int k = 0; k < 4; k++) {
         ni = i+direc[k][0]*dist; nj = j+direc[k][1]*dist;
         if(isInBoard(ni, nj)) { // 모두 못가는 위치면 ret == 0
-            if(visited[ni][nj] == 1) return MAX;
+            if(visited[ni][nj] == 1) return INT_MAX;
             ret = max(ret, go(ni, nj));
-            if(ret == MAX) return MAX;
+            if(ret == INT_MAX) return INT_MAX;
         }
     }
     visited[i][j] = 2;
@@ -45,7 +44,7 @@ int main() {
     // 무한인 경우 MAX를 넣고 출력할 때만 -1 출력
 
     int ans = go(0, 0);
-    if(ans == MAX) cout << "-1\n";
+    if(ans == INT_MAX) cout << "-1\n";
     else cout << ans << '\n';
 
     return 0;
