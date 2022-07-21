@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #define MAX 3600
 using namespace std;
-// vector<vector<int>> board(50, vector<int>(50, 0));
 int board[51][51];
 int visited[51][51];
 int n, m;
@@ -12,7 +11,10 @@ bool isInBoard(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
 int go(int i, int j) {
     visited[i][j] = 1;
     int dist = board[i][j];
-    if(dist == -1) return 0;
+    if(dist == -1) {
+        visited[i][j] = 2;
+        return 0;
+    }
     // 상하좌우 진행
     int ret = 0, ni, nj;
     for(int k = 0; k < 4; k++) {
