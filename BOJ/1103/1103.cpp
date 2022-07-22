@@ -8,24 +8,26 @@ int direc[4][2] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 bool isInBoard(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
 
 int go(int i, int j) {
-    visited[i][j] = 1;
-    int dist = board[i][j];
-    if(dist == -1) {
-        visited[i][j] = 2;
-        return 0;
-    }
+    // 진행완료된 곳인 경우 반환
+    if(visited[i][j] != 0) return visited[i][j];
+
+    // 진행중 표시
+    visited[i][j] = -1;
+    int dist = board[i][j], ret = 0, ni, nj;
     // 상하좌우 진행
-    int ret = 0, ni, nj;
     for(int k = 0; k < 4; k++) {
         ni = i+direc[k][0]*dist; nj = j+direc[k][1]*dist;
-        if(isInBoard(ni, nj)) { // 모두 못가는 위치면 ret == 0
-            if(visited[ni][nj] == 1) return INT_MAX;
+        if(isInBoard(ni, nj) && board[ni][nj] != -1) { // 모두 못가는 위치면 ret == 0
+            // 진행중인 곳이면 사이클 -> 무한대로
+            if(visited[ni][nj] == -1) return visited[i][j] = INT_MAX;
+            // 최대 길이 찾기
             ret = max(ret, go(ni, nj));
-            if(ret == INT_MAX) return INT_MAX;
+            // 내부에서 사이클 발생
+            if(ret == INT_MAX) return visited[i][j] = INT_MAX;
         }
     }
-    visited[i][j] = 2;
-    return ret+1;
+    // 진행완료
+    return visited[i][j] = ret+1;
 }
 
 int main() {
@@ -39,7 +41,7 @@ int main() {
         }
     }
 
-    // visited : 방문 안함 - 0, 진행중 - 1, 처리완료 - 2
+    // visited : 방문 안함 - 0, 진행중 - -1, 처리완료 - 최종진행횟수
     // 상하좌우 간 것 중에 최대 
     // 무한인 경우 MAX를 넣고 출력할 때만 -1 출력
 
