@@ -27,26 +27,20 @@ int main() {
     // sort
     sort(a_list, a_list+n*n);
     sort(b_list, b_list+n*n, greater<int>());
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            cout << a_list[i*n+j] << ' ';
-        }
-    }
-    cout << '\n';
     // 2 pointer
     int a_i = 0, b_i = 0, sum, size = n*n;
     while(a_i < size || b_i < size) {
         sum = a_list[a_i] + b_list[b_i];
         if(sum == 0) {
-            int prev = a_list[a_i], a_num = 1, b_num = 1;
-            while(prev != a_list[a_i]) { a_i++; a_num++; }
+            int prev = a_list[a_i], a_num = 0, b_num = 0;
+            while(a_i < size && prev == a_list[a_i]) { a_i++; a_num++; }
             prev = b_list[b_i];
-            while(prev != b_list[b_i]) { b_i++; b_num++; }
+            while(b_i < size && prev == b_list[b_i]) { b_i++; b_num++; }
             ans += a_num * b_num;
         } else if(sum > 0) {
-            a_i++;
-        } else {
             b_i++;
+        } else {
+            a_i++;
         }
     }
     cout << ans << endl;
