@@ -39,7 +39,8 @@ int main() {
 		sum = a_list[a_i] + b_list[b_i];
 		
 		if(sum == 0) {
-			int prev = a_list[a_i], a_num = 0, b_num = 0;
+			int prev = a_list[a_i];
+            long long a_num = 0, b_num = 0;
 			while(a_i < size && prev == a_list[a_i]) { a_i++; a_num++; }
 			
 			prev = b_list[b_i];
