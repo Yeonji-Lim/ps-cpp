@@ -37,15 +37,15 @@ int main() {
         int com = pvs[0][i] + pvs[1][j];
         if(com == 0) {
             ans++;
+            // 같은 수가 연속해서 나오는 경우
             int ni = 1, nj = 1;
-            while(j-1 < pvs[1].size() && pvs[1][j-1] == pvs[1][j]) {
-                nj++;
-                j--;
+            while(j-1 > -1 && pvs[1][j-1] == pvs[1][j]) {
+                nj++; j--;
             }
             while(i+1 < pvs[0].size() && pvs[0][i+1] == pvs[0][i]) {
-                ni++;
-                i++;
+                ni++; i++;
             }
+            // 연속해서 나오는 경우 ans 갱신
             if(ni != 1 || nj != 1) ans += ni*nj-1;
             i++;
             j--;
