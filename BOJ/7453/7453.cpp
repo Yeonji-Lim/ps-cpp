@@ -1,58 +1,52 @@
 #include <bits/stdc++.h>
+#define SIZE 4001
 using namespace std;
 int n;
-vector<vector<int>> vs;
-vector<vector<int>> pvs;
-
-void makePairVector(vector<int> a, vector<int> b) {
-    vector<int> ret;
-    for(int i = 0; i < a.size(); i++) {
-        for(int j = 0; j < b.size(); j++) {
-            ret.push_back(a[i]+b[j]);
-        }
-    }
-    pvs.push_back(ret);
-}
+int A[SIZE];
+int B[SIZE];
+int C[SIZE];
+int D[SIZE];
+int a_list[SIZE*SIZE];
+int b_list[SIZE*SIZE];
 
 int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL); cout.tie(NULL);
     int ans = 0;
     cin >> n;
-    for(int i = 0; i < 4; i++) {
-        vector<int> tmpv;
-        vs.push_back(tmpv);
-    }
-    int tmp;
     for(int i = 0; i < n; i++) {
-        for(int j = 0; j < 4; j++) {
-            cin >> tmp;
-            vs[j].push_back(tmp);
+        cin >> A[i] >> B[i] >> C[i] >> D[i];
+    }
+    // a_list, b_list 생성
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            a_list[n*i+j] = A[i]+B[j];
+            b_list[n*i+j] = C[i]+D[j];
         }
     }
-    makePairVector(vs[0], vs[1]);
-    makePairVector(vs[2], vs[3]);
-    sort(pvs[0].begin(), pvs[0].end());
-    sort(pvs[1].begin(), pvs[1].end());
-    int i = 0, j = pvs[1].size()-1;
-    while(i < pvs[0].size() && j > -1) {
-        int com = pvs[0][i] + pvs[1][j];
-        if(com == 0) {
-            ans++;
-            // 같은 수가 연속해서 나오는 경우
-            int ni = 1, nj = 1;
-            while(j-1 > -1 && pvs[1][j-1] == pvs[1][j]) {
-                nj++; j--;
-            }
-            while(i+1 < pvs[0].size() && pvs[0][i+1] == pvs[0][i]) {
-                ni++; i++;
-            }
-            // 연속해서 나오는 경우 ans 갱신
-            if(ni != 1 || nj != 1) ans += ni*nj-1;
-            i++;
-            j--;
-        } else if(com > 0) {
-            j--;
+    // sort
+    sort(a_list, a_list+n*n);
+    sort(b_list, b_list+n*n, greater<int>());
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            cout << a_list[i*n+j] << ' ';
+        }
+    }
+    cout << '\n';
+    // 2 pointer
+    int a_i = 0, b_i = 0, sum, size = n*n;
+    while(a_i < size || b_i < size) {
+        sum = a_list[a_i] + b_list[b_i];
+        if(sum == 0) {
+            int prev = a_list[a_i], a_num = 1, b_num = 1;
+            while(prev != a_list[a_i]) { a_i++; a_num++; }
+            prev = b_list[b_i];
+            while(prev != b_list[b_i]) { b_i++; b_num++; }
+            ans += a_num * b_num;
+        } else if(sum > 0) {
+            a_i++;
         } else {
-            i++;
+            b_i++;
         }
     }
     cout << ans << endl;
