@@ -13,7 +13,7 @@ void bt(int si) {
         }
         cout << '\n';
     }else {
-        for(int i = 1; i <= n; i++) {
+        for(int i = si+1; i <= n; i++) {
             if(!visited[i]) bt(i);
         }
     }
