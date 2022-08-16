@@ -63,6 +63,10 @@ int main() {
         }
     }
     k -= 5;
+    if (candidates.size() < k) {
+        cout << n << '\n';
+        return 0;
+    }
     alphabet['a' - 'a'] = true;
     alphabet['c' - 'a'] = true;
     alphabet['i' - 'a'] = true;
