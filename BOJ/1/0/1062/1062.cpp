@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 int n, k;
 vector<string> words;
@@ -8,80 +6,61 @@ vector<char> candidates;
 bool alphabet[26];
 int alphabetCnt = 0, answer = 0;
 
-int numOfKnowWords()
-{
+int numOfKnowWords() {
     int ret = 0;
     bool know = true;
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 4; j < (int)words[i].length() - 4; j++)
-        {
-            if (!alphabet[words[i][j] - 'a'])
-            {
+    for(int i = 0; i < n; i++) {
+        for(int j = 4; j < (int) words[i].length()-4; j++) {
+            if(!alphabet[words[i][j]-'a']) {
                 know = false;
                 break;
             }
         }
-        if (know)
-            ret++;
+        if(know) ret++;
         know = true;
     }
     return ret;
 }
 
-void findMaxNumOfKnowWords(int cani)
-{
-    alphabet[candidates[cani] - 'a'] = true;
+void findMaxNumOfKnowWords(int cani) {
+    alphabet[candidates[cani]-'a'] = true;
     alphabetCnt++;
-    if (alphabetCnt == k)
-    {
+    if(alphabetCnt == k) {
         answer = max(answer, numOfKnowWords());
+    } else for(int i = cani+1; i < (int) candidates.size(); i++) {
+        findMaxNumOfKnowWords(i);
     }
-    else
-        for (int i = cani + 1; i < (int)candidates.size(); i++)
-        {
-            findMaxNumOfKnowWords(i);
-        }
-    alphabet[candidates[cani] - 'a'] = false;
+    alphabet[candidates[cani]-'a'] = false;
     alphabetCnt--;
 }
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(0);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    cin.tie(NULL); cout.tie(NULL);
     cin >> n >> k;
     string word;
-    for (int i = 0; i < n; i++)
-    {
+    for(int i = 0; i < n; i++) {
         cin >> word;
         words.push_back(word);
-        for (int j = 4; j < (int)word.length() - 4; j++)
-        {
+        for(int j = 4; j < (int) word.length()-4; j++) {
             candidates.push_back(word[j]);
         }
+    }
+    if(k < 5) {
+        cout << "0\n";
+        return 0;
     }
 
     sort(candidates.begin(), candidates.end());
     char prev;
-    for (int i = 0; i < (int)candidates.size(); i++)
-    {
-        if ((candidates[i] == 'a' || candidates[i] == 'c' || candidates[i] == 'i' || candidates[i] == 'n' || candidates[i] == 't') || (i != 0 && candidates[i] == prev))
-        {
-            candidates.erase(candidates.begin() + i);
+    for(int i = 0; i < (int) candidates.size(); i++) {
+        if((candidates[i] == 'a' || candidates[i] == 'c' || candidates[i] == 'i' || candidates[i] == 'n' || candidates[i] == 't') 
+            || (i != 0 && candidates[i] == prev)) {
+            candidates.erase(candidates.begin()+i);
             i--;
-        }
-        else
-        {
+        } else { 
             prev = candidates[i];
         }
-    }
-
-    if (k < 5)
-    {
-        cout << "0\n";
-        return 0;
     }
     k -= 5;
     alphabet['a' - 'a'] = true;
@@ -89,9 +68,9 @@ int main()
     alphabet['i' - 'a'] = true;
     alphabet['n' - 'a'] = true;
     alphabet['t' - 'a'] = true;
+    answer = numOfKnowWords();
 
-    for (int i = 0; i < (int)candidates.size(); i++)
-    {
+    for(int i = 0; i < (int) candidates.size(); i++ ) {
         findMaxNumOfKnowWords(i);
     }
 
