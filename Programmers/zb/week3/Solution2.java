@@ -7,8 +7,8 @@ class Solution {
         int n = nameSet.size();
         int k = 4;
 
-        int numer = n;
-        int deno = 1;
+        long numer = n;
+        long deno = 1;
         for (int i = 1; i < k; i++) {
             numer *= n - i;
             deno *= i + 1;
