@@ -1,11 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 int n, m;
-bool visited[9];
 vector<int> v;
 
 void bt(int si) {
-    visited[si] = true;
     v.push_back(si);
     if(v.size() == m) {
         for(int i = 0; i < m; i++) {
@@ -13,11 +12,10 @@ void bt(int si) {
         }
         cout << '\n';
     }else {
-        for(int i = si; i <= n; i++) {
-            if(!visited[i]) bt(i);
+        for(int i = 0; i <= n; i++) {
+            bt(i);
         }
     }
-    visited[si] = false;
     v.pop_back();
 }
 
