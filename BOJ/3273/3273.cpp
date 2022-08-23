@@ -14,6 +14,7 @@ int main() {
     cin >> x;
     tmp = 0;
     for(int i = 1; i <= x/2; i++) {
+        if(i == x-i) break;
         if(num[i] && num[x-i]) tmp++;
     }
     cout << tmp;
