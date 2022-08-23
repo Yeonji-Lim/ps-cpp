@@ -13,6 +13,8 @@ int main() {
         if(answer < num[idx]) {
             answer = num[idx];
             maxidx = idx;
+        } else if(answer == num[idx]) {
+            if((maxidx == 6 || maxidx == 9) && (idx != 6 && idx != 9)) maxidx = idx;
         }
         n /= 10;
     }
