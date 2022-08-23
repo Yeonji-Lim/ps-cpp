@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n, x, tmp;
-bool num[1000001];
+bool num[2000001];
 
 int main() {
     ios::sync_with_stdio(0);
@@ -17,5 +17,6 @@ int main() {
         if(i == x-i) break;
         if(num[i] && num[x-i]) tmp++;
     }
+    // x가 2000000까지 갈 수 있다. -> x-i도 1999999까지 참조할 수 있음
     cout << tmp;
 }
