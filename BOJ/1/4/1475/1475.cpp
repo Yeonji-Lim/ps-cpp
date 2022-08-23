@@ -19,9 +19,7 @@ int main() {
         n /= 10;
     }
     if(maxidx == 6 || maxidx == 9) {
-        answer = num[6] + num[9];
-        if(answer&1) answer++;
-        answer = answer >> 1;
+        answer = (num[6] + num[9] + 1) << 1;
     }
     cout << answer;
 }
