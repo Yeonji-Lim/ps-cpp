@@ -1,43 +1,9 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <list>
 using namespace std;
 int m, cur;
 string str;
 list<char> content;
-auto iter = content.begin();
-
-void printStr() {
-    for(iter = content.begin(); iter != content.end(); iter++) {
-        cout << *iter;
-    }
-}
-
-void L() {
-    if(cur > 0) cur--;
-}
-
-void D() {
-    if(cur < content.size()) cur++;
-}
-
-void B() {
-    if(cur > 0) {
-        iter = content.begin();
-        for(int i = 0; i < cur-1; i++) {
-            iter++;
-        }
-        content.erase(iter);
-        cur--;
-    }
-}
-
-void P(char apd) {
-    iter = content.begin();
-    for(int i = 0; i < cur; i++) {
-        iter++;
-    }
-    content.insert(iter, apd);
-    cur++;
-}
 
 int main() {
     ios::sync_with_stdio(0);
@@ -48,18 +14,31 @@ int main() {
     for(int i = 0; i < cur; i++) {
         content.push_back(str[i]);
     }
+    auto iter = content.end();
     for(int i = 0; i < m; i++) {
         getline(cin, str);
         switch(str[0]) {
             case 'L':
-                L(); break;
+                if(iter != content.begin()) 
+                iter--;
+                break;
             case 'D':
-                D(); break;
+                if(iter != content.end()) 
+                iter++;
+                break;
             case 'B':
-                B(); break;
+                if(iter != content.begin()) {
+                	auto tmpiter = iter;
+                	tmpiter--;
+                    content.erase(tmpiter);
+                }
+                break;
             case 'P':
-                P(str[2]); break;
+                content.insert(iter, str[2]);
+                break;
         }
     }
-    printStr();
+    for(iter = content.begin(); iter != content.end(); iter++) {
+        cout << *iter;
+    }
 }
