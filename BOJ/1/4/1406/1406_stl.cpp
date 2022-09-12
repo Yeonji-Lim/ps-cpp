@@ -1,7 +1,8 @@
+// STL list를 이용한 풀이
 #include <iostream>
 #include <list>
 using namespace std;
-int m, cur;
+int m;
 string str;
 list<char> content;
 
@@ -10,15 +11,14 @@ int main() {
     cin.tie(0);
     cin >> str >> m;
     cin.ignore();
-    cur = str.length();
-    for(int i = 0; i < cur; i++) {
+    for(int i = 0; i < str.length(); i++) {
         content.push_back(str[i]);
     }
     auto iter = content.end();
+
     for(int i = 0; i < m; i++) {
         getline(cin, str);
         switch(str[0]) {
-            case 'L':
                 if(iter != content.begin()) 
                 iter--;
                 break;

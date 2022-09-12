@@ -1,45 +1,29 @@
-package Programmers.zb.week3;
-
 import java.util.*;
 import java.io.*;
 
 class Solution {
-    private List<String> names = new ArrayList<String>();
-    private int answer = 0;
-    private int numWinner = 4;
-    private int cnt = 0;
-    
-    public void findAnswer(int si) {
-        cnt+=1;
-        if(cnt == this.numWinner) {
-            answer+=1;
-        } else for(int i = si+1; i < this.names.size(); i++) {
-            findAnswer(i);
-        }
-        cnt-=1;
-    }
-
     public int solution(String[] names) {
-        Arrays.sort(names);
-        String prev = "";
-        for(int i = 0; i < names.length; i++) {
-            if(!prev.equals(names[i])) {
-                prev = names[i];
-                this.names.add(names[i]);
-            }
+        Set<String> nameSet = new HashSet<>(Arrays.asList(names));
+        int n = nameSet.size();
+        int k = 4;
+
+        long numer = n;
+        long deno = 1;
+        for (int i = 1; i < k; i++) {
+            numer *= n - i;
+            deno *= i + 1;
         }
-        for(int i = 0; i < this.names.size(); i++) {
-            this.findAnswer(i);
-        }
-        return this.answer;
+
+        return (int) (numer / deno);
     }
 }
 
 /*
-    다 다른거일때 이름 100개
-    100C4
-    25*33*49*97 = 25334997 = 2*10^7
-    1초 = 1억 = 10^8
-    ..?
-    set 등을 쓴게 문제? -> 아님.. 여전히 시간초과임
-*/
+ * 다 다른거일때 이름 100개
+ * 100C4 = 3921225
+ * 1초 = 1억 = 10^8
+ * ..?
+ * set 등을 쓴게 문제? -> 아님.. 여전히 시간초과임
+ * 
+ * 경우의 수를 구하는데, 그 내용은 중요하지 않다면 그냥 공식을 이용해도 된다.
+ */
