@@ -10,14 +10,16 @@ void push(int x){
 }
 
 void pop(){
-    head++;
+    if(tail-head != 0) head++;
 }
 
 int front(){
+    if(tail-head == 0) return -1;
     return dat[head];
 }
 
 int back(){
+    if(tail-head == 0) return -1;
     return dat[tail-1];
 }
 
