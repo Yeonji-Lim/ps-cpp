@@ -11,10 +11,11 @@ void push(int x){
 }
 
 void pop(){
-    pos--;
+    if(pos != 0) pos--;
 }
 
 int top(){
+    if(pos == 0) return -1;
     return dat[pos-1];
 }
 
