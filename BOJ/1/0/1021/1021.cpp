@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define MXS 203
+#define MXS 251
 using namespace std;
 
 int main() {
@@ -80,5 +80,5 @@ int main() {
  * 
  * 그리디로 풀어도 되는 건가?
  * 
- * 10 1 3 4 5 6 7 8
+ * 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  */
