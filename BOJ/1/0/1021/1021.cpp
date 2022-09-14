@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define MXS 251
+#define MXS 301
 using namespace std;
 
 int main() {
