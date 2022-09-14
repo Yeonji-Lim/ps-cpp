@@ -16,6 +16,7 @@ deque<int> stringToDeque() {
 }
 
 string DequeToString() {
+    if(dq.empty()) return "[]";
     string retstr = "[";
     if(front) {
         while(!dq.empty()) {
