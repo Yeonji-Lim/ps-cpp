@@ -9,6 +9,10 @@ int main() {
     cin >> str;
     stack<char> cst;
     stack<int> ist;
+    if(str.length()>>1) {
+        cout << "0\n";
+        return 0;
+    }
     for(int i = 0; i < str.length(); i++) {
         if(str[i] == '(' || str[i] == '[') {
             cst.push(str[i]);
@@ -79,6 +83,11 @@ int main() {
     while(!ist.empty()) {
         ans += ist.top();
         ist.pop();
+        if(cst.top() != '*') {
+            cout << "0\n";
+            return 0;
+        }
+        cst.pop();
     }
     cout << ans << '\n';
 }
