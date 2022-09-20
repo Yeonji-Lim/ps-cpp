@@ -24,7 +24,7 @@ int main() {
                 }
                 if(cst.top() == '*') {
                     tmp = 0;
-                    while(cst.top() != '(') {
+                    while(!cst.empty() && cst.top() != '(') {
                         if(cst.top() == '[') {
                             cout << "0\n";
                             return 0;
@@ -32,6 +32,10 @@ int main() {
                         cst.pop();
                         tmp += ist.top();
                         ist.pop();
+                    }
+                    if(cst.empty()) {
+                        cout << "0\n";
+                        return 0;
                     }
                     ist.push(tmp*2);
                 } else {
@@ -50,7 +54,7 @@ int main() {
                 }
                 if(cst.top() == '*') {
                     tmp = 0;
-                    while(cst.top() != '[') {
+                    while(!cst.empty() && cst.top() != '[') {
                         if(cst.top() == '(') {
                             cout << "0\n";
                             return 0;
@@ -58,6 +62,10 @@ int main() {
                         cst.pop();
                         tmp += ist.top();
                         ist.pop();
+                    }
+                    if(cst.empty()) {
+                        cout << "0\n";
+                        return 0;
                     }
                     ist.push(tmp*3);
                 } else {
