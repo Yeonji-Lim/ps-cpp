@@ -4,7 +4,7 @@
 using namespace std;
 int n, m, num = 0, ms = 0, cs;
 int board[501][501];
-bool visit[501][501];
+bool visited[501][501];
 queue<pair<int, int>> q;
 
 int di[4] = {-1, 0, 1, 0};
@@ -21,15 +21,15 @@ int main() {
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
             cin >> board[i][j];
-            visit[i][j] = false;
+            visited[i][j] = false;
         }
     }
 
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
-            if(board[i][j] && !visit[i][j]) {
+            if(board[i][j] && !visited[i][j]) {
                 num++; cs = 0;
-                visit[i][j] = true;
+                visited[i][j] = true;
                 cur = {i, j};
                 q.push(cur);
                 while(!q.empty()) {
@@ -37,8 +37,8 @@ int main() {
                     cs++;
                     for(int k = 0; k < 4; k++) {
                         int ni = cur.I + di[k], nj = cur.J + dj[k];
-                        if(isInMap(ni, nj) && board[ni][nj] && !visit[ni][nj]) {
-                            visit[ni][nj] = true;
+                        if(isInMap(ni, nj) && board[ni][nj] && !visited[ni][nj]) {
+                            visited[ni][nj] = true;
                             q.push({ni, nj});
                         }
                     }
