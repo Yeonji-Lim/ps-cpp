@@ -36,8 +36,8 @@ int main() {
                 cs++;
                 for(int k = 0; k < 4; k++) {
                     int ni = cur.I + di[k], nj = cur.J + dj[k];
-                    if(isInMap(ni, nj) && board[ni][nj] && !visited[ni][nj]) {
-                        visited[ni][nj] = true;
+                    if(isInMap(ni, nj) && board[ni][nj] && !vis[ni][nj]) {
+                        vis[ni][nj] = true;
                         q.push({ni, nj});
                     }
                 }
