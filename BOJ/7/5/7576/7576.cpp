@@ -15,7 +15,7 @@ bool isInMap(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin >> n >> m;
+    cin >> m >> n;
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
             cin >> box[i][j];
@@ -61,3 +61,9 @@ int main() {
     }
     cout << ans-1 << '\n';
 }
+
+/**
+ * @brief 
+ * 직사각형일 때 막힌걸 인식을 못함
+ * -> n과 m의 입력 순서가 뒤바뀌어 있었음
+ */
