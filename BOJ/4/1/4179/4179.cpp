@@ -39,15 +39,17 @@ int main() {
     int ni, nj, d;
     bool imp = true;
     while(!jq.empty()) {
-        curf = fq.front(); fq.pop();
         curj = jq.front(); jq.pop();
         d = dist[curj.I][curj.J] ;
 
-        for(int k = 0; k < 4; k++) {
-            ni = curf.I + di[k]; nj = curf.J + dj[k];
-            if(isInMap(ni, nj) && dist[ni][nj] != -1 && dist[ni][nj] != -2) {
-                fq.push({ni, nj});
-                dist[ni][nj] = -1;
+        if(!fq.empty()) {
+            curf = fq.front(); fq.pop();
+            for(int k = 0; k < 4; k++) {
+                ni = curf.I + di[k]; nj = curf.J + dj[k];
+                if(isInMap(ni, nj) && board[ni][nj] != 'F' && board[ni][nj] != '#') {
+                    fq.push({ni, nj});
+                    board[ni][nj] = 'F';
+                }
             }
         }
 
@@ -57,7 +59,7 @@ int main() {
                 cout << d << '\n';
                 return 0;
             }
-            if(isInMap(ni, nj) && dist[ni][nj] != -1 && dist[ni][nj] != -2) {
+            if(isInMap(ni, nj) && board[ni][nj] != 'F' && board[ni][nj] != '#') {
                 imp = false;
                 jq.push({ni, nj});
                 dist[ni][nj] = d+1;
