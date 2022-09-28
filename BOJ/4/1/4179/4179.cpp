@@ -23,9 +23,7 @@ int main() {
         cin >> str;
         for(int j = 0; j < c; j++) {
             board[i][j] = str[j];
-            if(board[i][j] == '#') dist[i][j] = -2;
-            else if(board[i][j] == 'F') {
-                dist[i][j] = -1;
+            if(board[i][j] == 'F') {
                 fq.push({i, j});
             } else if(board[i][j] == 'J') {
                 dist[i][j] = 1;
@@ -46,7 +44,7 @@ int main() {
             curf = fq.front(); fq.pop();
             for(int k = 0; k < 4; k++) {
                 ni = curf.I + di[k]; nj = curf.J + dj[k];
-                if(isInMap(ni, nj) && board[ni][nj] != 'F' && board[ni][nj] != '#') {
+                if(isInMap(ni, nj) && board[ni][nj] == '.') {
                     fq.push({ni, nj});
                     board[ni][nj] = 'F';
                 }
@@ -59,7 +57,7 @@ int main() {
                 cout << d << '\n';
                 return 0;
             }
-            if(isInMap(ni, nj) && board[ni][nj] != 'F' && board[ni][nj] != '#') {
+            if(isInMap(ni, nj) && board[ni][nj] == '.' && dist[ni][nj] == 0) {
                 imp = false;
                 jq.push({ni, nj});
                 dist[ni][nj] = d+1;
@@ -70,6 +68,13 @@ int main() {
             return 0;
         }
         imp = true;
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                cout << board[i][j];
+            }
+            cout << '\n';
+        }
+        cout << '\n';
     }
 }
 /**
