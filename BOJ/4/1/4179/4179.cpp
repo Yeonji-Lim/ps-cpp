@@ -7,6 +7,7 @@ char board[1002][1002];
 int dist[1002][1002];
 queue<pair<int, int>> jq;
 queue<pair<int, int>> fq;
+queue<pair<int, int>> fq1;
 pair<int, int> curj;
 pair<int, int> curf;
 
@@ -27,7 +28,7 @@ int main() {
                 fq.push({i, j});
             } else if(board[i][j] == 'J') {
                 dist[i][j] = 1;
-                jq.push({i, j});
+                jq.push({ i, j});
             } else {
                 dist[i][j] = 0;
             }
@@ -35,21 +36,35 @@ int main() {
     }
 
     int ni, nj, d;
-    bool imp = true;
+    bool imp = true, fcur = true;
     while(!jq.empty()) {
         curj = jq.front(); jq.pop();
-        d = dist[curj.I][curj.J] ;
-
-        if(!fq.empty()) {
-            curf = fq.front(); fq.pop();
-            for(int k = 0; k < 4; k++) {
-                ni = curf.I + di[k]; nj = curf.J + dj[k];
-                if(isInMap(ni, nj) && board[ni][nj] == '.') {
-                    fq.push({ni, nj});
-                    board[ni][nj] = 'F';
+        d = dist[curj.I][curj.J];
+        
+        if(fcur) {
+            if(!fq.empty()) {
+                curf = fq.front(); fq.pop();
+                for(int k = 0; k < 4; k++) {
+                    ni = curf.I + di[k]; nj = curf.J + dj[k];
+                    if(isInMap(ni, nj) && board[ni][nj] == '.') {
+                        fq1.push({ni, nj});
+                        board[ni][nj] = 'F';
+                    }
+                }
+            }
+        } else {
+            if(!fq1.empty()) {
+                curf = fq1.front(); fq1.pop();
+                for(int k = 0; k < 4; k++) {
+                    ni = curf.I + di[k]; nj = curf.J + dj[k];
+                    if(isInMap(ni, nj) && board[ni][nj] == '.') {
+                        fq.push({ni, nj});
+                        board[ni][nj] = 'F';
+                    }
                 }
             }
         }
+        fcur != fcur;
 
         for(int k = 0; k < 4; k++) {
             ni = curj.I + di[k]; nj = curj.J + dj[k];
@@ -68,13 +83,6 @@ int main() {
             return 0;
         }
         imp = true;
-        for(int i = 0; i < r; i++) {
-            for(int j = 0; j < c; j++) {
-                cout << board[i][j];
-            }
-            cout << '\n';
-        }
-        cout << '\n';
     }
 }
 /**
