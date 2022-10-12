@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int dp[1000000];
+int dp[1000001];
 
 int main() {
     ios::sync_with_stdio(0);
