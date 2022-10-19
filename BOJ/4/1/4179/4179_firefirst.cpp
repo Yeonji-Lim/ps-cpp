@@ -41,7 +41,7 @@ int main() {
         d = distf[cur.I][cur.J];
         for(int k = 0; k < 4; k++) {
             ni = cur.I + di[k]; nj = cur.J + dj[k];
-            if(isInMap(ni, nj) && board[ni][nj] != '#' && distf[ni][nj] == -1) {
+            if(isInMap(ni, nj) && board[ni][nj] != '#' && distf[ni][nj] == -1) { // 불이 그 공간에 처음으로 도달하는 경우에만 갱신
                 distf[ni][nj] = d+1;
                 q.push({ni, nj});
             }
@@ -58,7 +58,7 @@ int main() {
                 cout << d+1 << '\n';
                 return 0;
             }
-            if(board[ni][nj] == '.' && distj[ni][nj] == -1 && (distj[ni][nj] > d+1 || distf[ni][nj] == -1)) {
+            if(board[ni][nj] == '.' && distj[ni][nj] == -1 && (distf[ni][nj] == -1 || distf[ni][nj] > d+1)) {
                 distj[ni][nj] = d+1;
                 q.push({ni, nj});
             }
