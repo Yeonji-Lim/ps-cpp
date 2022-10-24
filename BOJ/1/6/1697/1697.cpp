@@ -17,7 +17,7 @@ int main() {
         if(cur == k) continue;
         d = dist[cur];
         for(int i : {cur-1, cur+1, cur*2}) {
-            if(i != cur && i >= 0 && i <= k && dist[i] == -1) {
+            if(i != cur && i >= 0 && i <= 100002 && dist[i] == -1) {
                 dist[i] = d+1;
                 q.push(i);
             }
