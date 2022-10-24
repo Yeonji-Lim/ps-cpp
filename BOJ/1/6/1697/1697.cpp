@@ -12,7 +12,7 @@ int main() {
     queue<int> q;
     q.push(n);
     dist[n] = 0;
-    while(!q.empty()) {
+    while(dist[k] == -1) {
         cur = q.front(); q.pop();
         if(cur == k) continue;
         d = dist[cur];
