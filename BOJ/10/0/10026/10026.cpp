@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#define I first;
-#define J second;
+#define I first
+#define J second
 using namespace std;
 int n, ans = 0, weakans = 0;
 string str;
