@@ -86,4 +86,5 @@ int main() {
  * @brief 
  * B인 경우의 개수를 미리 저장해두기 weakans에
  * 그러고 나서 G, R에 대해서 다시 bfs 진행
+ * 그런데 이때 B의 갯수가 0이면 weakans는 무조건 1
  */
