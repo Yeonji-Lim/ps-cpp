@@ -36,19 +36,17 @@ vector<int> cur;
     }
     
     dist--;
-    if (dist != 0) {
-        for(int k = 0; k < h; k++) {
-            for(int i = 0; i < n; i++) {
-                for(int j = 0; j < m; j++) {
-                    if(box[k][i][j] == 0) {
-                        dist = -1;
-                        break;
-                    }
+    for(int k = 0; k < h; k++) {
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(box[k][i][j] == 0) {
+                    dist = -1;
+                    break;
                 }
-                if(dist == -1) break;
             }
             if(dist == -1) break;
         }
+        if(dist == -1) break;
     }
     cout << dist << '\n';
 }
