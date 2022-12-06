@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int m, n, h;
-int box[10][10][10];
+int box[101][101][101];
 int d[6][3] = {{1, 0, 0}, {-1, 0, 0}, {0, 0, -1}, {0, 0, 1}, {0, -1, 0}, {0, 1, 0}};
 bool isInBox(int k, int i, int j) { return k > -1 && k < h && i > -1 && i < n && j > -1 && j < m; }
 queue<vector<int>> q;
