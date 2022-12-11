@@ -5,9 +5,8 @@ using namespace std;
 int r, c;
 char board[1002][1002];
 int dist[1002][1002];
-queue<pair<int, int>> jq;
-queue<pair<int, int>> fq;
-queue<pair<int, int>> fq1;
+queue<pair<int, int>> jq; queue<pair<int, int>> jq1;
+queue<pair<int, int>> fq; queue<pair<int, int>> fq1;
 pair<int, int> curj;
 pair<int, int> curf;
 
@@ -36,13 +35,10 @@ int main() {
     }
 
     int ni, nj, d;
-    bool imp = true, fcur = true;
-    while(!jq.empty()) {
-        curj = jq.front(); jq.pop();
-        d = dist[curj.I][curj.J];
-        
-        if(fcur) {
-            if(!fq.empty()) {
+    bool imp = true, cur = true;
+    while(true) {
+        if(cur) {
+            while(!fq.empty()) {
                 curf = fq.front(); fq.pop();
                 for(int k = 0; k < 4; k++) {
                     ni = curf.I + di[k]; nj = curf.J + dj[k];
@@ -53,7 +49,7 @@ int main() {
                 }
             }
         } else {
-            if(!fq1.empty()) {
+            while(!fq1.empty()) {
                 curf = fq1.front(); fq1.pop();
                 for(int k = 0; k < 4; k++) {
                     ni = curf.I + di[k]; nj = curf.J + dj[k];
@@ -64,18 +60,40 @@ int main() {
                 }
             }
         }
-        fcur != fcur;
-
-        for(int k = 0; k < 4; k++) {
-            ni = curj.I + di[k]; nj = curj.J + dj[k];
-            if(!isInMap(ni, nj)) {
-                cout << d << '\n';
-                return 0;
+        
+        if(cur) {
+            while(!jq.empty()) {
+                curj = jq.front(); jq.pop();
+                d = dist[curj.I][curj.J];
+                for(int k = 0; k < 4; k++) {
+                    ni = curj.I + di[k]; nj = curj.J + dj[k];
+                    if(!isInMap(ni, nj)) {
+                        cout << d << '\n';
+                        return 0;
+                    }
+                    if(isInMap(ni, nj) && board[ni][nj] == '.' && dist[ni][nj] == 0) {
+                        imp = false;
+                        jq1.push({ni, nj});
+                        dist[ni][nj] = d+1;
+                    }
+                }
             }
-            if(isInMap(ni, nj) && board[ni][nj] == '.' && dist[ni][nj] == 0) {
-                imp = false;
-                jq.push({ni, nj});
-                dist[ni][nj] = d+1;
+        } else {
+            while(!jq1.empty()) {
+                curj = jq1.front(); jq1.pop();
+                d = dist[curj.I][curj.J];
+                for(int k = 0; k < 4; k++) {
+                    ni = curj.I + di[k]; nj = curj.J + dj[k];
+                    if(!isInMap(ni, nj)) {
+                        cout << d << '\n';
+                        return 0;
+                    }
+                    if(isInMap(ni, nj) && board[ni][nj] == '.' && dist[ni][nj] == 0) {
+                        imp = false;
+                        jq.push({ni, nj});
+                        dist[ni][nj] = d+1;
+                    }
+                }
             }
         }
         if(imp) {
@@ -83,6 +101,7 @@ int main() {
             return 0;
         }
         imp = true;
+        cur = !cur;
     }
 }
 /**
