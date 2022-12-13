@@ -25,7 +25,7 @@ int main() {
                     q.push({i, j});
                     firedist[i][j] = 0;
                 }
-                if (board[i][j] == '@') { // 이렇게 하는 방법 보다 좋은 방법이 있엇던 것 같다.
+                if (board[i][j] == '@') { 
                     sang = {i, j};
                 }
             }
@@ -37,13 +37,12 @@ int main() {
             dist = firedist[cur.first][cur.second];
             for(int k = 0; k < 4; k++) {
                 ni = cur.first + d[k][0]; nj = cur.second + d[k][1];
-                if (isInMap(ni, nj) && firedist[ni][nj] == -1) {
+                if (isInMap(ni, nj) && board[ni][nj] != '#' && firedist[ni][nj] == -1) {
                     firedist[ni][nj] = dist+1;
                     q.push({ni, nj});
                 }
             }
         }
-        // 상근이의 dist 보다 firedist가 커야 함 같아도 안됨
         q.push(sang);
         while(!q.empty()) {
             cur = q.front(); q.pop();
