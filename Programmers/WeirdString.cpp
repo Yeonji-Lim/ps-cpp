@@ -1,25 +1,29 @@
 // 12930
 #include <string>
 #include <vector>
-#include <sstream>
 
 using namespace std;
 
 string solution(string s) {
-    string answer = "";
-    stringstream ss(s);
-    vector<string> words;
-    string word;
-    while(getline(ss, word, ' ')) {
-        for(int i = 0; i < word.size(); i++) {
-            if(i%2) {
-                if(word[i] < 'a') word[i] = word[i] - 'A' + 'a';
+    bool isWord;
+    int j;
+    for(int i = 0; i < s.size(); i++) {
+        if(isWord) {
+            if(s[i] == ' ') {
+                isWord = false;
             } else {
-                if(word[i] >= 'a') word[i] = word[i] - 'a' + 'A';
+                if(j%2) {
+                    if(s[i] < 'a') s[i] -= 'A' - 'a';
+                } else {
+                    if(s[i] >= 'a') s[i] -= 'a' - 'A';
+                }
+                j++;
             }
+        } else if(s[i] != ' ') {
+            isWord = true;
+            j = 0;
+            i--;
         }
-        answer += word + ' ';
     }
-    answer = answer.substr(0, answer.size()-1);
-    return answer;
+    return s;
 }
