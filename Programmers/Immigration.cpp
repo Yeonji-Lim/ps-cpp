@@ -1,13 +1,13 @@
 // 43238
 #include <string>
 #include <vector>
-#define MT 1000000000
+#define MT 1000000000000000001
 
 using namespace std;
 
 long long solution(int n, vector<int> times) {
     int s = times.size();
-    int min_time = MT;
+    long long min_time = MT;
     int min_t;
     vector<int> wait(s, 1);
     for(int i = 0; i < n; i++) {
