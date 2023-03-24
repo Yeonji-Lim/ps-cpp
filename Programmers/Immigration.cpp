@@ -14,7 +14,7 @@ using namespace std;
 long long solution(int n, vector<int> times) {
     long long answer;
     long long mint = 1;
-    long long maxt = *max_element(times.begin(), times.end())*n;
+    long long maxt = (long long)(*max_element(times.begin(), times.end()))*(long long)(n);
     long long avgt;
     long long done = 0;
     while(mint <= maxt) {
