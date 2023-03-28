@@ -31,6 +31,10 @@ int solution(vector<vector<int>> jobs) {
             pq.push(jobs[i]);
             i++;      
         }
+        if(pq.empty()) {
+            pq.push(jobs[i++]);
+            time = pq.top()[0];
+        }
         item = pq.top();
         time += item[1];
         answer += time - item[0];
