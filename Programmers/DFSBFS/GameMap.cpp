@@ -1,6 +1,7 @@
+// 1844
 #include<vector>
+#include<string>
 #define MS 101
-#define MA 10002
 using namespace std;
 vector<vector<int>> map;
 int n, m;
@@ -9,25 +10,24 @@ int dist[MS][MS];
 int d[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 int isInMap(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
 
-int find(int i, int j) {
-    if(i == n-1 && j == m-1) {
-        return dist[i][j];
-    }
-    int ni, nj, ans = MA;
+void find(int i, int j) {
+    if(i == n-1 && j == m-1) return;
+    int ni, nj;
     for(int k = 0; k < 4; k++) {
         ni = i + d[k][0]; nj = j + d[k][1];
-        if(isInMap(ni, nj) && dist[ni][nj] == 0 && map[ni][nj] == 1) {
+        if(isInMap(ni, nj) && dist[ni][nj] == -1 && map[ni][nj] == 1) {
             dist[ni][nj] = dist[i][j]+1;
-            ans = min(ans, find(ni, nj));
+            find(ni, nj);
         }
     }
-    if(ans == MA) return -1;
-    return ans;
 }
 
 int solution(vector<vector<int>> maps) {
     map = maps;
     n = maps.size();
     m = maps[0].size();
-    return find(0, 0);
+    fill(&dist[0][0], &dist[n][m], -1);
+    dist[0][0] = 1;
+    find(0, 0);
+    return dist[n-1][m-1];
 }
