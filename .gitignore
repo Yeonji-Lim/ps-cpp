@@ -1,3 +1,11 @@
+# Ignore All
+*
+
+# Unignore all with extention
+!*.*
+
+# Unignore all dirs
+!*/
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,macos
