@@ -2,89 +2,20 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "shell",
-			"label": "C bulid for clang",
-			"command": "clang",
-			"args": [
-				"-g",
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
-			],
-			"options": {
-				"cwd": "${workspaceRoot}"
-			},
-			"presentation": {
-				"clear": true
-			},
-			"group": "build",
-			"problemMatcher": []
-		},
-		{
-			"type": "shell",
-			"label": "C++ bulid for clang++",
-			"command": "clang++",
-			"args": [
-				"-std=c++17",
-				"-stdlib=libc++",
-				"-g",
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
-			],
-			"options": {
-				"cwd": "${workspaceRoot}"
-			},
-			"presentation": {
-				"clear": true
-			},
-			"group": "build",
-			"problemMatcher": [
-				"$gcc"
-			]
-		},
-		{
-			"type": "shell",
-			"label": "execute",
-			"command": "${fileDirname}/${fileBasenameNoExtension}",
-			"group": "test",
-			"presentation": {
-				"clear": true
-			}
-		},
-		{
-			"type": "cppbuild",
-			"label": "C/C++: g++ 활성 파일 빌드",
-			"command": "/usr/bin/g++",
-			"args": [
-				"-g",
-				"-std=c++14",
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build",
-			"detail": "디버거에서 생성된 작업입니다."
-		},
-		{
 			"type": "cppbuild",
 			"label": "C/C++: clang++ 활성 파일 빌드",
 			"command": "/usr/bin/clang++",
 			"args": [
-				"-std=c++14",
+				"-fcolor-diagnostics",
+				"-fansi-escape-codes",
+				"-std=c++17",
 				"-g",
 				"${file}",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${fileDirname}"
 			},
 			"problemMatcher": [
 				"$gcc"
