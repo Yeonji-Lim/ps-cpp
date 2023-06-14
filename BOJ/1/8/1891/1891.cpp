@@ -25,22 +25,18 @@ pair<long long, long long> getCoordinate(int num, int d, pair<long long, long lo
 }
 
 int getNum(long long &i, long long &j, int d) {
-    int cal = pow(2, --d);
+    long long cal = pow(2, d);
     if(i >= cal) {
         i -= cal;
         if(j >= cal) {
             j -= cal;
             return 4;
-        } else {
-            return 3;
-        }
+        } else return 3;
     } else {
         if(j >= cal) {
             j -= cal;
             return 1;
-        } else {
-            return 2;
-        }
+        } else return 2;
     }
 }
 
@@ -51,11 +47,11 @@ int main() {
     int d;
     string n;
     cin >> d >> n;
-    int x, y;
+    long long x, y;
     cin >> x >> y;
     
     long long i = 0, j = 0;
-    int num = 0, td=d;
+    int num = 0, td = d;
 
     for(int k = 0; k < n.length(); k++) {
         num = n[k] - '0';
@@ -71,7 +67,7 @@ int main() {
         return 0;
     }
 
-    for(d; d > 0; d--) {
+    while(d--) {
         num = getNum(i, j, d);
         cout << num;
     }
