@@ -3,27 +3,26 @@
 
 using namespace std;
 
-pair<long long, long long> getCoordinate(int num, int d, pair<long long, long long> p) {
-    long long i = p.first; long long j = p.second;
-    d -= 1;
-    switch (num)
-    {
-    case 1:
-        j += pow(2, d);
-        break;
-    case 3:
-        i += pow(2, d);
-        break;
-    case 4:
-        i += pow(2, d);
-        j += pow(2, d);
-        break;
-    default:
-        break;
+// 해당 숫자의 좌표를 반환하는 함수, 현재 자리의 숫자와 d의 값을 보고 판단
+void getCoordinate(int num, int d, long long &i, long long &j) {
+    long long cal = pow(2, d);
+    switch (num) {
+        case 1:
+            j += cal;
+            break;
+        case 3:
+            i += cal;
+            break;
+        case 4:
+            i += cal;
+            j += cal;
+            break;
+        default:
+            break;
     }
-    return make_pair(i, j);
 }
 
+// 해당 좌표의 숫자를 반환하는 함수, 해당 좌표가 d의 값을 기준으로 어느 사분면인지 판단
 int getNum(long long &i, long long &j, int d) {
     long long cal = pow(2, d);
     if(i >= cal) {
@@ -51,13 +50,11 @@ int main() {
     cin >> x >> y;
     
     long long i = 0, j = 0;
-    int num = 0, td = d;
+    int num = 0, td = d-1;
 
-    for(int k = 0; k < n.length(); k++) {
+    for(int k = 0; k < n.length(); k++, td--) {
         num = n[k] - '0';
-        pair<long long, long long> p = getCoordinate(num, td, make_pair(i, j));
-        i = p.first; j = p.second;
-        td--;
+        getCoordinate(num, td, i, j);
     }
     
     j += x;
