@@ -59,14 +59,14 @@ int getdist(int i, int j) {
 }
 
 void dosth(string cur) {
-    if((int) cur.length() == l) {
-        cout << cur << ' ' << getdist(stoi(n), stoi(cur)) << '\n';
+    if((int) cur.length() == 6) {
         ans = min(ans, l + getdist(stoi(n), stoi(cur)));
         return;
     }
     for(int i = 0; i < 10; i++) {
         if(num[i]) {
             cur += to_string(i);
+            ans = min(ans, (int) cur.length() + getdist(stoi(n), stoi(cur)));
             dosth(cur);
             cur.pop_back();
         }
@@ -92,8 +92,6 @@ int main() {
         }
     }
     if(tmp == 0) ans = min(ans, l);
-    dosth("");
-    l++;
     dosth("");
     cout << ans << '\n';
     return 0;
