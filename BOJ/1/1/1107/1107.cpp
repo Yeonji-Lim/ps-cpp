@@ -59,10 +59,7 @@ int getdist(int i, int j) {
 }
 
 void dosth(string cur) {
-    if((int) cur.length() == 6) {
-        ans = min(ans, l + getdist(stoi(n), stoi(cur)));
-        return;
-    }
+    if((int) cur.length() == 6) return;
     for(int i = 0; i < 10; i++) {
         if(num[i]) {
             cur += to_string(i);
