@@ -10,7 +10,7 @@ bool go(long long hp) {
     long long maxh = hp;
     for(int i = 0; i < n; i++) {
         if(bang[i][0] == 1) { //용
-            hp -= bang[i][1]*(bang[i][2]/tatk);
+            hp -= bang[i][2]%tatk? (long long)bang[i][1]*(bang[i][2]/tatk): (long long)bang[i][1]*(bang[i][2]/tatk-1);
             if(hp <= 0) return false;
         } else { //포션
             tatk += bang[i][1];
