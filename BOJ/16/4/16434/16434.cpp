@@ -6,7 +6,7 @@ int n, atk;
 int bang[123456][3];
 
 bool go(long long hp) {
-    int tatk = atk;
+    long long tatk = atk;
     long long maxh = hp;
     for(int i = 0; i < n; i++) {
         if(bang[i][0] == 1) { //용
@@ -14,8 +14,7 @@ bool go(long long hp) {
             if(hp <= 0) return false;
         } else { //포션
             tatk += bang[i][1];
-            hp += bang[i][2];
-            if(hp > maxh) hp = maxh;
+            hp = min(hp+bang[i][2], maxh);
         }   
     }
     return true;
