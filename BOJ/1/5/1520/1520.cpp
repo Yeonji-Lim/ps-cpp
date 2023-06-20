@@ -1,32 +1,26 @@
 #include <iostream>
-#include <stack>
 #define MS 501
 
 using namespace std;
 
 int board[MS][MS];
+int dp[MS][MS];
 int n, m, ans = 0;
 
 bool isInBoard(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
 int d[4][2] = { {1, 0}, {0, 1}, {0, -1}, {-1, 0} };
 
-stack<pair<int, int>> st;
+int dfs(int i, int j) { 
+    if(dp[i][j] != -1) return dp[i][j];
 
-void go() {
-    int ci = st.top().first, cj = st.top().second, ni, nj;
-    st.pop();
-    
-    if(ci == n-1 && cj == m-1) {
-        ans++;
-        return;
-    }
-
+    int ni, nj;
+    dp[i][j] = 0;
     for(int k = 0; k < 4; k++) {
-        ni = ci + d[k][0]; nj = cj + d[k][1];
-        if(isInBoard(ni, nj) && board[ci][cj] > board[ni][nj]) {
-            st.emplace(ni, nj);
-        }
+        ni = i + d[k][0]; nj = j + d[k][1];
+        if(isInBoard(ni, nj) && board[i][j] > board[ni][nj])
+            dp[i][j] += dfs(ni, nj);
     }
+    return dp[i][j];
 }
 
 int main() {
@@ -38,8 +32,9 @@ int main() {
             cin >> board[i][j];
         }
     }
-    st.emplace(0, 0);
-    while(!st.empty()) go();
-    cout << ans << '\n';
+    fill(&dp[0][0], &dp[n][m], -1);
+    dp[n-1][m-1] = 1;
+    dfs(0, 0);
+    cout << dp[0][0] << '\n';
     return 0;
 }
