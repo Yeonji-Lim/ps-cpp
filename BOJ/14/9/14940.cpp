@@ -44,7 +44,7 @@ int main() {
     }
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
-            if(res[i][j] == -1) cout << "0 ";
+            if(res[i][j] == -1 && !board[i][j]) cout << "0 ";
             else cout << res[i][j] << ' ';
         }
         cout << '\n';
