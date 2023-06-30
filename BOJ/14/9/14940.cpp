@@ -7,7 +7,7 @@ using namespace std;
 vector<vector<int>> board, res;
 queue<pair<int, int>> q;
 pair<int, int> tp;
-int n, m, ci, cj, ni, nj, dist;
+int n, m, ci, cj, ni, nj;
 
 int d[4][2] = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
 bool isInBoard(int i, int j) { return i > -1 && i < n && j > -1 && j < m; }
@@ -18,12 +18,15 @@ int main() {
 
     cin >> n >> m;
     board.resize(n, vector<int>(m, 0));
-    res.resize(n, vector<int>(m, 0));
+    res.resize(n, vector<int>(m, -1));
 
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
             cin >> board[i][j];
-            if(board[i][j] == 2) q.emplace(i, j);
+            if(board[i][j] == 2) {
+                q.emplace(i, j);
+                res[i][j] = 0;
+            }
         }
     }
 
@@ -33,16 +36,16 @@ int main() {
 
         for(int k = 0; k < 4; k++) {
             ni = ci + d[k][0]; nj = cj + d[k][1];
-            dist = res[ci][cj] + 1;
-            if(isInBoard(ni, nj) && board[ni][nj] && !res[ni][nj]) {
-                res[ni][nj] = dist;
+            if(isInBoard(ni, nj) && board[ni][nj] && res[ni][nj] == -1) {
+                res[ni][nj] = res[ci][cj] + 1;
                 q.emplace(ni, nj);
             }
         }
     }
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
-            cout << res[i][j] << ' ';
+            if(res[i][j] == -1) cout << "0 ";
+            else cout << res[i][j] << ' ';
         }
         cout << '\n';
     }
