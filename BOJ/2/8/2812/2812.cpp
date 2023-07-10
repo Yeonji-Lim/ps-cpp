@@ -72,6 +72,6 @@ int main() {
 		ans += num[i];
 	}
 	// 다 돌았는데도 k가 0이 아니면 뒤에서 부터 삭제
-	cout << ans.substr(0, n-k) << '\n';
+	cout << ans.substr(0, ans.length()-k) << '\n';
 	return 0;
 }
