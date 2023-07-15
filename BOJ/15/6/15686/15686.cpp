@@ -93,48 +93,86 @@
 
 // next_permutation을 활용하여 다시!
 
+// #include <iostream>
+// #include <algorithm>
+// #include <cstdlib>
+// #include <vector>
+// using namespace std;
+
+// int N, M;
+// vector<pair<int, int>> house;
+// vector<pair<int, int>> chicken;
+
+// int chickDist(pair<int, int> h, pair<int, int> c) { return abs(h.first - c.first) + abs(h.second - c.second); }
+
+// int main() {
+//     int tmp, ans = 1e9, tmpAns = 0;
+//     cin >> N >> M;
+//     for(int i = 0; i < N; i++) {
+//         for(int j = 0; j < N; j++) {
+//             cin >> tmp;
+//             if(tmp == 1) house.emplace_back(i, j);
+//             if(tmp == 2) {
+//                 chicken.emplace_back(i, j);
+//                 tmpAns++;
+//             }
+//         }
+//     }
+
+//     vector<bool> perm(tmpAns);
+//     fill(perm.end()-M, perm.end(), true);
+//     tmp = 1e9;
+//     tmpAns = 0;
+//     do {
+//         for(int i = 0; i < house.size(); i++) {
+//             for(int j = 0; j < chicken.size(); j++) {
+//                 if(perm[j]) tmp = min(tmp, chickDist(house[i], chicken[j]));
+//             }
+//             tmpAns += tmp;
+//             tmp = 1e9;
+//         }
+//         ans = min(ans, tmpAns);
+//         tmpAns = 0;
+//     } while(next_permutation(perm.begin(), perm.end()));
+
+//     cout << ans << endl;
+//     return 0;
+// }
+
 #include <iostream>
 #include <algorithm>
-#include <cstdlib>
 #include <vector>
+
 using namespace std;
 
-int N, M;
-vector<pair<int, int>> house;
-vector<pair<int, int>> chicken;
-
-int chickDist(pair<int, int> h, pair<int, int> c) { return abs(h.first - c.first) + abs(h.second - c.second); }
+int n, m, ans = 100*2500, tmpans = 0, chidist = 0;
+vector<pair<int, int>> chi, zip;
+vector<bool> exist;
 
 int main() {
-    int tmp, ans = 1e9, tmpAns = 0;
-    cin >> N >> M;
-    for(int i = 0; i < N; i++) {
-        for(int j = 0; j < N; j++) {
-            cin >> tmp;
-            if(tmp == 1) house.emplace_back(i, j);
-            if(tmp == 2) {
-                chicken.emplace_back(i, j);
-                tmpAns++;
-            }
+    cin >> n >> m;
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            cin >> tmpans;
+            if(tmpans == 2) chi.emplace_back(i, j);
+            if(tmpans == 1) zip.emplace_back(i, j);
         }
     }
-
-    vector<bool> perm(tmpAns);
-    fill(perm.end()-M, perm.end(), true);
-    tmp = 1e9;
-    tmpAns = 0;
+    exist.resize(chi.size());
+    fill(exist.end()-m, exist.end(), true);
     do {
-        for(int i = 0; i < house.size(); i++) {
-            for(int j = 0; j < chicken.size(); j++) {
-                if(perm[j]) tmp = min(tmp, chickDist(house[i], chicken[j]));
+        tmpans = 0;
+        for(int i = 0; i < zip.size(); i++) {
+            chidist = 101;
+            for(int j = 0; j < chi.size(); j++) {
+                if(exist[j]) {
+                    chidist = min(chidist, abs(zip[i].first-chi[j].first) + abs(zip[i].second-chi[j].second));
+                }
             }
-            tmpAns += tmp;
-            tmp = 1e9;
+            if(chidist != 101) tmpans += chidist;
         }
-        ans = min(ans, tmpAns);
-        tmpAns = 0;
-    } while(next_permutation(perm.begin(), perm.end()));
-
-    cout << ans << endl;
+        ans = min(ans, tmpans);
+    } while(next_permutation(exist.begin(), exist.end()));
+    cout << ans << '\n';
     return 0;
 }
