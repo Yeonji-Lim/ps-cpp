@@ -1,31 +1,25 @@
 #include <iostream>
+#define M_N 12
+#define M_M 4001
 
 using namespace std;
 
 int t,n,m;
-long long ans = 0, tmp;
-long long dp[11][2001];
-
-long long choose(int tn, int tm) {
-    if(tm <= 0) return 0;
-    if(dp[tn][tm] != 0) return dp[tn][tm];
-    if(tn == 1) dp[tn][tm] = 1;
-    else if(tm == 1) dp[tn][tm] = 0;
-    else dp[tn][tm] = choose(tn-1, tm/2) + choose(tn, tm-2);
-    return dp[tn][tm];
-}
+long long dp[M_N][M_M];
 
 int main() {
 	cin >> t;
-	while(t--) {
-		cin >> n >> m;
-        for(int i = m; i > -1; i--) {
-            tmp = choose(n, i);
-            if(tmp == 0) break;
-            ans += tmp;
+    for(int i = 1; i < M_M; i++) {
+        dp[1][i] = 1;
+    }
+    for(int i = 2; i < M_N; i++) {
+        for(int j = 2; j < M_M; j++) {
+            dp[i][j] = dp[i][j-2] + dp[i-1][j/2];
         }
-        cout << ans << '\n';
-        ans = 0;
-	}
+    }
+    while(t--) {
+        cin >> n >> m;
+        cout << dp[n+1][m*2] << '\n';
+    }
 	return 0;
 }
