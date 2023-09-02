@@ -31,8 +31,8 @@ string sss(int ci, int cj, int cn) {
             if(ret[i] != tmp[0]) dup = false;
         }
         if(dup) return tmp;
-        return ret;
     }
+    return ret;
 }
 
 vector<int> solution(vector<vector<int>> a) {
@@ -49,3 +49,21 @@ vector<int> solution(vector<vector<int>> a) {
     }
     return answer;
 }
+
+/*
+S에서 판단
+첫번째꺼부터 하나씩 비교
+
+나누기
+전체 2^n 이면
+i, j
+i, j + 2^(n-1)
+i + 2^(n-1), j
+i + 2^(n-1), j + 2^(n-1)
+
+작은 단위부터 하는게 더 빠르려나?
+작은 거에서 합쳐지지 않았으면 큰거에서도 합쳐지지 않음
+
+각각을 string으로 관리?
+4개의 부분에서 string이 길이 1이고 각각이 다 같다면 합치기 가능
+*/
