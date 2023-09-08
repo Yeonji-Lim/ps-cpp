@@ -5,23 +5,25 @@
 using namespace std;
 
 int solution(vector<int> p, int l) {
-    int answer = 0, t, k;
+    int answer = 0, k;
+    pair<int, int> t;
     priority_queue<int> pq;
-    queue<int> q;
+    queue<pair<int, int>> q;
     for(int i = 0; i < p.size(); i++) {
         pq.push(p[i]);
-        q.push(p[i]);
+        q.push({p[i], i});
     }
     while(!pq.empty()) {
         k = pq.top();
-        while(k != q.front()) {
+        while(k != q.front().first) {
             t = q.front();
             q.pop();
             q.push(t);
         }
         pq.pop();
         answer++;
-        if(k == p[l]) break;
+        if(q.front().first == p[l] && q.front().second == l) break;
+        q.pop();
     }
     return answer;
 }
