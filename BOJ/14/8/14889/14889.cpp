@@ -15,7 +15,7 @@ int cal(vector<int> v) {
     return result;
 }
 
-void go(int cnt) {
+void go(int li, int cnt) {
     if(cnt == n/2) {
         vector<int> r;
         for(int i = 0; i < n && r.size() < n/2; i++)
@@ -23,11 +23,11 @@ void go(int cnt) {
         ans = min(ans, abs(cal(s), cal(r)));
         return;
     }
-    for(int i = 0; i < n; i++) {
+    for(int i = li+1; i < n; i++) {
         if(!vst[i]) {
             vst[i] = true;
             s.push_back(i);
-            go(cnt+1);
+            go(i, cnt+1);
             s.pop_back();
             vst[i] = false;
         }
@@ -35,11 +35,13 @@ void go(int cnt) {
 }
 
 int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     cin >> n;
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
             cin >> info[i][j];
-    go(0);
+    go(-1, 0);
     cout << ans << '\n';
     return 0;
 }
