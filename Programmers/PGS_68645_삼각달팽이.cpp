@@ -24,7 +24,9 @@ vector<int> solution(int n) {
                 }
                 ci = i-1;
                 cj++;
+                cv--;
                 stat++;
+                break;
             case 1:
                 for(j = cj; j < n; j++) {
                     if(v[ci][j] !=0) break;
@@ -33,7 +35,9 @@ vector<int> solution(int n) {
                 }
                 cj = j-2;
                 ci--;
+                cv--;
                 stat++;
+                break;
             case 2:
                 while(v[ci][cj] == 0) {
                     v[ci][cj] = cv;
@@ -45,6 +49,7 @@ vector<int> solution(int n) {
                 cj++;
                 cv--;
                 stat = 0;
+                break;
         }
     }
     for(i = 0; i < n; i++) {
