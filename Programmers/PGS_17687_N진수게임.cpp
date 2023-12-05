@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <iostream>
 
 using namespace std;
 int N;
@@ -14,10 +13,9 @@ map<char, int> num = {
 };
 
 char fun(char tn) {
-    int cn = num[tn];
-    if(cn+1 == N) return '0';
-    if(cn+1 == 10) return 'A';
-    return cn+1;
+    if(num[tn]+1 == N) return '0';
+    if(num[tn]+1 == 10) return 'A';
+    return tn+1;
 }
 
 string solution(int n, int t, int m, int p) {
@@ -35,17 +33,14 @@ string solution(int n, int t, int m, int p) {
         while(tmp == '0') {
             if(idx < 0) {
                 cur = "1" + cur;
-                idx = 0;
                 break;
             }
             tmp = fun(cur[idx]);
             cur[idx--] = tmp;
         }
         tot += cur;
-        cout << cur << "\n";
     }
-    for(int i = 0; i < t; i++) {
-        answer += tot[p+i*p];
-    }
+    for(int i = 0; i < t; i++)
+        answer += tot[p+i*m-1];
     return answer;
 }
