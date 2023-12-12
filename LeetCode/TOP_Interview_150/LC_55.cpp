@@ -1,6 +1,5 @@
 class Solution {
     vector<int> dp;
-    queue<int> q;
     vector<int> ns;
 public:
     bool isPos(int i) {
@@ -23,5 +22,18 @@ public:
             if(isPos(i)) return true;
         }
         return false;
+    }
+};
+
+/*Faster*/
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int maxl = 0;
+        for(int i = 0; i < nums.size(); i++) {
+            if(i > maxl) return false;
+            maxl = max(maxl, i+nums[i]);
+        }
+        return true;
     }
 };
