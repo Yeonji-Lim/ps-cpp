@@ -15,3 +15,21 @@ public:
         return words.back().length();
     }
 };
+
+/*faster*/
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int ret = 0;
+        bool flag = false;
+        for(int i = s.length()-1; i > -1; i--) {
+            if(s[i] != ' ') {
+                ret++;
+                flag = true;
+            } else if(flag) {
+                break;
+            }
+        }
+        return ret;
+    }
+};
